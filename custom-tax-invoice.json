@@ -1,0 +1,50 @@
+{
+	"scenario": "invoice",
+	"fieldSchema": {
+		"fields": {
+			"InvoiceId": {
+				"type": "string",
+				"method": "extract",
+				"description": "ID for this specific invoice (often 'Invoice Number')"
+			},
+			"PurchaseOrder": {
+				"type": "string",
+				"method": "extract",
+				"description": "A purchase order reference number"
+			},
+			"AmountDue": {
+				"type": "number",
+				"method": "extract",
+				"description": "Total amount due to the vendor"
+			},
+			"VendorName": {
+				"type": "string",
+				"method": "extract",
+				"description": "Vendor who has created this invoice"
+			},
+			"Company": {
+				"type": "string",
+				"method": "extract",
+				"description": "Company being invoiced"
+			},
+			"Total": {
+				"type": "number",
+				"method": "extract",
+				"description": "Total including GST"
+			},
+			"DocumentType": {
+				"type": "string",
+				"method": "classify",
+				"description": "Type of Document (Tax Invoice or not, as determined by regular tax invoice fields)",
+				"enum": [
+					"TaxInvoice",
+					"Other"
+				],
+				"enumDescriptions": {
+					"TaxInvoice": "Tax Invoice",
+					"Other": "Any other Document aside from a Tax Invoice"
+				}
+			}
+		}
+	}
+}

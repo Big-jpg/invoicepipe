@@ -1,0 +1,2235 @@
+[
+    {
+        "sentence": "Hi, Ross.",
+        "startTime": "00:07",
+        "endTime": "00:08",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "How are you doing?",
+        "startTime": "00:08",
+        "endTime": "00:08",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Hi there.",
+        "startTime": "00:10",
+        "endTime": "00:10",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "I mean, is that.",
+        "startTime": "00:10",
+        "endTime": "00:11",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "You said that.",
+        "startTime": "00:11",
+        "endTime": "00:12",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Sorry.",
+        "startTime": "00:12",
+        "endTime": "00:12",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Yes.",
+        "startTime": "00:12",
+        "endTime": "00:13",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Yeah, hi.",
+        "startTime": "00:13",
+        "endTime": "00:14",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Nice to meet you.",
+        "startTime": "00:14",
+        "endTime": "00:14",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Can you see us?",
+        "startTime": "00:14",
+        "endTime": "00:15",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Nice to meet you.",
+        "startTime": "00:15",
+        "endTime": "00:16",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Yeah.",
+        "startTime": "00:16",
+        "endTime": "00:16",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Cool.",
+        "startTime": "00:18",
+        "endTime": "00:18",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Yes, we can.",
+        "startTime": "00:19",
+        "endTime": "00:21",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "So what is far flawless AI note.",
+        "startTime": "00:24",
+        "endTime": "00:29",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "this is a note taker.",
+        "startTime": "00:29",
+        "endTime": "00:31",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "That's all good.",
+        "startTime": "00:31",
+        "endTime": "00:32",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "One of my note takers.",
+        "startTime": "00:32",
+        "endTime": "00:32",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "I can kick him out if you like.",
+        "startTime": "00:32",
+        "endTime": "00:33",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "No, that's okay.",
+        "startTime": "00:34",
+        "endTime": "00:35",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "We have no problem with you taking that.",
+        "startTime": "00:35",
+        "endTime": "00:37",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "So thank you, Ross, for your time.",
+        "startTime": "00:38",
+        "endTime": "00:41",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "We.",
+        "startTime": "00:42",
+        "endTime": "00:42",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "I don't know how much Douglas just explained our situation, but I will pass it to Juan to give you more detail, especially from technical point of view.",
+        "startTime": "00:42",
+        "endTime": "00:55",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "But what we are looking is we have a system called Concave that we receive invoices from.",
+        "startTime": "00:56",
+        "endTime": "01:03",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "And we are replacing it with another system called arm.",
+        "startTime": "01:03",
+        "endTime": "01:07",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "And part of it is that the invoices go to a mailbox and from that mailbox a power automate process dump them in the centralized location and.",
+        "startTime": "01:07",
+        "endTime": "01:19",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "And then there's another process that takes the invoice and reads them, the OCR part, which is also power automate.",
+        "startTime": "01:19",
+        "endTime": "01:27",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "And the problem is Mercy Care is large organization.",
+        "startTime": "01:28",
+        "endTime": "01:31",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "We have many providers, vendors, and they have a different invoicing formats and they cannot train one power automate per vendor.",
+        "startTime": "01:31",
+        "endTime": "01:42",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "And we are looking for something AI kind of automation with some intelligence behind it that no matter what the invoice is, goes and find the field.",
+        "startTime": "01:42",
+        "endTime": "01:52",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Before that I should have started from it.",
+        "startTime": "01:53",
+        "endTime": "01:55",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "I asked Juan and Manju to introduce themselves.",
+        "startTime": "01:55",
+        "endTime": "01:58",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "And then Juan, explain what is happening and if you have any questions, fire them up.",
+        "startTime": "01:58",
+        "endTime": "02:05",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Do you want to start?",
+        "startTime": "02:07",
+        "endTime": "02:08",
+        "speaker_name": "Manjusha Subhash",
+        "speaker_id": 3
+    },
+    {
+        "sentence": "Do you want me to start?",
+        "startTime": "02:08",
+        "endTime": "02:09",
+        "speaker_name": "Manjusha Subhash",
+        "speaker_id": 3
+    },
+    {
+        "sentence": "Okay.",
+        "startTime": "02:10",
+        "endTime": "02:10",
+        "speaker_name": "Manjusha Subhash",
+        "speaker_id": 3
+    },
+    {
+        "sentence": "Yeah.",
+        "startTime": "02:11",
+        "endTime": "02:11",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Hi, Rosa Mandusha, I'm the business analyst and I've been with Mercy Care for closer to seven years now.",
+        "startTime": "02:11",
+        "endTime": "02:17",
+        "speaker_name": "Manjusha Subhash",
+        "speaker_id": 3
+    },
+    {
+        "sentence": "My name is Juan.",
+        "startTime": "02:20",
+        "endTime": "02:21",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "I am one of the IT support officers here.",
+        "startTime": "02:21",
+        "endTime": "02:25",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "I help with some process with automation and support in the team.",
+        "startTime": "02:25",
+        "endTime": "02:30",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "So that's what I do.",
+        "startTime": "02:31",
+        "endTime": "02:33",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "Juan, do you want to show Ross quickly our portal and so he have an understanding?",
+        "startTime": "02:35",
+        "endTime": "02:43",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Maybe show him a couple of invoices what we want.",
+        "startTime": "02:43",
+        "endTime": "02:46",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Is it okay?",
+        "startTime": "02:46",
+        "endTime": "02:47",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Ross with you?",
+        "startTime": "02:47",
+        "endTime": "02:48",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Yeah, sure.",
+        "startTime": "02:48",
+        "endTime": "02:49",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So do you what kind of output are you?",
+        "startTime": "02:50",
+        "endTime": "02:55",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So obviously you're taking them in as I'm guessing PDF files if they're extracted from the mailbox, right?",
+        "startTime": "02:56",
+        "endTime": "03:04",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Yes.",
+        "startTime": "03:05",
+        "endTime": "03:05",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "So let me just explain very quick what we have.",
+        "startTime": "03:06",
+        "endTime": "03:09",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "So we have different type of inputs from PDF files from different vendors.",
+        "startTime": "03:11",
+        "endTime": "03:18",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "So I have some examples here.",
+        "startTime": "03:18",
+        "endTime": "03:20",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "For example, we have one from then that is called Banzel and the format of the invoice is something like this.",
+        "startTime": "03:21",
+        "endTime": "03:28",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "So we are trying to get all the information as we can from the invoice.",
+        "startTime": "03:31",
+        "endTime": "03:35",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "But the most important one usually is the one that is coming in the total value, the type of invoice, this invoice reference number.",
+        "startTime": "03:35",
+        "endTime": "03:45",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "And also sometimes it's different, but usually this is the purchase order that we need to continue our process for finance.",
+        "startTime": "03:46",
+        "endTime": "03:55",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "Other details like who is this related to which company in our case is messy human services and what other information are we getting from here?",
+        "startTime": "03:56",
+        "endTime": "04:08",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "Are you doing line items?",
+        "startTime": "04:09",
+        "endTime": "04:10",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Line items?",
+        "startTime": "04:11",
+        "endTime": "04:12",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "Yeah, that's right.",
+        "startTime": "04:12",
+        "endTime": "04:13",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "And also this one, the invoice date, of course that's very important.",
+        "startTime": "04:13",
+        "endTime": "04:18",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "So the problem comes when we have another format like for example, we have Harvey Norman and all the format has changed.",
+        "startTime": "04:20",
+        "endTime": "04:30",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "And here of course we need the same information.",
+        "startTime": "04:31",
+        "endTime": "04:35",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "Where is the company, the type of invoice, the number of the invoice, what else do we have here?",
+        "startTime": "04:35",
+        "endTime": "04:43",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "The total, the total price that it should be this one.",
+        "startTime": "04:43",
+        "endTime": "04:47",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "And also the purchase order that usually comes in.",
+        "startTime": "04:48",
+        "endTime": "04:52",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "Where is that piece of information?",
+        "startTime": "04:54",
+        "endTime": "04:56",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "It should be here.",
+        "startTime": "04:59",
+        "endTime": "05:01",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "Okay, so in general all those details we need to capture.",
+        "startTime": "05:04",
+        "endTime": "05:07",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "But because we have different formats, we need something that we can capture and put in a place where we can define the same things.",
+        "startTime": "05:08",
+        "endTime": "05:19",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "So what I mean with this is for example, if this is coming as attached invoice in this form, in this invoice and in the other place is coming as.",
+        "startTime": "05:19",
+        "endTime": "05:30",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "Oh, sorry, yeah, in this state we need to know which type of invoice is that one.",
+        "startTime": "05:30",
+        "endTime": "05:37",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "Right.",
+        "startTime": "05:37",
+        "endTime": "05:37",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "And also the same thing for pushers order for the company and the date also is always similar.",
+        "startTime": "05:37",
+        "endTime": "05:46",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "So that's not a problem.",
+        "startTime": "05:47",
+        "endTime": "05:48",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "And also the number of invoice, we have been capturing data really easily like numbers with total values with days and company.",
+        "startTime": "05:48",
+        "endTime": "05:59",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "But sometimes the purchase order doesn't come in the same place and we don't know how to identify that.",
+        "startTime": "06:00",
+        "endTime": "06:06",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "So we are just using power automate and training.",
+        "startTime": "06:06",
+        "endTime": "06:09",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "Every time that we go to a new vendor, we train the AI to capture specifically which push us order we need.",
+        "startTime": "06:10",
+        "endTime": "06:20",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "So let me show you really quick how we do this.",
+        "startTime": "06:21",
+        "endTime": "06:24",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "So for example, if I go to Bunzl, that's the one that I was showing before.",
+        "startTime": "06:25",
+        "endTime": "06:30",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "We try to tag all the invoices, at least five invoices to learn the to let the model understand where are those details.",
+        "startTime": "06:33",
+        "endTime": "06:42",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "So if we go to Bancel, let's just keep some time.",
+        "startTime": "06:44",
+        "endTime": "06:54",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "For example, the purchase order for this vendor is coming this number.",
+        "startTime": "06:54",
+        "endTime": "06:59",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "But if we go and also we have for example other values like this one, that is the invoice type I'm going to display only with these two.",
+        "startTime": "07:00",
+        "endTime": "07:10",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "So it will make it easier to understand.",
+        "startTime": "07:10",
+        "endTime": "07:13",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "So this is a purchase order and this is the type of invoice.",
+        "startTime": "07:13",
+        "endTime": "07:16",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "So because this is bundle, this is the way that we tag those details.",
+        "startTime": "07:17",
+        "endTime": "07:21",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "But if we go back and we open.",
+        "startTime": "07:21",
+        "endTime": "07:25",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "Let's open Harvey, Norman.",
+        "startTime": "07:28",
+        "endTime": "07:30",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "And Ross.",
+        "startTime": "07:46",
+        "endTime": "07:47",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "If you look closely, we have three entities.",
+        "startTime": "07:47",
+        "endTime": "07:51",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "One of the Mercy Committee Services, Mercy Human Services, and another one is Mercy Villages.",
+        "startTime": "07:51",
+        "endTime": "07:57",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "So it is very important for us to capture which entity the invoice is for.",
+        "startTime": "07:57",
+        "endTime": "08:02",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "For example, for Harvard Norman, it was Mercy Community Services.",
+        "startTime": "08:02",
+        "endTime": "08:06",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "But the previous one that Juan showed you is Mercy Human Services.",
+        "startTime": "08:06",
+        "endTime": "08:09",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Yep, that's right.",
+        "startTime": "08:11",
+        "endTime": "08:12",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "So are they separate ABNs or ACNs, or are they all under the same.",
+        "startTime": "08:12",
+        "endTime": "08:17",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Yes, they are different.",
+        "startTime": "08:17",
+        "endTime": "08:19",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "Perfect, easy.",
+        "startTime": "08:20",
+        "endTime": "08:21",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "They have three ABNs.",
+        "startTime": "08:21",
+        "endTime": "08:22",
+        "speaker_name": "Manjusha Subhash",
+        "speaker_id": 3
+    },
+    {
+        "sentence": "So here we can see that we need to select the invoice type and also the entity of the company.",
+        "startTime": "08:23",
+        "endTime": "08:32",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "So in this case it's Mercy Community Services and it changed, as Armin say, and just trying to look up, for example, the PO number here it comes at the bottom of the page.",
+        "startTime": "08:32",
+        "endTime": "08:42",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "So we need to let the model know where is the PO usually in those documents.",
+        "startTime": "08:43",
+        "endTime": "08:47",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "So that's the issue that we are having now that we need to do this training every time that we got a new vendor or a different format.",
+        "startTime": "08:48",
+        "endTime": "08:56",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "So that means that we need to take the time for each vendor as we have around like all the idea is to have around like more than 100 vendors.",
+        "startTime": "08:57",
+        "endTime": "09:06",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "And this is going to take a lot of effort and resources to.",
+        "startTime": "09:06",
+        "endTime": "09:09",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "For us to train.",
+        "startTime": "09:09",
+        "endTime": "09:10",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "So that's what the problem that we have and the solution that we are looking for is trying to avoid that.",
+        "startTime": "09:10",
+        "endTime": "09:17",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "All right, you happy for me to take a stab at it?",
+        "startTime": "09:18",
+        "endTime": "09:22",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Cool.",
+        "startTime": "09:24",
+        "endTime": "09:24",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "All right, so to give you some background, I used to work for a company called Process Automation Group and we would do this kind of thing.",
+        "startTime": "09:24",
+        "endTime": "09:32",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "We'd use a software package called Kofax, which is now called Tungsten Automation, and we'd use a BPMS software called Total Agility.",
+        "startTime": "09:33",
+        "endTime": "09:44",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Now that's quite expensive and it's also vendor locked, but it's also very advanced in the way in which you can define the OCR engine.",
+        "startTime": "09:45",
+        "endTime": "09:55",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So you define what kind of if you're going to use Tesseract or if you're going to use Abbyy or how you're going to do your OCR extraction.",
+        "startTime": "09:55",
+        "endTime": "10:03",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "And then you would tailor it down to the specific level where you'd go, how much pixel blackness can I find here?",
+        "startTime": "10:03",
+        "endTime": "10:10",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Do I want to Advanced zone extractor?",
+        "startTime": "10:10",
+        "endTime": "10:12",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Do I want to define fuzzy logic to do this kind of thing?",
+        "startTime": "10:12",
+        "endTime": "10:15",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So that Used to be the way in which we do everything, it allow you to get a bespoke solution.",
+        "startTime": "10:16",
+        "endTime": "10:21",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So we rolled out something to PNN bank doing all of their AP doing City of Sterling, completely automated everything for them.",
+        "startTime": "10:21",
+        "endTime": "10:31",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "But since then I've found a much easier way to do it with Azure and their Form Recognizer, which is now Document Intelligence.",
+        "startTime": "10:32",
+        "endTime": "10:41",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "That model is trained on all of Australia's invoices constantly.",
+        "startTime": "10:44",
+        "endTime": "10:50",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So every person uploading the same kind of situation that you're in, trying to get the same data and information out, 99.9% accuracy and then anything not just gets exceptioned out and handled by a human in the loop where we take the extracted values and put them into a form and say, hey, this doesn't match up with what we're expecting to see.",
+        "startTime": "10:50",
+        "endTime": "11:13",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Have side by side, have a look, find what's not right and go.",
+        "startTime": "11:13",
+        "endTime": "11:17",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Key in the right values and go.",
+        "startTime": "11:17",
+        "endTime": "11:18",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Yep, that's the right one.",
+        "startTime": "11:18",
+        "endTime": "11:19",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Updates the intelligence.",
+        "startTime": "11:20",
+        "endTime": "11:21",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "It's very plug and play, quite easy to implement.",
+        "startTime": "11:21",
+        "endTime": "11:24",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "It's just that you need to have an Azure tenant to be able to do it, but I imagine you'd have that be able to be spun up pretty quickly if you don't already have it.",
+        "startTime": "11:25",
+        "endTime": "11:34",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "The other thing.",
+        "startTime": "11:34",
+        "endTime": "11:35",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Sorry, Ross.",
+        "startTime": "11:37",
+        "endTime": "11:38",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "What about exception report?",
+        "startTime": "11:38",
+        "endTime": "11:39",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "How do we know that it is doing the job properly?",
+        "startTime": "11:40",
+        "endTime": "11:43",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Right.",
+        "startTime": "11:43",
+        "endTime": "11:44",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So do you have.",
+        "startTime": "11:44",
+        "endTime": "11:45",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So when you're taking out these payloads, I'm guessing XML or JSON, you're going to be putting that somewhere else, I'm guessing into a database of some kind.",
+        "startTime": "11:48",
+        "endTime": "12:00",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Right.",
+        "startTime": "12:00",
+        "endTime": "12:00",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So you would have a AP logic fuzzy match set up there to be able to go, all right, these here are looking close enough to it.",
+        "startTime": "12:01",
+        "endTime": "12:10",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So you'd have, you might have specific business rules and logic you'd set up to say, okay, this is an abn.",
+        "startTime": "12:10",
+        "endTime": "12:17",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "We're going to.",
+        "startTime": "12:18",
+        "endTime": "12:19",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "ABN follows a strict algorithmic structure to go, yes, this is an abn.",
+        "startTime": "12:19",
+        "endTime": "12:24",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "And then you just do it, just to look up and go, yep, we can see it there, great.",
+        "startTime": "12:25",
+        "endTime": "12:28",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "But if you see the things that exception out of this.",
+        "startTime": "12:28",
+        "endTime": "12:31",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So you know, an imperfect scan of a document or information left off, that's usually there and not there, not this time.",
+        "startTime": "12:31",
+        "endTime": "12:39",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Then what you do is just go, okay, so that's an exception.",
+        "startTime": "12:39",
+        "endTime": "12:42",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "We're expecting to see data, but we're not seeing data.",
+        "startTime": "12:42",
+        "endTime": "12:45",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "We'll handle that in an exception queue and we just go, cool this, you know, how much volume are you talking about here?",
+        "startTime": "12:46",
+        "endTime": "12:53",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "How much in terms of invoices per day, for instance?",
+        "startTime": "12:55",
+        "endTime": "12:58",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "The thing is, we don't have like A current number right now because we.",
+        "startTime": "13:00",
+        "endTime": "13:04",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "We are not.",
+        "startTime": "13:04",
+        "endTime": "13:05",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "We don't have more than how many, like 10 vendors right now.",
+        "startTime": "13:06",
+        "endTime": "13:09",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "We are expecting to have at least 100 or that's what they.",
+        "startTime": "13:10",
+        "endTime": "13:14",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "Yeah, yeah.",
+        "startTime": "13:14",
+        "endTime": "13:16",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "Or 100 invoices.",
+        "startTime": "13:20",
+        "endTime": "13:21",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Sorry, vendors.",
+        "startTime": "13:21",
+        "endTime": "13:23",
+        "speaker_name": "Manjusha Subhash",
+        "speaker_id": 3
+    },
+    {
+        "sentence": "Okay.",
+        "startTime": "13:24",
+        "endTime": "13:24",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Yeah.",
+        "startTime": "13:25",
+        "endTime": "13:25",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "That means that it could be, I don't know, per day.",
+        "startTime": "13:25",
+        "endTime": "13:28",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "Usually.",
+        "startTime": "13:28",
+        "endTime": "13:29",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "Right now I'm getting like 12 or 11 invoices per day, but in the future, I imagine it will be at least 60 or more.",
+        "startTime": "13:29",
+        "endTime": "13:38",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "I don't know, it depends of how many vendors we have.",
+        "startTime": "13:39",
+        "endTime": "13:43",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "Yeah, we are going to have many lots of invoices per day.",
+        "startTime": "13:43",
+        "endTime": "13:46",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "If you're moving completely from concur, definitely it's 60 plus a day.",
+        "startTime": "13:47",
+        "endTime": "13:51",
+        "speaker_name": "Manjusha Subhash",
+        "speaker_id": 3
+    },
+    {
+        "sentence": "Okay.",
+        "startTime": "13:52",
+        "endTime": "13:53",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "So probably more.",
+        "startTime": "13:53",
+        "endTime": "13:54",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "So you're currently in concur.",
+        "startTime": "13:54",
+        "endTime": "13:55",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "That's SAP, isn't it?",
+        "startTime": "13:55",
+        "endTime": "13:57",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Right?",
+        "startTime": "13:57",
+        "endTime": "13:57",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "That's right, yeah.",
+        "startTime": "13:58",
+        "endTime": "13:59",
+        "speaker_name": "Manjusha Subhash",
+        "speaker_id": 3
+    },
+    {
+        "sentence": "And so what was the new one you're moving to?",
+        "startTime": "13:59",
+        "endTime": "14:01",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Sorry?",
+        "startTime": "14:01",
+        "endTime": "14:01",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "It's called acquisition module.",
+        "startTime": "14:02",
+        "endTime": "14:05",
+        "speaker_name": "Manjusha Subhash",
+        "speaker_id": 3
+    },
+    {
+        "sentence": "Yeah.",
+        "startTime": "14:07",
+        "endTime": "14:08",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Work with them before.",
+        "startTime": "14:08",
+        "endTime": "14:08",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "They're kind of.",
+        "startTime": "14:09",
+        "endTime": "14:10",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "I've had to take over some of their projects before.",
+        "startTime": "14:11",
+        "endTime": "14:13",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "It's interesting.",
+        "startTime": "14:13",
+        "endTime": "14:14",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So.",
+        "startTime": "14:15",
+        "endTime": "14:16",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "We are not happy with our selection, Russ.",
+        "startTime": "14:17",
+        "endTime": "14:19",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "We are not happy with.",
+        "startTime": "14:20",
+        "endTime": "14:21",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Just put it that way.",
+        "startTime": "14:21",
+        "endTime": "14:22",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "I understand.",
+        "startTime": "14:24",
+        "endTime": "14:24",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "I'm almost wanting to create a business now where I can go in and go, you've been stung before by the people who've sold you this solution as being everything it is.",
+        "startTime": "14:25",
+        "endTime": "14:34",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "And it's never that way.",
+        "startTime": "14:34",
+        "endTime": "14:36",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "It's very annoying because I'm usually the person who has to come and fix it all.",
+        "startTime": "14:36",
+        "endTime": "14:39",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "That seems quite easy to do, quite easy to set up.",
+        "startTime": "14:41",
+        "endTime": "14:44",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "If you've got.",
+        "startTime": "14:45",
+        "endTime": "14:46",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "If you've got, I can send over a list of just some requirements gathering to.",
+        "startTime": "14:49",
+        "endTime": "14:54",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Just to say, okay, this is kind of like the data that I'd need to have a look at.",
+        "startTime": "14:54",
+        "endTime": "14:58",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Maybe have a look at some training samples for what you've got at the moment.",
+        "startTime": "14:58",
+        "endTime": "15:01",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "And then I can.",
+        "startTime": "15:01",
+        "endTime": "15:02",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "If you let me.",
+        "startTime": "15:02",
+        "endTime": "15:03",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "If you let me have a stab at it, I'll come back to you with a.",
+        "startTime": "15:03",
+        "endTime": "15:07",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "This is how I'd approach it.",
+        "startTime": "15:08",
+        "endTime": "15:09",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "I'll give you a solution design and say, this is how I'd look at building it.",
+        "startTime": "15:09",
+        "endTime": "15:14",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Iterate with your bas or whatever you do in this.",
+        "startTime": "15:15",
+        "endTime": "15:17",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "In this normal thing.",
+        "startTime": "15:17",
+        "endTime": "15:18",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "And then if it's something that you'd like to move ahead with, then we'll go from there.",
+        "startTime": "15:18",
+        "endTime": "15:22",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "I imagine at that rate, at the moment, it's.",
+        "startTime": "15:23",
+        "endTime": "15:26",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "That's the.",
+        "startTime": "15:26",
+        "endTime": "15:28",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "The per page you'd be looking at would be probably about, you know, fractions of a cent per page.",
+        "startTime": "15:28",
+        "endTime": "15:33",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So per day or per month processing, probably looking at.",
+        "startTime": "15:33",
+        "endTime": "15:37",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "If you're not having, if you're not having a, a storage account mid interim to store things in like a blob and you're just doing straight extraction of OCR data from invoices directly into your whatever.",
+        "startTime": "15:39",
+        "endTime": "15:54",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "However you're hitting the, into arm.",
+        "startTime": "15:54",
+        "endTime": "15:56",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So if you're hitting it via API or If you're uploading CSVs and they're doing the transformation on their side.",
+        "startTime": "15:56",
+        "endTime": "16:01",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Yeah.",
+        "startTime": "16:03",
+        "endTime": "16:04",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "The cost would actually be significantly lower than Power Automate and be a lot higher quality.",
+        "startTime": "16:05",
+        "endTime": "16:12",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So I'll, if you just send through some of the training data and I'll spin up an instance and come back to you.",
+        "startTime": "16:15",
+        "endTime": "16:26",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Okay.",
+        "startTime": "16:27",
+        "endTime": "16:28",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "Juan, do you know what data we need to send?",
+        "startTime": "16:28",
+        "endTime": "16:31",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Russ, do you know what is this?",
+        "startTime": "16:31",
+        "endTime": "16:32",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Yes, I will send some of the invoices from every vendor so you can use that data for training.",
+        "startTime": "16:33",
+        "endTime": "16:39",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "And, and if you have an expected payload of what you're sending to ARM or.",
+        "startTime": "16:39",
+        "endTime": "16:46",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Okay, I will kind of generate like a table where you can see with those invoices which values are we expecting to get?",
+        "startTime": "16:47",
+        "endTime": "16:55",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "Yep.",
+        "startTime": "16:56",
+        "endTime": "16:56",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Cool.",
+        "startTime": "16:56",
+        "endTime": "16:57",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Great.",
+        "startTime": "16:57",
+        "endTime": "16:57",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "And Ross, just for the.",
+        "startTime": "16:58",
+        "endTime": "17:00",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "If, if you want to move forward with that, are you, do you have an ABN company, how we are going to pay you?",
+        "startTime": "17:00",
+        "endTime": "17:06",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Yeah, sure.",
+        "startTime": "17:07",
+        "endTime": "17:08",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "I've got a sole trader that I just operate under at the moment and so I'll just, I'll run it up under that and spin up a PA for me and you can however you want to go with that with finance or accounting.",
+        "startTime": "17:08",
+        "endTime": "17:24",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Yeah, perfect.",
+        "startTime": "17:25",
+        "endTime": "17:26",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "First we need some sort of indication of how long does it take and how much you're going to charge us.",
+        "startTime": "17:26",
+        "endTime": "17:32",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Then I go and get approval for it and then when go with that we pay you as a company or your.",
+        "startTime": "17:32",
+        "endTime": "17:39",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Whatever you give us for API.",
+        "startTime": "17:39",
+        "endTime": "17:41",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Perfect.",
+        "startTime": "17:41",
+        "endTime": "17:41",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Thank you.",
+        "startTime": "17:41",
+        "endTime": "17:41",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Thank you very much everyone.",
+        "startTime": "17:43",
+        "endTime": "17:44",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "This is going to be easy.",
+        "startTime": "17:44",
+        "endTime": "17:46",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "What kind of timeline are you looking at to be able to have this thing integrated by.",
+        "startTime": "17:46",
+        "endTime": "17:51",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So do you have a, you know, a deadline that you'd like to have this done as soon as possible or does it have to be done by.",
+        "startTime": "17:53",
+        "endTime": "17:59",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "We were looking at maybe two, three weeks.",
+        "startTime": "18:01",
+        "endTime": "18:03",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Yeah, yeah.",
+        "startTime": "18:05",
+        "endTime": "18:06",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Because coming June or July there will be more vendors coming up.",
+        "startTime": "18:06",
+        "endTime": "18:09",
+        "speaker_name": "Manjusha Subhash",
+        "speaker_id": 3
+    },
+    {
+        "sentence": "So their plan is by July they have mass amount of vendors to be moved into arm.",
+        "startTime": "18:09",
+        "endTime": "18:14",
+        "speaker_name": "Manjusha Subhash",
+        "speaker_id": 3
+    },
+    {
+        "sentence": "So if we can do it before, at least we can be planning ahead for those.",
+        "startTime": "18:14",
+        "endTime": "18:18",
+        "speaker_name": "Manjusha Subhash",
+        "speaker_id": 3
+    },
+    {
+        "sentence": "Yeah, yeah.",
+        "startTime": "18:19",
+        "endTime": "18:19",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "And do you have any, sorry, do you have any stuff you have assigned that can perform UAT or anything just on your side to go.",
+        "startTime": "18:19",
+        "endTime": "18:30",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Cool, great.",
+        "startTime": "18:30",
+        "endTime": "18:31",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Definitely.",
+        "startTime": "18:32",
+        "endTime": "18:33",
+        "speaker_name": "Manjusha Subhash",
+        "speaker_id": 3
+    },
+    {
+        "sentence": "Yeah.",
+        "startTime": "18:33",
+        "endTime": "18:33",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "And Ross, if we Also need some sort of guidance on how to train the model in future.",
+        "startTime": "18:34",
+        "endTime": "18:39",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "If the extension happen, how do we go and check it?",
+        "startTime": "18:39",
+        "endTime": "18:43",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "We are not skilled in Azure AI intelligence, so it's hard to manage.",
+        "startTime": "18:43",
+        "endTime": "18:48",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Absolutely, yeah.",
+        "startTime": "18:49",
+        "endTime": "18:50",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Okay.",
+        "startTime": "18:50",
+        "endTime": "18:51",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "You are very convincing.",
+        "startTime": "18:51",
+        "endTime": "18:52",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "I love it, Rob.",
+        "startTime": "18:52",
+        "endTime": "18:53",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Thank you.",
+        "startTime": "18:53",
+        "endTime": "18:54",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "I'll show you if you let me share my screen for a moment.",
+        "startTime": "18:56",
+        "endTime": "18:58",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So here's just a.",
+        "startTime": "18:58",
+        "endTime": "19:00",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So this is one we did for PNN Bank.",
+        "startTime": "19:00",
+        "endTime": "19:04",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So obviously we're taking in from email into an inbox, then we're starting a process, so interacting with the database.",
+        "startTime": "19:04",
+        "endTime": "19:11",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Then we do our OCR capture for classification.",
+        "startTime": "19:11",
+        "endTime": "19:14",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So we do classification based on, okay, is this an invoice, is this purchase order, is this a credit note, is this a petty cash or something like that?",
+        "startTime": "19:15",
+        "endTime": "19:25",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So we'd capture that information, perform that classification, then we'd send it down the appropriate path line a pathway.",
+        "startTime": "19:25",
+        "endTime": "19:33",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "And then so of course we're just doing CRUD operations in between into SQL database.",
+        "startTime": "19:33",
+        "endTime": "19:38",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Then we do extraction of the data and then we do validation.",
+        "startTime": "19:39",
+        "endTime": "19:42",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So if there's an exception there, we'd go, okay, take the data, give it to a form, give it to a person to say, hey, this is an exception here.",
+        "startTime": "19:42",
+        "endTime": "19:51",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "It doesn't look quite right.",
+        "startTime": "19:51",
+        "endTime": "19:52",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Send it in an email or something to a person and go, hey, this isn't quite right.",
+        "startTime": "19:52",
+        "endTime": "19:57",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Yes, no.",
+        "startTime": "19:57",
+        "endTime": "19:58",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "And then as soon as that's done, there's just a queue that will just check that just periodically go, hey, has it been updated?",
+        "startTime": "19:58",
+        "endTime": "20:05",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Hey, has it been updated?",
+        "startTime": "20:05",
+        "endTime": "20:06",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Cool, it's been updated, we know what it is now.",
+        "startTime": "20:06",
+        "endTime": "20:08",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "That information then goes back into database for training to say, hey, cool, this was this, it is now this value, it's been validated by this person at this time as being correct.",
+        "startTime": "20:08",
+        "endTime": "20:19",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So we take that data and we go, cool, use that for additional training.",
+        "startTime": "20:19",
+        "endTime": "20:22",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So that then continues to improve the model so that the next time it comes up, we've already got a theme to go, hey, this is what it was last time, this is where the discrepancy was.",
+        "startTime": "20:22",
+        "endTime": "20:34",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Take this into account.",
+        "startTime": "20:34",
+        "endTime": "20:35",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "And we just do that in a fuzzy matching database, which is just easily set up to just handle a bunch of different algorithms, like a Levenstein match, for instance.",
+        "startTime": "20:35",
+        "endTime": "20:49",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Go, how many characters do I need to change out of this string to make it from something that makes sense to something that doesn't make sense, or vice versa.",
+        "startTime": "20:49",
+        "endTime": "20:59",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "And then for instance, we just go, cool, interacting with an API here, back into a database.",
+        "startTime": "20:59",
+        "endTime": "21:05",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "And then we do additional things for if we want to be able to set up templates to encode so that we can Then directly integrate it with AFP for further down the track.",
+        "startTime": "21:05",
+        "endTime": "21:15",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "But this is just a very simple enterprise architecture I wrote up a while ago, but it would be sufficiently simpler than that.",
+        "startTime": "21:15",
+        "endTime": "21:26",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "And how I'd imagine we'd integrate this is just as a custom connector within Power Automate.",
+        "startTime": "21:27",
+        "endTime": "21:34",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Let me see if I can bring up one of my.",
+        "startTime": "21:37",
+        "endTime": "21:39",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Can I ask a question?",
+        "startTime": "21:40",
+        "endTime": "21:41",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "Are we expecting to change the whole thing that we have from Power Automate to API?",
+        "startTime": "21:44",
+        "endTime": "21:50",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "No.",
+        "startTime": "21:50",
+        "endTime": "21:51",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "What you would do in Power Automate for this one is, have you made any custom connectors?",
+        "startTime": "21:52",
+        "endTime": "21:58",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Yeah, it's just that we have one part where we get all the data and then we have another Power Automate desktop flow that take that data and put it into arm.",
+        "startTime": "22:00",
+        "endTime": "22:12",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "Cool.",
+        "startTime": "22:13",
+        "endTime": "22:13",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So that's.",
+        "startTime": "22:13",
+        "endTime": "22:14",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "I imagine we can use API to do that as well, but I'm not sure if that's what we want right now or.",
+        "startTime": "22:15",
+        "endTime": "22:21",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "Yes.",
+        "startTime": "22:21",
+        "endTime": "22:22",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So how I would do this for an mvp, just to say a quick and easy Agile implementation that you could start testing on straight away.",
+        "startTime": "22:22",
+        "endTime": "22:32",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "I would create this as an individual flow that can be called from the existing flow.",
+        "startTime": "22:33",
+        "endTime": "22:39",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "And in this individual flow is where we define any of the additional logic.",
+        "startTime": "22:40",
+        "endTime": "22:44",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So we just go, cool, take in the input here, we've got invoice or whatever it is that's coming through the document.",
+        "startTime": "22:44",
+        "endTime": "22:51",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "And we just go, cool, let's just slot this in as an additional node on your maps.",
+        "startTime": "22:51",
+        "endTime": "22:58",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "And then all you're doing is instead of doing a traditional ocr, you just might have a decision node to go, hey, do I want to go traditional OCR or do I want to go down using Document Intelligence?",
+        "startTime": "22:58",
+        "endTime": "23:09",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "And then you just have that set to like a global variable.",
+        "startTime": "23:09",
+        "endTime": "23:14",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "You just say, hey, cool, we're in uat.",
+        "startTime": "23:14",
+        "endTime": "23:15",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "We're testing it with this new one.",
+        "startTime": "23:15",
+        "endTime": "23:17",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "So send these ones down this new path and see how they do compared to the usual path.",
+        "startTime": "23:17",
+        "endTime": "23:23",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "That way you don't have to change anything about the existing process.",
+        "startTime": "23:23",
+        "endTime": "23:27",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Everything keeps working as it is.",
+        "startTime": "23:27",
+        "endTime": "23:28",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "But then you can start to perform UAT on the side to get feedback and go, yes, this is better or no, we need to tweak this here.",
+        "startTime": "23:29",
+        "endTime": "23:37",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "And then you're just managing and there's an additional flow there.",
+        "startTime": "23:37",
+        "endTime": "23:39",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "And eventually that would just take place of the original OCR engine.",
+        "startTime": "23:39",
+        "endTime": "23:43",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Okay, cool.",
+        "startTime": "23:44",
+        "endTime": "23:47",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "You're on mute, Amin.",
+        "startTime": "23:50",
+        "endTime": "23:51",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Thank you, Russ.",
+        "startTime": "23:53",
+        "endTime": "23:53",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "I wanted to say Juan will send you the information and we wait for your proposal.",
+        "startTime": "23:53",
+        "endTime": "23:58",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "That's it.",
+        "startTime": "23:58",
+        "endTime": "23:58",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Oh, great.",
+        "startTime": "23:58",
+        "endTime": "23:59",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "I should have something back to you by the end of today.",
+        "startTime": "23:59",
+        "endTime": "24:01",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Perfect.",
+        "startTime": "24:02",
+        "endTime": "24:02",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "That's great.",
+        "startTime": "24:02",
+        "endTime": "24:03",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Thank you so much.",
+        "startTime": "24:03",
+        "endTime": "24:03",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "As soon as you get it to me.",
+        "startTime": "24:04",
+        "endTime": "24:05",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "I'll send it back.",
+        "startTime": "24:05",
+        "endTime": "24:06",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    },
+    {
+        "sentence": "Yeah, yeah.",
+        "startTime": "24:06",
+        "endTime": "24:07",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "No, thank you.",
+        "startTime": "24:07",
+        "endTime": "24:08",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Thank you, thank you.",
+        "startTime": "24:08",
+        "endTime": "24:09",
+        "speaker_name": "Juan Cordoba",
+        "speaker_id": 0
+    },
+    {
+        "sentence": "Have a good day.",
+        "startTime": "24:09",
+        "endTime": "24:10",
+        "speaker_name": "Armin Adineh",
+        "speaker_id": 1
+    },
+    {
+        "sentence": "Nice to meet you all.",
+        "startTime": "24:10",
+        "endTime": "24:11",
+        "speaker_name": "Ross Farrell",
+        "speaker_id": 2
+    }
+]
