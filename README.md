@@ -13,7 +13,7 @@ This system enables automated extraction and structuring of metadata from upload
 * **Framework**: Next.js (v15)
 * **Deployment**: Vercel
 * **Theme**: Dynamic light/dark mode with user preferences
-* **Branding**: Custom MercyCare styling (logo, pill badges, gradient CTA buttons)
+* **Branding**: Custom styling (logo, pill badges, gradient CTA buttons)
 * **User Flow**:
 
   1. User uploads a PDF invoice (drag & drop or file picker)
@@ -114,20 +114,11 @@ CREATE TABLE invoices (
 * Admin override for bad CU outputs
 * CSV export of invoice data
 * Dashboard insights (volume, vendor match, confidence decay)
-* ARM system integration (post-CU sync)
 * Vendor ABN verification via fuzzy match
 
 ---
 
-## 💡 Motivation
-
 Built as a highly scalable, model-agnostic AP automation MVP to demo the value of Azure AI + Vercel/Next.js orchestration. Easily extendable to include custom business logic, user management, and exception workflows.
-
----
-
-**Maintained by**: Ross Farrell (Sole Trader)
-**Client**: MercyCare (WA, Australia)
-**Primary API**: Azure Document Intelligence Content Understanding
 
 ---
 
