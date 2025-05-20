@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,19 +14,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "MercyCare Automated Invoice Processing Demonstration",
-  description: "Sign in, input Invoice Document (.pdf), Content is then extracted and parsed into appropriate output data format",
+  title: "InvoicePipe – Streamlined Invoice Processing",
+  description:
+    "Upload your invoice PDFs and let InvoicePipe extract, structure, and prepare your data for action. Fast, accurate, and built for automation.",
   openGraph: {
-    title: "MercyCare Automated Invoice Processing Demonstration",
-    description: "Sign in, input Invoice Document (.pdf), Content is then extracted and parsed into appropriate output data format",
-    url: "https://MercyCareAutomatedInvoices.site",
-    siteName: "MercyCareDemo",
+    title: "InvoicePipe – Streamlined Invoice Processing",
+    description:
+      "Upload your invoice PDFs and let InvoicePipe extract, structure, and prepare your data for action. Fast, accurate, and built for automation.",
+    url: "https://invoicepipe.site",
+    siteName: "InvoicePipe",
     images: [
       {
         url: "/ogImage.png",
         width: 1200,
         height: 630,
-        alt: "MercyCare Automated Invoices",
+        alt: "InvoicePipe – Invoice Automation",
       },
     ],
     locale: "en_US",
@@ -33,9 +36,10 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "MercyCare Automated Invoice Processing Demonstration",
-    description: "Demonstrate Automated Invoice Processing for MercyCare",
-    images: ["https://MercyCareAutomatedInvoices.site.png"],
+    title: "InvoicePipe – Streamlined Invoice Processing",
+    description:
+      "AI-powered invoice ingestion and field extraction made simple.",
+    images: ["https://invoicepipe.site/ogImage.png"],
   },
 };
 
@@ -43,12 +47,14 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground tracking-tight selection:bg-blue-200 dark:selection:bg-blue-700`}
       >
-        {children}
-        <Toaster />
+        <ThemeProvider>
+          {children}
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

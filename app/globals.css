@@ -4,7 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -83,6 +82,8 @@
   --text-body: #1f1f1f;
   --font-heading: "MullerExtraBold", sans-serif;
   --font-body: "FSMeW01-Regular", sans-serif;
+  scroll-behavior: smooth;
+  font-feature-settings: "liga" 1, "kern" 1;
 }
 
 .dark {
@@ -119,59 +120,58 @@
   --sidebar-ring: oklch(0.552 0.016 285.938);
 }
 
-.neon-btn {
-  box-shadow:
-    0 0 8px 2px #0ff9,
-    0 0 32px 4px #e95cff44;
-}
-
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-ring/50 transition-all duration-150 ease-out;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground leading-relaxed text-[1.05rem];
+  }
+
+  h1, h2, h3 {
+    @apply font-bold tracking-tight;
+  }
+
+  ::selection {
+    @apply bg-blue-300 text-black dark:bg-blue-700 dark:text-white;
   }
 }
 
 @keyframes neon-flicker {
-
-  0%,
-  100% {
+  0%, 100% {
     filter: drop-shadow(0 2px 8px #ef4444aa);
   }
-
   50% {
     filter: drop-shadow(0 2px 24px #ef4444cc);
   }
+}
+
+.neon-btn {
+  box-shadow: 0 0 8px 2px #0ff9, 0 0 32px 4px #e95cff44;
 }
 
 .neon-logo {
   animation: neon-flicker 2s infinite alternate;
 }
 
-
 @font-face {
   font-family: 'FS Me W01';
-  src: url('/fonts/fs-me.woff2') format('woff2'),
-    url('/fonts/fs-me.woff') format('woff');
+  src: url('/fonts/fs-me.woff2') format('woff2'), url('/fonts/fs-me.woff') format('woff');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'FS Me W01';
-  src: url('/fonts/fs-me-bold.woff2') format('woff2'),
-    url('/fonts/fs-me-bold.woff') format('woff');
+  src: url('/fonts/fs-me-bold.woff2') format('woff2'), url('/fonts/fs-me-bold.woff') format('woff');
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Muller';
-  src: url('/fonts/muller-bold-webfont.woff2') format('woff2'),
-    url('/fonts/muller-extrabold-webfont.woff2') format('woff2');
+  src: url('/fonts/muller-bold-webfont.woff2') format('woff2'), url('/fonts/muller-extrabold-webfont.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
 }
