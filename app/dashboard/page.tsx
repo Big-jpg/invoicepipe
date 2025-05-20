@@ -131,7 +131,7 @@ export default function DashboardPage() {
 
                 {estimatedPages > 20 && (
                     <p className="text-yellow-600 text-sm italic">
-                        Large file – advanced processing may be required.
+                        Large file – advanced processing may be required. Contact admin@invoicepipe.site if this occurs frequently.
                     </p>
                 )}
             </div>
