@@ -1,178 +1,93 @@
 "use client";
 
-import { Analytics } from "@vercel/analytics/react";
-import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
-import dynamic from "next/dynamic";
-import type { FileUploaderProps } from "@/components/ui/file-uploader";
+import Link from "next/link";
+import Image from "next/image";
 
-const FileUploader = dynamic<FileUploaderProps>(
-  () => import("@/components/ui/file-uploader").then(mod => mod.FileUploader),
-  { ssr: false }
-);
-
-export default function Home() {
-  const [slug, setSlug] = useState("");
-  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
-  const [error, setError] = useState("");
-  const [statusMessage, setStatusMessage] = useState("");
-  const [theme, setTheme] = useState("light");
-  const router = useRouter();
-
-  useEffect(() => {
-    const stored = localStorage.getItem("replate-theme");
-    const match = window.matchMedia("(prefers-color-scheme: dark)");
-    const preferred = stored || (match.matches ? "dark" : "light");
-    document.documentElement.classList.toggle("dark", preferred === "dark");
-    setTheme(preferred);
-
-    const listener = (e: MediaQueryListEvent) => {
-      if (!stored) {
-        const newTheme = e.matches ? "dark" : "light";
-        document.documentElement.classList.toggle("dark", newTheme === "dark");
-        setTheme(newTheme);
-      }
-    };
-    match.addEventListener("change", listener);
-    return () => match.removeEventListener("change", listener);
-  }, []);
-
-  const handleExtractInvoice = async () => {
-    setError("");
-    setStatusMessage("Extracting and analyzing invoice...");
-    try {
-      const processRes = await fetch("/api/invoice/cu-process", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ slug }),
-      });
-      const processData = await processRes.json();
-      if (!processRes.ok) throw new Error(processData.error || "Invoice processing failed.");
-      setStatusMessage("");
-      toast("✅ Content Understanding: Invoice processed!", {
-        descriptionClassName: "text-black dark:text-white",
-        className: "bg-white text-black dark:bg-gray-900 dark:text-white",
-        description: "Invoice fields extracted and saved.",
-      });
-      router.push(`/invoice/card/${slug}`);
-    } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError("Unexpected error.");
-      }
-      setStatusMessage("");
-    }
-  };
-
-  const handleReset = () => {
-    setSlug("");
-    setUploadedFile(null);
-    setError("");
-    setStatusMessage("");
-    toast("✨ New Invoice Started", {
-      descriptionClassName: "text-black dark:text-white",
-      className: "bg-white text-black dark:bg-gray-900 dark:text-white",
-      description: "Upload a new invoice when you're ready.",
-      duration: 4000,
-    });
-  };
-
-  const handleUploaded = (slug: string, file: File) => {
-    setSlug(slug);
-    setUploadedFile(file);
-  };
-
-  const estimatePages = (file: File) => {
-    return Math.ceil(file.size / 60000); // ~60KB per page heuristic
-  };
-
-  const estimatedPages = uploadedFile ? estimatePages(uploadedFile) : 0;
-
+export default function LandingPage() {
   return (
-    <main className="min-h-screen w-full bg-background text-foreground transition-colors px-6 py-12 flex flex-col items-center justify-start gap-12 relative">
-      <Button
-        variant="ghost"
-        className="absolute top-6 right-6 transition-transform duration-200 ease-in-out hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/40"
-        onClick={() => {
-          const newTheme = theme === "dark" ? "light" : "dark";
-          document.documentElement.classList.toggle("dark", newTheme === "dark");
-          setTheme(newTheme);
-          localStorage.setItem("replate-theme", newTheme);
-        }}
-      >
-        {theme === "dark" ? "🌞 Light Mode" : "🌙 Dark Mode"}
-      </Button>
-
-      <div className="w-full max-w-4xl space-y-5 text-center">
-        <div className="flex justify-center mb-8 mt-2">
-          <Image
-            src="/mercycare-logo.svg"
-            alt="MercyCare Logo"
-            width={362}
-            height={105}
-            className="h-16 w-auto select-none"
-            draggable={false}
-          />
+    <main className="min-h-screen flex flex-col items-center justify-center px-6 bg-gradient-to-br from-white to-slate-100 dark:from-[#0c0c0f] dark:to-[#1a1a1d] text-gray-900 dark:text-white">
+      {/* Hero Section */}
+      <section className="text-center py-24 max-w-2xl">
+        <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight leading-tight">
+          Automate Your Invoices with <span className="text-blue-500">InvoicePipe</span>
+        </h1>
+        <p className="mt-6 text-lg text-muted-foreground">
+          Upload PDF invoices and extract structured data instantly with AI.
+        </p>
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Link href="/dashboard">
+            <Button size="lg" className="text-lg px-6 py-3">
+              🚀 Try It Now
+            </Button>
+          </Link>
+          <Link href="#features">
+            <Button variant="ghost" className="text-lg px-6 py-3">
+              Learn More ↓
+            </Button>
+          </Link>
         </div>
-        <h1 className="text-5xl font-bold tracking-tight sm:text-6xl">MercyCare Invoice Demo</h1>
-        <p className="text-lg text-muted-foreground">Demonstrate Automated Invoice Processing</p>
-        <p className="text-lg text-muted-foreground italic">Upload a PDF invoice and extract structured metadata</p>
-      </div>
+      </section>
 
-      <div className="w-full max-w-xl flex flex-col items-center gap-4">
-        <FileUploader onUploaded={handleUploaded} disabled={!!uploadedFile} />
+      {/* Preview Image */}
+      <section className="py-12 w-full max-w-5xl">
+        <Image
+          src="/ogImage.png"
+          alt="InvoicePipe Preview"
+          width={1200}
+          height={630}
+          className="rounded-xl shadow-xl border border-gray-200 dark:border-gray-800"
+        />
+      </section>
 
-        {uploadedFile && (
-          <div className="flex items-center justify-between w-full bg-gray-400 dark:bg-gray-800 rounded-lg px-4 py-3 mt-3 shadow">
-            <div className="flex flex-col sm:flex-row items-center gap-2">
-              <span className="font-semibold text-teal-700 dark:text-teal-500">Ready:</span>
-              <span className="font-mono text-sm text-gray-900">{uploadedFile.name}</span>
-              <span className="text-xs text-gray-900">({(uploadedFile.size / 1024).toFixed(1)} KB)</span>
-            </div>
-            <Button
-              variant="ghost"
-              className="text-red-500 dark:text-red-300 ml-4 transition-transform duration-200 ease-in-out hover:scale-105 hover:shadow-md hover:shadow-red-500/40"
-              onClick={handleReset}
-              tabIndex={0}
-            >
-              Remove
-            </Button>
+      {/* Features Section */}
+      <section id="features" className="py-20 w-full max-w-4xl text-center space-y-16">
+        <div>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">Why InvoicePipe?</h2>
+          <p className="text-muted-foreground max-w-xl mx-auto">
+            Built for speed, precision, and clarity — InvoicePipe takes the manual work out of invoice processing.
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 gap-8">
+          <div className="p-6 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
+            <h3 className="text-xl font-semibold">⚡ Blazing Fast Extraction</h3>
+            <p className="text-muted-foreground mt-2">Powered by Azure AI, optimized for Australian invoices.</p>
           </div>
-        )}
-
-        <Button
-          onClick={handleExtractInvoice}
-          disabled={!slug || !uploadedFile || estimatedPages > 20}
-          className="mt-4 transition-transform duration-200 ease-in-out hover:scale-105 hover:shadow-lg hover:shadow-emerald-400/40"
-        >
-          🔍 Extract Invoice Details
-        </Button>
-
-        {uploadedFile && estimatedPages > 20 && (
-          <p className="text-yellow-500 text-sm italic">File appears to be quite long — advanced processing may be needed.</p>
-        )}
-      </div>
-
-      <div className="w-full max-w-5xl space-y-4">
-        {statusMessage && <p className="text-blue-500 font-medium animate-pulse text-center">{statusMessage}</p>}
-        {error && <p className="text-red-500 font-mono text-center">⚠️ {error}</p>}
-        {!statusMessage && !error && slug && (
-          <div className="flex justify-center mt-4">
-            <Button
-              onClick={handleReset}
-              variant="secondary"
-              className="mt-4 transition-transform duration-200 ease-in-out hover:scale-105 hover:shadow-lg hover:shadow-purple-500/40"
-            >
-              🔁 Start New Invoice
-            </Button>
+          <div className="p-6 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
+            <h3 className="text-xl font-semibold">🧠 Smart Field Detection</h3>
+            <p className="text-muted-foreground mt-2">No templates. No per-vendor config. Just results.</p>
           </div>
-        )}
-      </div>
-      <Analytics />
+          <div className="p-6 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
+            <h3 className="text-xl font-semibold">🔒 Secure by Default</h3>
+            <p className="text-muted-foreground mt-2">Runs on encrypted infra. Private, tenant-isolated processing.</p>
+          </div>
+          <div className="p-6 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
+            <h3 className="text-xl font-semibold">📦 Structured Output</h3>
+            <p className="text-muted-foreground mt-2">JSON, CSV, or Excel — ready for accounting or sync.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action */}
+      <section className="py-20 text-center">
+        <h2 className="text-3xl sm:text-4xl font-bold">Start Processing Smarter Today</h2>
+        <p className="mt-4 text-muted-foreground">
+          Get started with 100 free invoices. No credit card required.
+        </p>
+        <div className="mt-6">
+          <Link href="/dashboard">
+            <Button size="lg" className="text-lg px-6 py-3">
+              Upload Your First Invoice →
+            </Button>
+          </Link>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="text-sm text-muted-foreground pb-10">
+        &copy; {new Date().getFullYear()} InvoicePipe. Built with ❤️ in WA.
+      </footer>
     </main>
   );
 }
