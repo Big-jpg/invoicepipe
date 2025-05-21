@@ -1,15 +1,9 @@
-// lib/useAuth.ts
-import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 
 export function useAuth() {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [user, setUser] = useState<{ name: string } | null>(null);
-
-    useEffect(() => {
-        const isLoggedIn = localStorage.getItem("auth") === "true";
-        setIsAuthenticated(isLoggedIn);
-        setUser(isLoggedIn ? { name: "Mock User" } : null);
-    }, []);
-
-    return { isAuthenticated, user };
+    const { data: session } = useSession();
+    return {
+        isAuthenticated: !!session,
+        user: session?.user || null,
+    };
 }

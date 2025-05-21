@@ -1,13 +1,11 @@
-// components/landing/Navbar.tsx
-"use client";
-
+import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/lib/useAuth";
 import { useEffect, useState } from "react";
 
 export function Navbar() {
-    const { isAuthenticated } = useAuth();
+    const { data: session } = useSession();
+    const isAuthenticated = !!session;
     const [theme, setTheme] = useState("light");
 
     useEffect(() => {
@@ -38,9 +36,7 @@ export function Navbar() {
     return (
         <header className="w-full border-b border-border/20 backdrop-blur bg-white/60 dark:bg-background/80 sticky top-0 z-50">
             <nav className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-                <Link href="/" className="text-xl font-bold tracking-tight">
-                    InvoicePipe
-                </Link>
+                <Link href="/" className="text-xl font-bold tracking-tight">InvoicePipe</Link>
                 <div className="flex items-center gap-4">
                     {isAuthenticated ? (
                         <>
@@ -50,14 +46,7 @@ export function Navbar() {
                             <Link href="/dashboard">
                                 <Button variant="ghost" size="sm">Dashboard</Button>
                             </Link>
-                            <Button
-                                size="sm"
-                                variant="destructive"
-                                onClick={() => {
-                                    localStorage.removeItem("auth");
-                                    window.location.href = "/";
-                                }}
-                            >
+                            <Button size="sm" variant="destructive" onClick={() => signOut({ callbackUrl: "/" })}>
                                 Logout
                             </Button>
                         </>

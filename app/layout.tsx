@@ -2,7 +2,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Navbar } from "@/components/landing/Navbar";
+import { SessionProvider } from "next-auth/react";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -39,8 +39,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "InvoicePipe – Streamlined Invoice Processing",
-    description:
-      "AI-powered invoice ingestion and field extraction made simple.",
+    description: "AI-powered invoice ingestion and field extraction made simple.",
     images: ["https://invoicepipe.site/ogImage.png"],
   },
 };
@@ -53,11 +52,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground tracking-tight selection:bg-blue-200 dark:selection:bg-blue-700`}
       >
-        <ThemeProvider>
-          <Navbar />
-          {children}
-          <Toaster />
-        </ThemeProvider>
+        <SessionProvider>
+          <ThemeProvider>
+            {children}
+            <Toaster />
+          </ThemeProvider>
+        </SessionProvider>
       </body>
     </html>
   );
