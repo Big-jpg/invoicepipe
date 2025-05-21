@@ -33,7 +33,23 @@ export const authOptions: NextAuthOptions = {
             },
         }),
     ],
-    session: { strategy: "database" },
+    session: { strategy: "jwt" },
+    callbacks: {
+        async jwt({ token, user }) {
+            if (user) {
+                token.id = user.id;
+                token.email = user.email ?? "";
+            }
+            return token;
+        },
+        async session({ session, token }) {
+            if (session.user) {
+                session.user.id = token.id;
+                session.user.email = token.email;
+            }
+            return session;
+        }
+    },
     pages: {
         signIn: "/sign-in",
         newUser: "/register",
