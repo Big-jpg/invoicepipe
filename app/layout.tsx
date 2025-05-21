@@ -1,8 +1,8 @@
 // app/layout.tsx
+import { AuthSession } from "@/components/auth/AuthSession";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme-provider";
-import { SessionProvider } from "next-auth/react";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -52,12 +52,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground tracking-tight selection:bg-blue-200 dark:selection:bg-blue-700`}
       >
-        <SessionProvider>
+        <AuthSession>
           <ThemeProvider>
             {children}
             <Toaster />
           </ThemeProvider>
-        </SessionProvider>
+        </AuthSession>
       </body>
     </html>
   );
