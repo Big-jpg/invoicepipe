@@ -1,6 +1,8 @@
+// app/layout.tsx
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Navbar } from "@/components/landing/Navbar";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -52,6 +54,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground tracking-tight selection:bg-blue-200 dark:selection:bg-blue-700`}
       >
         <ThemeProvider>
+          <Navbar />
           {children}
           <Toaster />
         </ThemeProvider>

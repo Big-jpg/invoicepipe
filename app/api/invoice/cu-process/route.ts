@@ -23,6 +23,12 @@ export async function POST(req: NextRequest) {
         const buffer = upload[0].content;
         console.log("[CU] Calling Content Understanding API...");
         const result = await analyzeWithContentUnderstanding(buffer);
+
+        if (!result || typeof result !== "object") {
+            console.error("[CU] Invalid CU response:", result);
+            return NextResponse.json({ error: "Azure CU returned invalid result." }, { status: 502 });
+        }
+
         console.log("[CU] CU API Raw Response:", JSON.stringify(result, null, 2));
 
         const normalized = normalizeCUFields(result);
@@ -31,6 +37,15 @@ export async function POST(req: NextRequest) {
         Object.entries(normalized).forEach(([k, v]) =>
             console.log(`[CU] Field: ${k} =`, v)
         );
+
+        if (!normalized.invoiceId || !normalized.total) {
+            console.warn("[CU] Critical fields missing, skipping insert");
+            return NextResponse.json({
+                error: "Critical invoice fields not extracted. Please review manually.",
+                normalized,
+                raw: result,
+            }, { status: 422 });
+        }
 
         const inserted = await sql`
             INSERT INTO invoices (
