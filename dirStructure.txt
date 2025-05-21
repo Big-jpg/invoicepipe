@@ -76,6 +76,7 @@ invoicepipe
     ├── .vercel.json
     ├── components.json
     ├── custom-tax-invoice-advanced.json
+    ├── dirStructure.txt
     ├── eslint.config.mjs
     ├── next.config.ts
     ├── next-env.d.ts

@@ -8,12 +8,13 @@ export const dynamic = "force-dynamic";
 
 export async function GET(
     _req: NextRequest,
-    context: { params: { slug?: string } }
+    context: { params: { slug: string } }
 ) {
-    const slug = context.params?.slug;
+    const { slug } = context.params;
 
-    if (!slug || !/^[0-9a-fA-F-]{36}$/.test(slug)) {
-        return NextResponse.json({ error: "Invalid or missing slug parameter." }, { status: 400 });
+    // UUIDv4 validation pattern
+    if (!/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/.test(slug)) {
+        return NextResponse.json({ error: "Invalid slug format." }, { status: 400 });
     }
 
     try {
