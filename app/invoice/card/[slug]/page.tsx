@@ -8,8 +8,8 @@ import Link from "next/link";
 import { Buffer } from "buffer";
 import { InvoiceCard } from "@/components/InvoiceCard";
 
-export default async function InvoiceCardPage({ params }: { params: { slug: string } }) {
-    const { slug } = params;
+export default async function InvoiceCardPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
 
     try {
         const uploads = await sql`
