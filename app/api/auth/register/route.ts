@@ -1,29 +1,39 @@
+// app/api/auth/register/route.ts
 import { NextResponse } from "next/server";
-import bcrypt from "bcrypt";
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcrypt";
 
 const prisma = new PrismaClient();
 
 export async function POST(req: Request) {
-    const { email, password } = await req.json();
+    try {
+        const { email, name, password } = await req.json();
 
-    if (!email || !password) {
-        return NextResponse.json({ error: "Missing fields" }, { status: 400 });
+        if (!email || !password) {
+            return NextResponse.json({ error: "Email and password are required." }, { status: 400 });
+        }
+
+        const existingUser = await prisma.user.findUnique({
+            where: { email },
+        });
+
+        if (existingUser) {
+            return NextResponse.json({ error: "Email is already registered." }, { status: 409 });
+        }
+
+        const passwordHash = await bcrypt.hash(password, 10);
+
+        const user = await prisma.user.create({
+            data: {
+                email,
+                name,
+                passwordHash,
+            },
+        });
+
+        return NextResponse.json({ user: { id: user.id, email: user.email } });
+    } catch (err) {
+        console.error("[REGISTER]", err);
+        return NextResponse.json({ error: "Internal server error." }, { status: 500 });
     }
-
-    const existing = await prisma.user.findUnique({ where: { email } });
-    if (existing) {
-        return NextResponse.json({ error: "User already exists" }, { status: 409 });
-    }
-
-    const passwordHash = await bcrypt.hash(password, 10);
-
-    const user = await prisma.user.create({
-        data: {
-            email,
-            passwordHash,
-        },
-    });
-
-    return NextResponse.json({ success: true, userId: user.id });
 }

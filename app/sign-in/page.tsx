@@ -58,7 +58,17 @@ export default function SignInPage() {
                 <Button type="submit" className="w-full">
                     Sign In
                 </Button>
+                <p className="text-center text-sm text-muted-foreground mt-4">
+                    Don&apos;t have an account?{' '}
+                    <a
+                        href="/register"
+                        className="text-blue-600 hover:underline dark:text-blue-400"
+                    >
+                        Register here
+                    </a>
+                </p>
             </form>
+
         </main>
     );
 }

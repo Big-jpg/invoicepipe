@@ -47,10 +47,12 @@ export default function DashboardPage() {
             });
             const processData = await processRes.json();
             if (!processRes.ok) throw new Error(processData.error || "Invoice processing failed.");
+
             setStatusMessage("");
             toast("✅ Invoice processed successfully!", {
                 description: "Structured data extracted.",
             });
+
             setShowPreview(true);
         } catch (err) {
             setError(err instanceof Error ? err.message : "Unexpected error.");

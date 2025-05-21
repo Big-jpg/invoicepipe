@@ -33,13 +33,18 @@ export default function RegisterPage() {
                 redirect: false,
                 email,
                 password,
+                callbackUrl: "/dashboard",
             });
 
             if (result?.error) {
                 throw new Error(result.error);
             }
 
-            router.push("/dashboard");
+            if (result?.ok) {
+                router.push(result.url ?? "/dashboard");
+            } else {
+                throw new Error("Failed to sign in after registration.");
+            }
         } catch (err: unknown) {
             if (err instanceof Error) {
                 setError(err.message);
