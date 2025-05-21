@@ -17,6 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "InvoicePipe – Streamlined Invoice Processing",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://invoicepipe.site'),
   description:
     "Upload your invoice PDFs and let InvoicePipe extract, structure, and prepare your data for action. Fast, accurate, and built for automation.",
   openGraph: {
