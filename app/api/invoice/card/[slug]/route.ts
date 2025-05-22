@@ -2,8 +2,8 @@
 import { NextResponse } from "next/server";
 import sql from "@/lib/db";
 
-export async function GET(_: Request, context: { params: { slug: string } }) {
-    const { slug } = context.params;
+export async function GET(_: Request, { params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
 
     if (!slug || !/^[0-9a-fA-F-]{36}$/.test(slug)) {
         return NextResponse.json({ error: "Invalid or missing slug." }, { status: 400 });
