@@ -1,3 +1,5 @@
+// app/layout.tsx
+import { AuthSession } from "@/components/auth/AuthSession";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -15,6 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "InvoicePipe – Streamlined Invoice Processing",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://invoicepipe.site'),
   description:
     "Upload your invoice PDFs and let InvoicePipe extract, structure, and prepare your data for action. Fast, accurate, and built for automation.",
   openGraph: {
@@ -37,8 +40,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "InvoicePipe – Streamlined Invoice Processing",
-    description:
-      "AI-powered invoice ingestion and field extraction made simple.",
+    description: "AI-powered invoice ingestion and field extraction made simple.",
     images: ["https://invoicepipe.site/ogImage.png"],
   },
 };
@@ -51,10 +53,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground tracking-tight selection:bg-blue-200 dark:selection:bg-blue-700`}
       >
-        <ThemeProvider>
-          {children}
-          <Toaster />
-        </ThemeProvider>
+        <AuthSession>
+          <ThemeProvider>
+            {children}
+            <Toaster />
+          </ThemeProvider>
+        </AuthSession>
       </body>
     </html>
   );
