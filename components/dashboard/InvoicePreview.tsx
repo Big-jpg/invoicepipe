@@ -40,11 +40,26 @@ export function InvoicePreview({ slug }: Props) {
 
     useEffect(() => {
         async function fetchData() {
+            setLoading(true);
+            setError("");
+
             try {
                 const res = await fetch(`/api/invoice/card/${slug}`);
-                const data = await res.json();
+                const isJSON = res.headers.get("content-type")?.includes("application/json");
 
-                if (!res.ok) throw new Error(data.error || "Failed to load invoice");
+                if (!res.ok) {
+                    const fallback = isJSON ? await res.json() : await res.text();
+                    throw new Error(
+                        typeof fallback === "string"
+                            ? fallback
+                            : fallback.error || "Failed to load invoice"
+                    );
+                }
+
+                const data = await res.json();
+                if (!data.invoice || !data.upload) {
+                    throw new Error("Missing invoice data or upload payload.");
+                }
 
                 setUpload(data.upload);
                 setInvoice(data.invoice);
@@ -59,6 +74,7 @@ export function InvoicePreview({ slug }: Props) {
 
         if (slug) fetchData();
     }, [slug]);
+
 
     if (loading) return <p className="text-muted-foreground animate-pulse">Loading invoice preview…</p>;
     if (error) return <p className="text-red-500">⚠️ {error}</p>;
