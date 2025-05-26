@@ -152,7 +152,3 @@ Built with:
 * Prisma & PostgreSQL
 * TailwindCSS + ShadCN
 * Western Australian caffeine reserves ☕
-
----
-
-Would you like this `README.md` saved as a file or refined further for deployment/documentation platforms (e.g., GitHub Pages, Docusaurus)?
