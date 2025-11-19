@@ -1,7 +1,7 @@
 // app/dashboard/ClientDashboard.tsx
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
@@ -13,28 +13,15 @@ const FileUploader = dynamic<FileUploaderProps>(
     { ssr: false }
 );
 
+// simple heuristic: ~60 KB per page
+const estimatePages = (file: File) => Math.ceil(file.size / 60000);
+
 export default function ClientDashboard() {
     const [slug, setSlug] = useState("");
     const [uploadedFile, setUploadedFile] = useState<File | null>(null);
     const [error, setError] = useState("");
     const [statusMessage, setStatusMessage] = useState("");
     const [showPreview, setShowPreview] = useState(false);
-
-    useEffect(() => {
-        const stored = localStorage.getItem("invoicepipe-theme");
-        const match = window.matchMedia("(prefers-color-scheme: dark)");
-        const preferred = stored || (match.matches ? "dark" : "light");
-        document.documentElement.classList.toggle("dark", preferred === "dark");
-
-        const listener = (e: MediaQueryListEvent) => {
-            if (!stored) {
-                const newTheme = e.matches ? "dark" : "light";
-                document.documentElement.classList.toggle("dark", newTheme === "dark");
-            }
-        };
-        match.addEventListener("change", listener);
-        return () => match.removeEventListener("change", listener);
-    }, []);
 
     const handleExtractInvoice = async () => {
         setError("");
@@ -45,8 +32,11 @@ export default function ClientDashboard() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ slug }),
             });
+
             const processData = await processRes.json();
-            if (!processRes.ok) throw new Error(processData.error || "Invoice processing failed.");
+            if (!processRes.ok) {
+                throw new Error(processData.error || "Invoice processing failed.");
+            }
 
             setStatusMessage("");
             toast("✅ Invoice processed successfully!", {
@@ -74,7 +64,6 @@ export default function ClientDashboard() {
         setUploadedFile(file);
     };
 
-    const estimatePages = (file: File) => Math.ceil(file.size / 60000);
     const estimatedPages = uploadedFile ? estimatePages(uploadedFile) : 0;
 
     return (
@@ -84,7 +73,9 @@ export default function ClientDashboard() {
                     <div className="flex items-center justify-between">
                         <div>
                             <h1 className="text-2xl font-bold">Invoice Uploader</h1>
-                            <p className="text-muted-foreground">Upload and extract structured data from PDF invoices</p>
+                            <p className="text-muted-foreground">
+                                Upload and extract structured data from PDF invoices
+                            </p>
                         </div>
                     </div>
 
@@ -94,9 +85,14 @@ export default function ClientDashboard() {
                         <div className="bg-gray-200 dark:bg-gray-800 p-4 rounded shadow">
                             <p className="font-semibold">{uploadedFile.name}</p>
                             <p className="text-sm text-gray-700 dark:text-gray-300">
-                                Estimated Pages: {estimatedPages} | Size: {(uploadedFile.size / 1024).toFixed(1)} KB
+                                Estimated Pages: {estimatedPages} | Size:{" "}
+                                {(uploadedFile.size / 1024).toFixed(1)} KB
                             </p>
-                            <Button variant="ghost" className="text-red-500 mt-2" onClick={handleReset}>
+                            <Button
+                                variant="ghost"
+                                className="text-red-500 mt-2"
+                                onClick={handleReset}
+                            >
                                 Remove
                             </Button>
                         </div>
@@ -113,7 +109,11 @@ export default function ClientDashboard() {
                     )}
 
                     {showPreview && (
-                        <Button variant="secondary" onClick={handleReset} className="mt-4">
+                        <Button
+                            variant="secondary"
+                            onClick={handleReset}
+                            className="mt-4"
+                        >
                             🔁 Upload Another Invoice
                         </Button>
                     )}
@@ -125,7 +125,11 @@ export default function ClientDashboard() {
                     )}
 
                     <div className="mt-6">
-                        {statusMessage && <p className="text-blue-600 animate-pulse">{statusMessage}</p>}
+                        {statusMessage && (
+                            <p className="text-blue-600 animate-pulse">
+                                {statusMessage}
+                            </p>
+                        )}
                         {error && <p className="text-red-500">⚠️ {error}</p>}
                     </div>
                 </div>
