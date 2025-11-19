@@ -1,4 +1,4 @@
-// app/sign-in-alt/page.tsx
+// app/sign-in/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -8,7 +8,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-export default function SignInAltPage() {
+export default function SignInPage() {
     const router = useRouter();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -100,7 +100,7 @@ export default function SignInAltPage() {
                     <p className="text-xs text-muted-foreground text-center">
                         New to InvoicePipe?{" "}
                         <Link
-                            href="/register-alt"
+                            href="/register"
                             className="text-emerald-400 hover:underline"
                         >
                             Create a free account
