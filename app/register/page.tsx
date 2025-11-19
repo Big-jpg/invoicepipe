@@ -1,4 +1,4 @@
-// app/register-alt/page.tsx
+// app/register/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -8,7 +8,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-export default function RegisterAltPage() {
+export default function RegisterPage() {
     const router = useRouter();
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
@@ -41,7 +41,9 @@ export default function RegisterAltPage() {
             if (result?.error) throw new Error(result.error);
             router.push(result?.url ?? "/dashboard");
         } catch (err: unknown) {
-            setError(err instanceof Error ? err.message : "An unexpected error occurred.");
+            setError(
+                err instanceof Error ? err.message : "An unexpected error occurred."
+            );
         } finally {
             setLoading(false);
         }
@@ -147,7 +149,7 @@ export default function RegisterAltPage() {
                     <p className="text-xs text-muted-foreground text-center">
                         Already using InvoicePipe?{" "}
                         <Link
-                            href="/sign-in-alt"
+                            href="/sign-in"
                             className="text-emerald-400 hover:underline"
                         >
                             Sign in here
