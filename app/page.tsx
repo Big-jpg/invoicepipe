@@ -1,10 +1,11 @@
+// app/page.tsx
 "use client";
 
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
-export default function AltLandingPage() {
+export default function LandingPage() {
     return (
         <main className="min-h-screen bg-background text-foreground flex flex-col">
             {/* Top Bar */}
