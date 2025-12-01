@@ -3,6 +3,7 @@
 
 import { InvoiceCard } from "@/components/InvoiceCard";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 interface Invoice {
     vendor: string | null;
@@ -76,36 +77,65 @@ export function InvoicePreview({ slug }: Props) {
     }, [slug]);
 
 
-    if (loading) return <p className="text-muted-foreground animate-pulse">Loading invoice preview…</p>;
-    if (error) return <p className="text-red-500">⚠️ {error}</p>;
+    if (loading) {
+        return (
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+            >
+                <p className="text-muted-foreground animate-pulse">Loading invoice preview…</p>
+            </motion.div>
+        );
+    }
+    
+    if (error) {
+        return (
+            <motion.p 
+                className="text-red-500"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+            >
+                ⚠️ {error}
+            </motion.p>
+        );
+    }
+    
     if (!invoice || !upload) return null;
 
     const pdfDataUrl = `data:application/pdf;base64,${upload.content}`;
 
     return (
-        <InvoiceCard
-            originalFilename={upload.original_filename}
-            uploadedAt={new Date(upload.uploaded_at).toLocaleString()}
-            filesize={upload.filesize}
-            vendorName={invoice.vendor ?? undefined}
-            company={invoice.company ?? undefined}
-            invoiceId={invoice.invoice_number ?? undefined}
-            purchaseOrder={invoice.po_number ?? undefined}
-            amountDue={invoice.amount_due ?? undefined}
-            total={invoice.total ?? undefined}
-            documentType={invoice.document_type ?? undefined}
-            dueDate={invoice.due_date ?? undefined}
-            customerName={invoice.customer_name ?? undefined}
-            invoiceDate={
-                invoice.invoice_date
-                    ? new Date(invoice.invoice_date).toISOString().split("T")[0]
-                    : undefined
-            }
-            invoiceTotal={invoice.invoice_total ?? undefined}
-            subTotal={invoice.sub_total ?? undefined}
-            totalTax={invoice.total_tax ?? undefined}
-            pdfDataUrl={pdfDataUrl}
-        />
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+        >
+            <InvoiceCard
+                originalFilename={upload.original_filename}
+                uploadedAt={new Date(upload.uploaded_at).toLocaleString()}
+                filesize={upload.filesize}
+                vendorName={invoice.vendor ?? undefined}
+                company={invoice.company ?? undefined}
+                invoiceId={invoice.invoice_number ?? undefined}
+                purchaseOrder={invoice.po_number ?? undefined}
+                amountDue={invoice.amount_due ?? undefined}
+                total={invoice.total ?? undefined}
+                documentType={invoice.document_type ?? undefined}
+                dueDate={invoice.due_date ?? undefined}
+                customerName={invoice.customer_name ?? undefined}
+                invoiceDate={
+                    invoice.invoice_date
+                        ? new Date(invoice.invoice_date).toISOString().split("T")[0]
+                        : undefined
+                }
+                invoiceTotal={invoice.invoice_total ?? undefined}
+                subTotal={invoice.sub_total ?? undefined}
+                totalTax={invoice.total_tax ?? undefined}
+                pdfDataUrl={pdfDataUrl}
+            />
+        </motion.div>
     );
 
 }
