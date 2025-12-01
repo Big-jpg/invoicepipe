@@ -179,7 +179,7 @@ export default function LandingPage() {
                             transition={{ duration: 0.5, delay: 0.8 }}
                         >
                             <div className="rounded-xl bg-emerald-500 text-slate-950 text-xs px-4 py-2 shadow-lg">
-                                "We went from hours of keying to a 30-second upload." – WA aged care provider
+                                &ldquo;We went from hours of keying to a 30-second upload.&rdquo; – WA aged care provider
                             </div>
                         </motion.div>
                     </motion.div>
@@ -201,7 +201,7 @@ export default function LandingPage() {
                         </h2>
                         <p className="text-muted-foreground">
                             InvoicePipe sits between your inbox and your finance stack. No
-                            templates, no "training per vendor," just upload and go.
+                            templates, no &ldquo;training per vendor,&rdquo; just upload and go.
                         </p>
                     </motion.div>
 

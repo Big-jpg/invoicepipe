@@ -26,7 +26,7 @@ export interface CUResult {
     [key: string]: unknown;
 }
 
-import fetch from "node-fetch";
+// Next.js provides native fetch, no import needed
 
 const endpoint = process.env.AZURE_CU_ENDPOINT!;
 const apiVersion = process.env.AZURE_CU_API_VERSION!;
@@ -63,7 +63,7 @@ export async function analyzeWithContentUnderstanding(
     const resp = await fetch(analyzeUrl, {
         method: "POST",
         headers,
-        body: data,
+        body: data as BodyInit,
     });
 
     if (!resp.ok) throw new Error(`[CU] Analyze failed: ${await resp.text()}`);
