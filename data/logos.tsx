@@ -1,7 +1,8 @@
 // data/logos.tsx
 
-import { SiMicrosoft, SiXero, SiQuickbooks } from "react-icons/si";
-import { FaFileExcel, FaDatabase, FaCloud } from "react-icons/fa";
+import { SiXero, SiQuickbooks } from "react-icons/si";
+import { FaFileExcel, FaDatabase, FaCloud, FaMicrosoft } from "react-icons/fa";
+import { JSX } from "react";
 
 export interface ILogo {
     name: string;
@@ -11,7 +12,7 @@ export interface ILogo {
 export const logos: ILogo[] = [
     {
         name: "Microsoft Azure",
-        icon: <SiMicrosoft className="w-full h-full" />
+        icon: <FaMicrosoft className="w-full h-full" />
     },
     {
         name: "Xero",

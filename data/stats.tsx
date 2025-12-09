@@ -1,5 +1,6 @@
 // data/stats.tsx
 
+import { JSX } from "react";
 import { FaFileInvoice, FaClock, FaCheckCircle, FaUsers } from "react-icons/fa";
 
 export interface IStat {
