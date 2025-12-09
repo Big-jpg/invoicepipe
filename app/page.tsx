@@ -5,6 +5,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import Logos from "@/components/Logos";
+import Testimonials from "@/components/Testimonials";
+import FAQ from "@/components/FAQ";
+import Stats from "@/components/Stats";
+import EnhancedCTA from "@/components/EnhancedCTA";
 
 export default function LandingPage() {
     return (
@@ -27,6 +32,12 @@ export default function LandingPage() {
                         </Link>
                         <Link href="#pricing" className="hover:text-foreground">
                             Pricing
+                        </Link>
+                        <Link href="#testimonials" className="hover:text-foreground">
+                            Testimonials
+                        </Link>
+                        <Link href="#faq" className="hover:text-foreground">
+                            FAQ
                         </Link>
                     </nav>
                     <div className="flex items-center gap-3">
@@ -186,6 +197,9 @@ export default function LandingPage() {
                 </div>
             </section>
 
+            {/* Logos Section */}
+            <Logos />
+
             {/* How it works */}
             <section id="how-it-works" className="border-b border-border/60">
                 <div className="max-w-6xl mx-auto px-6 py-16 space-y-8">
@@ -311,6 +325,18 @@ export default function LandingPage() {
                     </motion.div>
                 </div>
             </section>
+
+            {/* Stats Section */}
+            <Stats />
+
+            {/* Testimonials Section */}
+            <Testimonials />
+
+            {/* FAQ Section */}
+            <FAQ />
+
+            {/* Enhanced CTA Section */}
+            <EnhancedCTA />
 
             {/* Footer */}
             <footer className="py-8 text-xs text-muted-foreground border-t border-border/60">
