@@ -1,9 +1,9 @@
 
-# Contoso Invoice Automation API Reference
+# InvoicePipe Extraction API Reference
 
 Version: Stable (June 2025)
 
-This API provides PDF invoice extraction via Azure Content Understanding (Document Intelligence). Two endpoints are exposed for different ingestion formats.
+This API provides PDF invoice extraction via Azure Content Understanding (formerly Document Intelligence). Two endpoints are exposed for different ingestion formats.
 
 ---
 

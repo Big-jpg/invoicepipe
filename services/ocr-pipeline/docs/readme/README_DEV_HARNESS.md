@@ -1,4 +1,4 @@
-# Contoso Invoice OCR - DEV Environment Harness
+# InvoicePipe Extraction Service - DEV Environment Harness
 
 ## Overview
 

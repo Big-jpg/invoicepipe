@@ -2,7 +2,7 @@
 set -e
 
 # ====================================================================================
-# Contoso Invoice Automation Deployment Script - Environment Driven Edition
+# InvoicePipe Extraction Service Deployment Script - Environment Driven Edition
 # ====================================================================================
 
 # ---- Load Deployment Environment Variables ----
@@ -115,9 +115,9 @@ echo "🧼 Local Docker images cleaned up."
 
 echo "🎉 Deployment script finished successfully!"
 
-echo "🚀 Contoso Invoice Automation is now live!"
+echo "🚀 InvoicePipe Extraction Service is now live!"
 
-echo "Thank you for using the Contoso Invoice Automation Deployment Script!"
+echo "Thank you for using the InvoicePipe Extraction Service Deployment Script!"
 
 echo "For any issues, please refer to the documentation or contact support."
 

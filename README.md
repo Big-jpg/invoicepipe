@@ -1,31 +1,62 @@
 # InvoicePipe Monorepo
 
-Welcome to the **InvoicePipe** monorepo. This system provides an end-to-end invoice processing solution, combining a modern SaaS frontend, a robust OCR extraction pipeline, and an automation reference for integrating with external systems.
+InvoicePipe is an end-to-end invoice processing system that automates the ingestion, extraction, normalization, and presentation of structured data from PDF invoices. It combines a modern SaaS frontend, a containerized extraction microservice powered by Azure Content Understanding (formerly Document Intelligence), and a Power Automate reference architecture for email-driven automation.
+
+## Architecture
+
+The system operates as three loosely-coupled components that communicate over HTTP:
+
+```
+┌─────────────────────┐       ┌──────────────────────────────┐       ┌──────────────────────┐
+│   apps/web          │       │  services/ocr-pipeline       │       │  automation/         │
+│   (Next.js SaaS)    │       │  (FastAPI extraction svc)    │       │  (Power Automate)    │
+│                     │       │                              │       │                      │
+│  • User upload UI   │──────▶│  • POST /analyzepdf          │◀──────│  • Mailbox trigger   │
+│  • Dashboard        │       │  • POST /process-invoice/    │       │  • PDF routing        │
+│  • Auth / DB        │       │  • GET  /health              │       │  • Excel/SP output   │
+│  • Direct CU call   │       │  • GET  /ready               │       │                      │
+└─────────────────────┘       └──────────────┬───────────────┘       └──────────────────────┘
+                                             │
+                                             ▼
+                              ┌──────────────────────────────┐
+                              │  Azure Content Understanding │
+                              │  (document ingestion,        │
+                              │   extraction, normalization, │
+                              │   validation)                │
+                              └──────────────────────────────┘
+```
+
+**Data flow (automated path):** An email arrives at a shared mailbox. Power Automate extracts PDF attachments and POSTs them to the extraction service. The service submits the PDF to Azure Content Understanding, polls for results, normalizes extracted fields against a trained custom schema, and returns structured JSON. Power Automate writes the result to SharePoint/Excel for downstream consumption.
+
+**Data flow (interactive path):** A user uploads a PDF through the Next.js dashboard. The web app calls Azure Content Understanding directly (or via the extraction service), persists results to PostgreSQL, and renders an instant preview with extracted metadata.
 
 ## System Components
 
-This monorepo is divided into three main components:
-
-1. **`apps/web` (Next.js SaaS Frontend)**  
-   The primary user-facing application for invoice processing. Built with Next.js, it features user authentication (NextAuth), database integration (Prisma/Neon DB), and direct integration with Azure Document Intelligence.  
-   👉 [See Web App README](./apps/web/README.md) for setup and deployment instructions.
-
-2. **`services/ocr-pipeline` (FastAPI Backend)**  
-   A Python microservice that wraps Azure Content Understanding for advanced PDF extraction and processing. It is designed to be deployed on Azure Container Apps and serves as the backend engine for extracting structured data from complex invoices.  
-   👉 [See OCR Pipeline README](./services/ocr-pipeline/README.md) for API details and local development.
-
-3. **`automation/` (Power Automate Reference)**  
-   A reference artifact demonstrating how to automate the ingestion of invoices. It includes an exported Power Automate flow that monitors a shared mailbox for invoice attachments, routes them to the OCR pipeline, and handles the results.  
-   👉 [See Automation README](./automation/README.md) for instructions on adapting this flow for your environment.
+| Directory | Role | Tech |
+|-----------|------|------|
+| `apps/web` | SaaS frontend — upload, preview, export | Next.js 15, Prisma, PostgreSQL, NextAuth |
+| `services/ocr-pipeline` | Extraction microservice — PDF to structured JSON | FastAPI, Azure Content Understanding, Docker |
+| `automation/` | Reference flow — email-to-pipeline automation | Power Automate (exported JSON) |
 
 ## Quick Start
 
-To get started with local development, we recommend setting up the backend service first, followed by the frontend application.
+1. **Extraction Service (Backend):** Navigate to `services/ocr-pipeline` and follow the [service README](./services/ocr-pipeline/README.md) to configure your Python environment and Azure credentials.
+2. **Web App (Frontend):** Navigate to `apps/web`, install dependencies (`pnpm install`), configure your `.env` file, and start the Next.js development server.
+3. **Automation:** Review the `automation/` directory to understand how to connect email ingestion to the extraction service.
 
-1. **OCR Pipeline (Backend):** Navigate to `services/ocr-pipeline` and follow the setup instructions to configure your Python environment and Azure credentials.
-2. **Web App (Frontend):** Navigate to `apps/web` to install dependencies (`pnpm install`), configure your `.env` file, and start the Next.js development server.
-3. **Automation:** Review the `automation/` directory to understand how you can connect your email ingestion to the backend pipeline.
+## Production Hardening Checklist
 
-## Architecture Overview
+The following operational concerns have been addressed in this codebase:
 
-The system is designed to be modular. The frontend can operate independently using Azure Document Intelligence for immediate user uploads, while the backend pipeline and automation flow handle high-volume, automated background processing via Azure Content Understanding.
+- ✅ Health and readiness endpoints (`GET /health`, `GET /ready`)
+- ✅ Typed HTTP error responses (400, 408, 422, 502 with structured detail)
+- ✅ Input validation (file size limit 20MB, MIME type enforcement, PDF magic byte check)
+- ✅ Correlation ID propagation (`X-Correlation-ID` header, auto-generated UUID fallback)
+- ✅ Structured JSON logging (timestamp, level, correlation_id, message)
+
+The following are expected to be handled at the infrastructure layer by deployers:
+
+- ⬜ Authentication (expected at Azure API Management gateway layer)
+- ⬜ Rate limiting (expected at Azure API Management gateway layer)
+- ⬜ Horizontal scaling configuration (Azure Container Apps scaling rules)
+- ⬜ Alerting and monitoring dashboards (Azure Monitor / Application Insights)

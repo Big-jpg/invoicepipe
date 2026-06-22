@@ -22,7 +22,7 @@ export const metadata = {
     "Turn invoices into structured data with 98%+ accuracy. Australian-first invoice extraction API with 5-16s processing time. Perfect for accounting automation and ERP integration.",
   keywords: [
     "invoice extraction",
-    "invoice OCR",
+    "invoice extraction",
     "invoice automation",
     "invoice API",
     "Australian invoices",

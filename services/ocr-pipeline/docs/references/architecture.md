@@ -1,4 +1,4 @@
-# Contoso Invoice Automation Architecture
+# InvoicePipe Extraction Service Architecture
 
 Version: Stable (June 2025)
 
@@ -16,7 +16,7 @@ Azure Container App (FastAPI)
 
 │  
 ▼  
-Azure Content Understanding (Document Intelligence)  
+Azure Content Understanding (formerly Document Intelligence)  
 
 │  
 ▼  
@@ -39,11 +39,11 @@ Azure Storage (managed behind CU service)
 
 - Image tagged via `deploy.sh` and pushed to Azure Container Registry
 
-### 3️⃣ Azure Content Understanding (Document Intelligence)
+### 3️⃣ Azure Content Understanding (formerly Document Intelligence)
 
 - Pretrained custom schema (`custom-invoice-analyzer-id_schema.json`)
 
-- Handles OCR, field extraction, and classification.
+- Handles document ingestion, field extraction, and classification.
 
 ### 4️⃣ Azure API Management (APIM)
 

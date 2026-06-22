@@ -2,7 +2,7 @@
 
 ## Overview
 
-This DEV environment harness provides a complete local development and testing infrastructure for the Contoso Invoice OCR system. It allows developers to work without requiring Azure infrastructure to be deployed, while maintaining compatibility with production configurations.
+This DEV environment harness provides a complete local development and testing infrastructure for the InvoicePipe extraction service. It allows developers to work without requiring Azure infrastructure to be deployed, while maintaining compatibility with production configurations.
 
 ## Table of Contents
 
@@ -420,7 +420,7 @@ The script **does not fail** if resources are not found, making it safe to run a
 
 ```
 ==============================================
-🔎 Contoso OCR Environment Inspection
+🔎 InvoicePipe Extraction Service Environment Inspection
 ==============================================
 Environment:       DEV
 Resource Group:    contoso-azr-dev-rg

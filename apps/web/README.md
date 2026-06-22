@@ -7,7 +7,7 @@
 ## 🚀 Features
 
 * **Drag-and-drop PDF Ingestion** with checksum deduplication.
-* **Smart Field Extraction** using Azure's Document Intelligence.
+* **Smart Field Extraction** using Azure Content Understanding.
 * **Custom CU Normalization** pipeline for Australian invoices.
 * **Typed API Routes** for secure auth, upload, processing.
 * **Instant Preview** with embedded PDF and extracted metadata.
@@ -44,7 +44,7 @@ invoicepipe/
 * **Frontend**: React 19, Next.js 15 (App Router), Tailwind CSS, Framer Motion
 * **Backend**: Next.js API routes, PostgreSQL, Prisma ORM
 * **Auth**: NextAuth + Prisma adapter
-* **AI Integration**: Azure Document Intelligence (via REST SDK)
+* **AI Integration**: Azure Content Understanding (via REST SDK)
 * **PDF Processing**: Native PDF ingestion, estimated page heuristics
 * **UI Frameworks**: Radix UI, ShadCN components, Lucide Icons
 * **Hosting**: Vercel (with function config via `.vercel.json`)
@@ -57,7 +57,7 @@ invoicepipe/
    Users upload PDF invoices via drag-and-drop. Content is hashed for deduplication.
 
 2. **Content Understanding (CU)**
-   Azure AI's Document Intelligence processes the PDF. Key fields (e.g., `InvoiceId`, `VendorName`, `AmountDue`, etc.) are extracted and normalized.
+   Azure Content Understanding processes the PDF. Key fields (e.g., `InvoiceId`, `VendorName`, `AmountDue`, etc.) are extracted and normalized.
 
 3. **Database Insert**
    If critical fields are extracted, metadata is persisted to `invoice_uploads` and `invoices`.

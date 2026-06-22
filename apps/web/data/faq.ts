@@ -8,7 +8,7 @@ export interface IFAQ {
 export const faqs: IFAQ[] = [
     {
         question: "How accurate is the invoice extraction?",
-        answer: "InvoicePipe achieves 98%+ accuracy on Australian tax invoices. Our system is built on Azure Document Intelligence and fine-tuned specifically for local invoice formats, GST calculations, and ABN detection."
+        answer: "InvoicePipe achieves 98%+ accuracy on Australian tax invoices. Our system is built on Azure Content Understanding and fine-tuned specifically for local invoice formats, GST calculations, and ABN detection."
     },
     {
         question: "What file formats do you support?",

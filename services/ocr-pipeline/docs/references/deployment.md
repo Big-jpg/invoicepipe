@@ -1,4 +1,4 @@
-# Contoso Invoice Automation Deployment Guide
+# InvoicePipe Extraction Service Deployment Guide
 
 Version: Stable (June 2025)
 
