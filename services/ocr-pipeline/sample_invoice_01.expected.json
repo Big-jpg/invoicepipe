@@ -1,0 +1,21 @@
+{
+  "InvoiceId": "INV-12345",
+  "InvoiceDate": "2024-01-15",
+  "VendorName": "Sample Vendor Pty Ltd",
+  "CustomerName": "Contoso Community Services",
+  "InvoiceTotal": 1234.56,
+  "AmountDue": 1234.56,
+  "DueDate": "2024-02-15",
+  "SubTotal": 1122.33,
+  "TotalTax": 112.23,
+  "VendorTaxId": "12345678901",
+  "CustomerTaxId": "98765432109",
+  "PONumber": "1234",
+  "PurchaseOrder": "PO-1234",
+  "BillingAddress": "123 Main Street, Perth WA 6000",
+  "CustomerAddress": "456 Oak Avenue, Perth WA 6001",
+  "CustomerId": "CUST-001",
+  "DocumentType": "TaxInvoice",
+  "VendorNameClassify": "Bunzl",
+  "CustomerNameClassify": "CCS"
+}

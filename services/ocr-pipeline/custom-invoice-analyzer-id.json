@@ -1,0 +1,156 @@
+{
+	"scenario": "prebuilt-invoice",
+	"fieldSchema": {
+		"fields": {
+			"AmountDue": {
+				"type": "number",
+				"method": "extract",
+				"description": "Total amount due to the vendor"
+			},
+			"BillingAddress": {
+				"type": "string",
+				"method": "extract",
+				"description": "Explicit billing address for the customer"
+			},
+			"CustomerAddress": {
+				"type": "string",
+				"method": "extract",
+				"description": "Mailing address for the Customer"
+			},
+			"CustomerId": {
+				"type": "string",
+				"method": "extract",
+				"description": "Reference ID for the customer"
+			},
+			"CustomerNameClassify": {
+				"type": "string",
+				"method": "classify",
+				"description": "Entity being billed on this invoice, determined from known internal list of Contoso customer divisions. Variants may include common abbreviations, legal suffixes (Pty Ltd), or minor formatting changes.",
+				"enum": [
+					"CHS",
+					"CCS",
+					"CCL"
+				],
+				"enumDescriptions": {
+					"CHS": "Any mention of “Contoso Human Services” or abbreviations like “MHS”, possibly followed by legal or decorative suffixes such as “Pty Ltd”, “Limited”, or “LTD”. Often appears in the billing section or in the “Bill To”/“Customer” fields. May also be referenced by ABN or specific service sites under this business unit.",
+					"CCL": "Mentions of “Contoso Limited”, “Contoso Ltd”, “MCL”, or similar patterns. May be written with or without spaces (“Contoso”), and can include corporate suffixes like “Ltd” or “Pty Ltd”. Frequently appears in general operations or aged care billing.",
+					"CCS": "References to “Contoso Community Services” or its abbreviation “MCS”, including formatting variations such as “Contoso Community Services Ltd”, “MCS Pty Ltd”, or similar. Typically used in community engagement, disability, or residential services invoices."
+				}
+			},
+			"CustomerTaxId": {
+				"type": "string",
+				"method": "extract",
+				"description": "The government ID number associated with the customer"
+			},
+			"DueDate": {
+				"type": "date",
+				"method": "extract",
+				"description": "Date payment for this invoice is due"
+			},
+			"InvoiceDate": {
+				"type": "date",
+				"method": "extract",
+				"description": "Date the invoice was issued"
+			},
+			"InvoiceId": {
+				"type": "string",
+				"method": "extract",
+				"description": "ID for this specific invoice (often 'Invoice Number')"
+			},
+			"InvoiceTotal": {
+				"type": "number",
+				"method": "extract",
+				"description": "Total new charges associated with this invoice"
+			},
+			"PurchaseOrder": {
+				"type": "string",
+				"method": "extract",
+				"description": "A purchase order reference number"
+			},
+			"SubTotal": {
+				"type": "number",
+				"method": "extract",
+				"description": "Subtotal field identified on this invoice"
+			},
+			"TotalTax": {
+				"type": "number",
+				"method": "extract",
+				"description": "Total tax field identified on this invoice"
+			},
+			"VendorTaxId": {
+				"type": "string",
+				"method": "extract",
+				"description": "The government ID number associated with the vendor"
+			},
+			"DocumentType": {
+				"type": "string",
+				"method": "classify",
+				"description": "Type of Document (Tax Invoice or not, as determined by regular tax invoice fields)",
+				"enum": [
+					"TaxInvoice",
+					"CreditNote",
+					"DeliveryNote",
+					"Estimate",
+					"RequestForQuotation",
+					"Other"
+				],
+				"enumDescriptions": {
+					"DeliveryNote": "Document listing goods delivered, often labeled 'Delivery Note' or 'Packing List'",
+					"Estimate": "Estimated cost document, often titled 'Estimate'",
+					"RequestForQuotation": "RFQ form requesting prices, titled 'Request for Quotation' or 'RFQ'",
+					"TaxInvoice": "Official invoice document issued for tax purposes, clearly labeled as \"Tax Invoice\". Typically includes key tax-related fields such as GST amount, ABN, Invoice Number, Total Due, and Supplier Details. May contain phrases like “Tax Invoice”, “GST inclusive”, “ABN:”, and line items with unit prices and tax breakdown. Often used for B2B transactions requiring compliance with Australian tax laws.",
+					"CreditNote": "Document that indicates a credit to the buyer- often includes 'Credit Note' or 'CN' and negative totals. This is not a tax invoice, but a reversal or adjustment document",
+					"Other": "Any other Document Type that does not match any other value from the list as a correct 'Field name' "
+				}
+			},
+			"PONumber": {
+				"type": "string",
+				"method": "extract",
+				"description": "Purchase Order reference **(1-4 digit integer)**. \\ Labels / prefixes: Customer Ref , Client Ref: , Customer Ref 1,  PO No. , P.O. , P / O , C / R , **o/n**, \\ Likely to appear in block of text with similar Invoice fields \\ Order No. (only when preceded by 'Customer'). \\ **Ignore** any value under 'Our Order No', 'Supplier Order', 'Vendor Order'. \\ May appear in an 'Invoice Notes' block on later pages. \\ May be labelled \"Client Ref\" on later pages."
+			},
+			"VendorNameClassify": {
+				"type": "string",
+				"method": "classify",
+				"description": "Vendor who has created this invoice (chosen from our known list)",
+				"enum": [
+					"Bunzl",
+					"Bidfood",
+					"Nisbets",
+					"Seton",
+					"JBHifi",
+					"OfficeWorks",
+					"Marbret",
+					"Brownes",
+					"Unicare",
+					"HWLEbsworthLawyers",
+					"HarveyNorman",
+					"Activ"
+				],
+				"enumDescriptions": {
+					"Bunzl": "",
+					"Bidfood": "",
+					"Nisbets": "",
+					"Seton": "",
+					"JBHifi": "",
+					"OfficeWorks": "",
+					"Marbret": "",
+					"Brownes": "",
+					"Unicare": "",
+					"HWLEbsworthLawyers": "",
+					"HarveyNorman": "",
+					"Activ": ""
+				}
+			},
+			"CustomerName": {
+				"type": "string",
+				"method": "extract",
+				"description": "Customer being invoiced"
+			},
+			"VendorName": {
+				"type": "string",
+				"method": "extract",
+				"description": "Vendor who has created this invoice"
+			}
+		}
+	}
+}

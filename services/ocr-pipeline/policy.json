@@ -1,0 +1,18 @@
+{
+  "properties": {
+    "format": "xml",
+    "value": "<policies>
+  <inbound>
+      <base />
+      <set-backend-service base-url=\"https:\\REDACTED.australiaeast.azurecontainerapps.io\" />
+      <rewrite-uri template=\"/analyze-invoice\" />
+  </inbound>
+    <backend>
+      <forward-request />
+    </backend>
+    <outbound>
+      <base />
+    </outbound>
+  </policies>"
+    } 
+}

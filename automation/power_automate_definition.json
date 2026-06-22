@@ -1,0 +1,2726 @@
+{
+  "name": "00000000-0000-0000-0000-000000000002",
+  "id": "/providers/Microsoft.Flow/flows/00000000-0000-0000-0000-000000000002",
+  "type": "Microsoft.Flow/flows",
+  "properties": {
+    "apiId": "/providers/Microsoft.PowerApps/apis/shared_logicflows",
+    "displayName": "Generic Accounts Payable to ARM Worklist 1.5-ResolveVendorId Test",
+    "definition": {
+      "metadata": {
+        "workflowEntityId": null,
+        "processAdvisorMetadata": null,
+        "flowChargedByPaygo": null,
+        "flowclientsuspensionreason": "None",
+        "flowclientsuspensiontime": null,
+        "flowclientsuspensionreasondetails": "",
+        "creator": {
+          "id": "00000000-0000-0000-0000-000000000001",
+          "type": "User",
+          "tenantId": "00000000-0000-0000-0000-000000000000"
+        },
+        "provisioningMethod": "FromDefinition",
+        "failureAlertSubscription": true,
+        "clientLastModifiedTime": "2025-11-17T07:17:15.9103146Z",
+        "connectionKeySavedTimeKey": "2025-11-14T07:21:57.0564989Z",
+        "creationSource": null,
+        "modifiedSources": "Portal"
+      },
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": { "defaultValue": {}, "type": "SecureObject" },
+        "$connections": { "defaultValue": {}, "type": "Object" }
+      },
+      "triggers": {
+        "When_a_new_email_arrives_in_a_shared_mailbox_(V2)": {
+          "recurrence": { "frequency": "Minute", "interval": 1 },
+          "evaluatedRecurrence": { "frequency": "Minute", "interval": 1 },
+          "splitOn": "@triggerOutputs()?['body/value']",
+          "metadata": {
+            "operationMetadataId": "172875bb-1eb4-4c96-a20b-7e6e90d16953",
+            "Id::AAMkADcwMWE5ODBiLWQ0YmMtNDE4Mi1hZGYxLWYzMWU1MzYzNDc5NwAuAAAAAAD-JYBFfci6TZQu5Nrxf-0-AQAmMWjMrw22QqAvvp8Z5DF7AAC_F5lZAAA=": "OCR",
+            "Id::AQMkADcwMWE5ODBiLWQ0YmMtNDE4Mi1hZGYxLWYzMWU1MzYzNDc5NwAuAAAD-yWARX3Iuk2ULuTa8X-9PwEAJjFozK8NtkKgL76fGeQxewAAAgEMAAAA": "Inbox"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "mailboxAddress": "invoicecapture@contoso.com.au",
+              "importance": "Any",
+              "hasAttachments": true,
+              "includeAttachments": true,
+              "folderId": "Id::AQMkADcwMWE5ODBiLWQ0YmMtNDE4Mi1hZGYxLWYzMWU1MzYzNDc5NwAuAAAD-yWARX3Iuk2ULuTa8X-9PwEAJjFozK8NtkKgL76fGeQxewAAAgEMAAAA"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+              "connectionName": "shared_office365",
+              "operationId": "SharedMailboxOnNewEmailV2"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "conditions": [],
+          "description": "This step will trigger and verify the shared mailbox (invoicecapture@contoso.com.au) at regular intervals, usually every 3 minutes, for any invoice sent by vendor with attachments (invoices).",
+          "runtimeConfiguration": {
+            "concurrency": { "runs": 1, "maximumWaitingRuns": 10 }
+          }
+        }
+      },
+      "actions": {
+        "PO": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "2cf7fb7b-2238-4ce3-ba43-81cd39ece81f"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [{ "name": "PO", "type": "string", "value": "NA" }]
+          },
+          "description": "Definition of Variable"
+        },
+        "Customer": {
+          "runAfter": { "DisplayName": ["Succeeded"] },
+          "metadata": {
+            "operationMetadataId": "3ef4ca68-3c4c-4972-b706-c496c8e50d17"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              { "name": "Customer", "type": "string", "value": "NA" }
+            ]
+          },
+          "description": "Definition of Variable"
+        },
+        "InvoiceNo": {
+          "runAfter": { "VendorId": ["Succeeded"] },
+          "metadata": {
+            "operationMetadataId": "69e84bfa-2378-43ce-b239-4c4a9f67d9ce"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              { "name": "InvoiceNo", "type": "string", "value": "NA" }
+            ]
+          },
+          "description": "Definition of Variable"
+        },
+        "InvoiceDate": {
+          "runAfter": { "InvoiceNo": ["Succeeded"] },
+          "metadata": {
+            "operationMetadataId": "9a096ea3-7afc-4efd-bfe3-1053ea2166d9"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              { "name": "InvoiceDate", "type": "string", "value": "NA" }
+            ]
+          },
+          "description": "Definition of Variable"
+        },
+        "InvoiceTotal": {
+          "runAfter": { "EmailDate": ["Succeeded"] },
+          "metadata": {
+            "operationMetadataId": "7feab2bb-0bd6-460a-b070-33151ccaf56c"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              { "name": "InvoiceTotal", "type": "string", "value": "NA" }
+            ]
+          },
+          "description": "Definition of Variable"
+        },
+        "BusinessPartner": {
+          "runAfter": { "InvoiceTotal": ["Succeeded"] },
+          "metadata": {
+            "operationMetadataId": "7feab2bb-0bd6-460a-b070-33151ccaf56c"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              { "name": "BusinessPartner", "type": "string", "value": "NA" }
+            ]
+          },
+          "description": "Definition of Variable"
+        },
+        "DocumentType": {
+          "runAfter": { "TitleCasedVendorName_Trimmed": ["Succeeded"] },
+          "metadata": {
+            "operationMetadataId": "7feab2bb-0bd6-460a-b070-33151ccaf56c"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              { "name": "DocumentType", "type": "string", "value": "NA" }
+            ]
+          },
+          "description": "Definition of Variable"
+        },
+        "VendorName": {
+          "runAfter": { "Customer": ["Succeeded"] },
+          "metadata": {
+            "operationMetadataId": "3ef4ca68-3c4c-4972-b706-c496c8e50d17"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              { "name": "VendorName", "type": "string", "value": "NA" }
+            ]
+          },
+          "description": "Definition of Variable"
+        },
+        "VendorId": {
+          "runAfter": { "ABN_Output": ["Succeeded"] },
+          "metadata": {
+            "operationMetadataId": "3ef4ca68-3c4c-4972-b706-c496c8e50d17"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              { "name": "VendorId", "type": "string", "value": "NA" }
+            ]
+          },
+          "description": "Definition of Variable"
+        },
+        "CompanyCode": {
+          "runAfter": { "BusinessPartner": ["Succeeded"] },
+          "metadata": {
+            "operationMetadataId": "07bfcf4a-233b-4bb7-b2c9-8d7e14da627d"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              { "name": "CompanyCode", "type": "string", "value": "NA" }
+            ]
+          },
+          "description": "Definition of Variable"
+        },
+        "TitleCasedVendor_Name": {
+          "runAfter": { "CompanyCode": ["Succeeded"] },
+          "metadata": {
+            "operationMetadataId": "9a8523d7-6cf7-4d8d-9b4d-725584032ab0"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "TitleCasedVendor_Name",
+                "type": "string",
+                "value": "NA"
+              }
+            ]
+          },
+          "description": "Definition of Variable"
+        },
+        "TitleCasedVendorName_Trimmed": {
+          "runAfter": { "TitleCasedVendor_Name": ["Succeeded"] },
+          "metadata": {
+            "operationMetadataId": "29c7ecbd-e8b8-4c26-81fc-c5ed576acef6"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "TitleCasedVendorName_Trimmed",
+                "type": "string",
+                "value": "NA"
+              }
+            ]
+          },
+          "description": "Definition of Variable"
+        },
+        "Email_Subject": {
+          "runAfter": { "DocumentType": ["Succeeded"] },
+          "metadata": {
+            "operationMetadataId": "7feab2bb-0bd6-460a-b070-33151ccaf56c"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "EmailSubject",
+                "type": "string",
+                "value": "@triggerOutputs()?['body/subject']"
+              }
+            ]
+          },
+          "description": "Definition of Variable"
+        },
+        "Filter_PDF_attachments": {
+          "runAfter": { "Email_Subject": ["Succeeded"] },
+          "metadata": {
+            "operationMetadataId": "56b955cc-7d15-4773-80ed-4002693338cb"
+          },
+          "type": "Query",
+          "inputs": {
+            "from": "@triggerOutputs()?['body/attachments']",
+            "where": "@and(or(equals(item()?['contentType'], 'application/pdf'),equals(item()?['contentType'], 'application/octet-stream')),equals(item()?['isInline'], false))"
+          },
+          "description": "Filtering Query to check only PDF files."
+        },
+        "Process_Each_Attachment": {
+          "foreach": "@body('Filter_PDF_attachments')",
+          "actions": {
+            "Is_the_Attachment_a_PDF": {
+              "actions": {
+                "Call_Azure_OCR_via_HTTP_Trigger": {
+                  "limit": { "timeout": "PT600S" },
+                  "metadata": {
+                    "operationMetadataId": "8e83466b-3402-47b8-8091-b9834dfac0e9"
+                  },
+                  "type": "Http",
+                  "inputs": {
+                    "uri": "https://contoso-apim.azure-api.net/invoice/process-invoice/",
+                    "method": "POST",
+                    "headers": {
+                      "Ocp-Apim-Subscription-Key": "5405f15bced34763b89a3f98712b714a",
+                      "Content-Type": "application/json"
+                    },
+                    "body": {
+                      "filename": "@item()?['name']",
+                      "file_content": "@item()?['contentBytes']"
+                    },
+                    "retryPolicy": {
+                      "type": "exponential",
+                      "count": 3,
+                      "interval": "PT30S",
+                      "minimumInterval": "PT30S",
+                      "maximumInterval": "PT90S"
+                    }
+                  },
+                  "description": "Using HTTP request to call Azure AI to extract data",
+                  "operationOptions": "DisableAsyncPattern, DisableAutomaticDecompression"
+                },
+                "Parse_OCR_Success_JSON_Response": {
+                  "runAfter": {
+                    "Call_Azure_OCR_via_HTTP_Trigger": ["Succeeded"]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "b5521bb8-937c-43d8-a08b-29a716bb120e"
+                  },
+                  "type": "ParseJson",
+                  "inputs": {
+                    "content": "@body('Call_Azure_OCR_via_HTTP_Trigger')",
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "InvoiceId": { "type": ["string", "null"] },
+                        "PurchaseOrder": { "type": ["string", "null"] },
+                        "InvoiceDate": { "type": ["string", "null"] },
+                        "VendorName": { "type": ["string", "null"] },
+                        "VendorAddress": { "type": ["string", "null"] },
+                        "VendorTaxId": { "type": ["string", "null"] },
+                        "CustomerName": { "type": ["string", "null"] },
+                        "CustomerAddress": { "type": ["string", "null"] },
+                        "CustomerTaxId": { "type": ["string", "null"] },
+                        "InvoiceTotal": {
+                          "type": ["number", "string", "null"]
+                        },
+                        "AmountDue": { "type": ["number", "string", "null"] },
+                        "SubTotal": { "type": ["number", "string", "null"] },
+                        "TotalTax": { "type": ["number", "string", "null"] },
+                        "DueDate": { "type": ["string", "null"] },
+                        "DocumentType": { "type": ["string", "null"] },
+                        "PONumber": { "type": ["string", "null"] },
+                        "BillingAddress": { "type": ["string", "null"] },
+                        "CustomerNameClassify": { "type": ["string", "null"] },
+                        "VendorNameClassify": { "type": ["string", "null"] }
+                      }
+                    }
+                  },
+                  "description": "Generating JSON response with details from file"
+                },
+                "Set_Invoice_Type_Azure": {
+                  "runAfter": { "Set_Company_Code": ["Succeeded"] },
+                  "metadata": {
+                    "operationMetadataId": "771fade3-6384-4ed7-810e-f4b82cfa0c9a"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "DocumentType",
+                    "value": "@if(or(equals(coalesce(body('Parse_OCR_Success_JSON_Response')?['DocumentType'],''),''),equals(toLower(coalesce(body('Parse_OCR_Success_JSON_Response')?['DocumentType'],'')),'other')),'Other',body('Parse_OCR_Success_JSON_Response')?['DocumentType'])"
+                  },
+                  "description": "Set Invoice Type from the JSON. If DocumentType is empty or equals \"other\" (case-insensitive), it returns \"Other\". Otherwise, it returns the actual DocumentType value."
+                },
+                "Set_InvoiceDate_Az": {
+                  "runAfter": { "Set_Invoice_Type_Azure": ["Succeeded"] },
+                  "metadata": {
+                    "operationMetadataId": "24b16479-d769-4927-9922-64f2396d6e67"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "InvoiceDate",
+                    "value": "@if(or(equals(trim(string(body('Parse_OCR_Success_JSON_Response')?['InvoiceDate'])),''),equals(string(body('Parse_OCR_Success_JSON_Response')?['InvoiceDate']),null)),'NO_DATE',formatDateTime(string(body('Parse_OCR_Success_JSON_Response')?['InvoiceDate']),'yyyy-MM-ddTHH:mm:ssZ'))"
+                  },
+                  "description": "Set Invoice date from the JSON"
+                },
+                "Set_InvoiceTotal_Az": {
+                  "runAfter": { "Set_InvoiceDate_Az": ["Succeeded"] },
+                  "metadata": {
+                    "operationMetadataId": "24037281-89ce-4d7d-992d-b817caf4c614"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "InvoiceTotal",
+                    "value": "@string(coalesce(body('Parse_OCR_Success_JSON_Response')?['InvoiceTotal'],body('Parse_OCR_Success_JSON_Response')?['AmountDue'],0))"
+                  },
+                  "description": "Set Invoice Total from the JSON"
+                },
+                "Set_Invoice_No_Az": {
+                  "runAfter": { "Set_InvoiceTotal_Az": ["Succeeded"] },
+                  "metadata": {
+                    "operationMetadataId": "3b9224c0-0e65-41f4-bbc8-5bc4b8fe0eb6"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "InvoiceNo",
+                    "value": "@string(body('Parse_OCR_Success_JSON_Response')?['InvoiceId'])\r\n"
+                  },
+                  "description": "Set Invoice number from the JSON"
+                },
+                "Set_Customer_Name_Az": {
+                  "runAfter": { "Set_Invoice_No_Az": ["Succeeded"] },
+                  "metadata": {
+                    "operationMetadataId": "0cc48313-b926-4966-9c61-ab5350d7bcef"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Customer",
+                    "value": "@toUpper(string(body('Parse_OCR_Success_JSON_Response')?['CustomerName']))"
+                  },
+                  "description": "Set Customer Name or Company Name in capital letters (CONTOSO LIMITED, CONTOSO COMMUNITY SERVICES, CONTOSO HUMAN SERVICES) from the JSON"
+                },
+                "Set_Purchase_Order_Az": {
+                  "runAfter": { "Set_Customer_Name_Az": ["Succeeded"] },
+                  "metadata": {
+                    "operationMetadataId": "40bfa4f1-14cd-4e23-ad0a-d36e0c5ee022"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "PO",
+                    "value": "@trim(string(coalesce(body('Parse_OCR_Success_JSON_Response')?['PurchaseOrder'],body('Parse_OCR_Success_JSON_Response')?['PONumber'],'NO_PO_FOUND')))"
+                  },
+                  "description": "Set Purchase Order from the JSON"
+                },
+                "Set_Vendor_Name": {
+                  "runAfter": { "Set_EmailDate": ["Succeeded"] },
+                  "metadata": {
+                    "operationMetadataId": "40bfa4f1-14cd-4e23-ad0a-d36e0c5ee022"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "VendorName",
+                    "value": "@trim(\r\n  replace(\r\n    replace(\r\n      replace(\r\n        coalesce(\r\n          body('Parse_OCR_Success_JSON_Response')?['VendorName'],\r\n          'UnknownVendor'\r\n        ),\r\n        '''',\r\n        ''\r\n      ),\r\n      decodeUriComponent('%0A'),\r\n      ' '\r\n    ),\r\n    decodeUriComponent('%0D'),\r\n    ' '\r\n  )\r\n)"
+                  },
+                  "description": "Set Vendor Name from the JSON by checking three options to get a vendor name:\n\nFirst, it looks for VendorNameClassify.\n\nIf that's missing, it tries VendorName.\n\nIf both are missing, it uses \"UnknownVendor\"."
+                },
+                "Compose_Az": {
+                  "runAfter": { "If_CompanyCode_is_not_empty": ["Succeeded"] },
+                  "metadata": {
+                    "operationMetadataId": "b662b0a5-c1df-4c70-85d6-aa347b957ec0"
+                  },
+                  "type": "Compose",
+                  "inputs": "@concat(\r\n  trim(replace(replace(variables('VendorName'), '\\n', ' '), '\\r', ' ')),\r\n  '___',\r\n  variables('PO'),\r\n  '___',\r\n  if(\r\n    or(equals(variables('InvoiceDate'),''), equals(variables('InvoiceDate'),'NO_DATE')),\r\n    'NO_DATE',\r\n    formatDateTime(variables('InvoiceDate'),'dd_MM_yy')\r\n  ),\r\n  '___',\r\n  variables('InvoiceTotal'),\r\n  '___'\r\n)",
+                  "description": "It joins several pieces of data together using '___' as a separator. Returning a single string. Here's what it includes: VendorName, PO (Purchase Order), Invoice Date, If it's empty or \"NO_DATE\", it adds \"NO_DATE\", Otherwise, it formats the date dd_MM_yy."
+                },
+                "Scope_to_handle_errors": {
+                  "actions": {
+                    "Switch": {
+                      "cases": {
+                        "CreditNote": {
+                          "case": "CreditNote",
+                          "actions": {
+                            "Add_a_row_into_a_table_Credit_Note": {
+                              "metadata": {
+                                "01TUYP2DU5FQRKATPSTFHL4YWXN4G2HVMS": "/OCRInvoices.xlsx",
+                                "tableId": "{CB46EFA3-4C17-42CE-B3D3-DDD5BC686218}",
+                                "operationMetadataId": "834e7e5d-cf93-4760-8dec-1fc86e681b57",
+                                "01TUYP2DQDTHLNNENHGRDJTQJ4WTDMIFNA": "/OCRInvoicesTest.xlsx",
+                                "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ": "/OCRInvoices.xlsx",
+                                "01TUYP2DTH7APREIUAYBAITCL6AVAK67KE": "/OCRInvoicesTest.xlsx"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "parameters": {
+                                  "source": "sites/mcs38.sharepoint.com,50e6c0bf-a8e1-4a24-927b-a6b9cf95ed8c,088351ea-671b-454c-8a52-6f8d54ed9cce",
+                                  "drive": "b!v8DmUOGoJEqSe6a5z5XtjOpRgwgbZ0xFilJvjVTtnM75lfopPN7-R65CokIy3rsA",
+                                  "file": "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ",
+                                  "table": "{CB46EFA3-4C17-42CE-B3D3-DDD5BC686218}",
+                                  "item/Processed": "N",
+                                  "item/Invoice": "@string(variables('InvoiceNo'))",
+                                  "item/PO": "@string(variables('PO'))",
+                                  "item/Invoice Date": "@if(\n      equals(variables('InvoiceDate'), 'NO_DATE'),\n      '',\n      formatDateTime(string(variables('InvoiceDate')), 'dd/MM/yy')\n)",
+                                  "item/CompanyCode": "@string(variables('CompanyCode'))",
+                                  "item/InvoiceType": "@string(variables('DocumentType'))",
+                                  "item/Vendor": "@variables('VendorId')",
+                                  "item/Amount": "@concat('$',formatNumber(float(variables('InvoiceTotal')),'0.00'))",
+                                  "item/Vendor Name": "@string(variables('VendorName'))",
+                                  "item/Email Date": "@variables('EmailDate')",
+                                  "item/File Name": "@{outputs('Compose_Az')}@{variables('InvoiceNo')}.PDF",
+                                  "item/TextInvoice": "@concat(string(variables('InvoiceNo')))"
+                                },
+                                "host": {
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness",
+                                  "connectionName": "shared_excelonlinebusiness",
+                                  "operationId": "AddRowV2"
+                                },
+                                "authentication": "@parameters('$authentication')"
+                              },
+                              "description": "If document is a Credit Note, it will add a row in OCRInvoices.xlsx in COR CN table."
+                            },
+                            "Create_file_Az_Credit_Note": {
+                              "runAfter": {
+                                "Add_a_row_into_a_table_Credit_Note": [
+                                  "Succeeded"
+                                ]
+                              },
+                              "metadata": {
+                                "operationMetadataId": "11a5e989-00cc-464d-9f8b-ffb54de03488"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "parameters": {
+                                  "dataset": "https://mcs38.sharepoint.com/sites/Kinetic-ARMLive",
+                                  "folderPath": "/WorkList/ALL",
+                                  "name": "CreditNote__@{concat(variables('VendorName'),'___',variables('InvoiceNo'),'___',variables('PO'))}.PDF",
+                                  "body": "@item()?['contentBytes']"
+                                },
+                                "host": {
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                                  "connectionName": "shared_sharepointonline",
+                                  "operationId": "CreateFile"
+                                },
+                                "authentication": "@parameters('$authentication')"
+                              },
+                              "description": "Creating a file in the Worklist as Credit Note.",
+                              "runtimeConfiguration": {
+                                "contentTransfer": { "transferMode": "Chunked" }
+                              }
+                            }
+                          }
+                        },
+                        "Statement": {
+                          "case": "Statement",
+                          "actions": {
+                            "Add_a_row_into_a_table_Statement": {
+                              "metadata": {
+                                "01TUYP2DU5FQRKATPSTFHL4YWXN4G2HVMS": "/OCRInvoices.xlsx",
+                                "tableId": "{6DED724E-A007-47A3-9850-E42CBC225C84}",
+                                "operationMetadataId": "834e7e5d-cf93-4760-8dec-1fc86e681b57",
+                                "01TUYP2DQDTHLNNENHGRDJTQJ4WTDMIFNA": "/OCRInvoicesTest.xlsx",
+                                "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ": "/OCRInvoices.xlsx",
+                                "01TUYP2DTH7APREIUAYBAITCL6AVAK67KE": "/OCRInvoicesTest.xlsx"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "parameters": {
+                                  "source": "sites/mcs38.sharepoint.com,50e6c0bf-a8e1-4a24-927b-a6b9cf95ed8c,088351ea-671b-454c-8a52-6f8d54ed9cce",
+                                  "drive": "b!v8DmUOGoJEqSe6a5z5XtjOpRgwgbZ0xFilJvjVTtnM75lfopPN7-R65CokIy3rsA",
+                                  "file": "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ",
+                                  "table": "{6DED724E-A007-47A3-9850-E42CBC225C84}",
+                                  "item/Processed": "N",
+                                  "item/Invoice": "@string(variables('InvoiceNo'))",
+                                  "item/PO": "@string(variables('PO'))",
+                                  "item/Invoice Date": "@if(\n      equals(variables('InvoiceDate'), 'NO_DATE'),\n      '',\n      formatDateTime(string(variables('InvoiceDate')), 'dd/MM/yy')\n)",
+                                  "item/CompanyCode": "@string(variables('CompanyCode'))",
+                                  "item/InvoiceType": "@string(variables('DocumentType'))",
+                                  "item/Vendor": "@variables('VendorId')",
+                                  "item/Amount": "@concat('$',formatNumber(float(variables('InvoiceTotal')),'0.00'))",
+                                  "item/Vendor Name": "@string(variables('VendorName'))",
+                                  "item/TextInvoice": "@concat(string(variables('InvoiceNo')))"
+                                },
+                                "host": {
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness",
+                                  "connectionName": "shared_excelonlinebusiness",
+                                  "operationId": "AddRowV2"
+                                },
+                                "authentication": "@parameters('$authentication')"
+                              },
+                              "description": "If the file is not and statement, it will generate a row with details where no purchase order has been found."
+                            },
+                            "Create_file_Az_Statement": {
+                              "runAfter": {
+                                "Add_a_row_into_a_table_Statement": [
+                                  "Succeeded"
+                                ]
+                              },
+                              "metadata": {
+                                "operationMetadataId": "11a5e989-00cc-464d-9f8b-ffb54de03488"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "parameters": {
+                                  "dataset": "https://mcs38.sharepoint.com/sites/Kinetic-ARMLive",
+                                  "folderPath": "/Shared Documents/Statements",
+                                  "name": "Statement__@{concat(variables('VendorName'),'___',utcNow())}.PDF",
+                                  "body": "@item()?['contentBytes']"
+                                },
+                                "host": {
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                                  "connectionName": "shared_sharepointonline",
+                                  "operationId": "CreateFile"
+                                },
+                                "authentication": "@parameters('$authentication')"
+                              },
+                              "description": "If the document is a statement, a file will be created in Statements folder in ARM Live.",
+                              "runtimeConfiguration": {
+                                "contentTransfer": { "transferMode": "Chunked" }
+                              }
+                            }
+                          }
+                        },
+                        "Tax_Invoice": {
+                          "case": "TaxInvoice",
+                          "actions": {
+                            "Condition_Entity": {
+                              "actions": {
+                                "Condition_Check_PO": {
+                                  "actions": {
+                                    "Condition_NOI": {
+                                      "actions": {
+                                        "Condition_ABN_1": {
+                                          "actions": {
+                                            "Create_file_Az_3": {
+                                              "metadata": {
+                                                "operationMetadataId": "11a5e989-00cc-464d-9f8b-ffb54de03488"
+                                              },
+                                              "type": "OpenApiConnection",
+                                              "inputs": {
+                                                "parameters": {
+                                                  "dataset": "https://mcs38.sharepoint.com/sites/Kinetic-ARMLive",
+                                                  "folderPath": "/WorkList/ALL",
+                                                  "name": "NOI_@{outputs('Compose_Az')}@{variables('InvoiceNo')}.PDF",
+                                                  "body": "@item()?['contentBytes']"
+                                                },
+                                                "host": {
+                                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                                                  "connectionName": "shared_sharepointonline",
+                                                  "operationId": "CreateFile"
+                                                },
+                                                "authentication": "@parameters('$authentication')"
+                                              },
+                                              "description": "In case there is a Purchase order in the file, this step will create a file in the Worklist.",
+                                              "runtimeConfiguration": {
+                                                "contentTransfer": {
+                                                  "transferMode": "Chunked"
+                                                }
+                                              }
+                                            },
+                                            "Add_a_row_into_a_table_1_2": {
+                                              "runAfter": {
+                                                "Create_file_Az_3": [
+                                                  "Succeeded"
+                                                ]
+                                              },
+                                              "metadata": {
+                                                "01TUYP2DU5FQRKATPSTFHL4YWXN4G2HVMS": "/OCRInvoices.xlsx",
+                                                "tableId": "{9D4FED09-A825-489A-97EF-AF73445E67CC}",
+                                                "operationMetadataId": "834e7e5d-cf93-4760-8dec-1fc86e681b57",
+                                                "01TUYP2DQDTHLNNENHGRDJTQJ4WTDMIFNA": "/OCRInvoicesTest.xlsx",
+                                                "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ": "/OCRInvoices.xlsx",
+                                                "01TUYP2DTH7APREIUAYBAITCL6AVAK67KE": "/OCRInvoicesTest.xlsx"
+                                              },
+                                              "type": "OpenApiConnection",
+                                              "inputs": {
+                                                "parameters": {
+                                                  "source": "sites/mcs38.sharepoint.com,50e6c0bf-a8e1-4a24-927b-a6b9cf95ed8c,088351ea-671b-454c-8a52-6f8d54ed9cce",
+                                                  "drive": "b!v8DmUOGoJEqSe6a5z5XtjOpRgwgbZ0xFilJvjVTtnM75lfopPN7-R65CokIy3rsA",
+                                                  "file": "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ",
+                                                  "table": "{9D4FED09-A825-489A-97EF-AF73445E67CC}",
+                                                  "item/Processed": "N",
+                                                  "item/Invoice": "@string(variables('InvoiceNo'))",
+                                                  "item/Invoice Date": "@if(\n      equals(variables('InvoiceDate'), 'NO_DATE'),\n      '',\n      formatDateTime(string(variables('InvoiceDate')), 'dd/MM/yy')\n)",
+                                                  "item/CompanyCode": "@string(variables('CompanyCode'))",
+                                                  "item/InvoiceType": "@string(variables('DocumentType'))",
+                                                  "item/Vendor": "@variables('VendorId')",
+                                                  "item/Amount": "@concat('$',formatNumber(float(variables('InvoiceTotal')),'0.00'))",
+                                                  "item/Vendor Name": "@string(variables('VendorName'))",
+                                                  "item/ABN Invoice": "@variables('ABN')",
+                                                  "item/ABN Epicor": "@variables('ABN Output')",
+                                                  "item/File Name": "NOI_@{outputs('Compose_Az')}@{variables('InvoiceNo')}.PDF",
+                                                  "item/Email Date": "@variables('EmailDate')",
+                                                  "item/PO": "NOI",
+                                                  "item/TextInvoice": "@concat(string(variables('InvoiceNo')))"
+                                                },
+                                                "host": {
+                                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness",
+                                                  "connectionName": "shared_excelonlinebusiness",
+                                                  "operationId": "AddRowV2"
+                                                },
+                                                "authentication": "@parameters('$authentication')"
+                                              },
+                                              "description": "This step will add a row with the respective details for the invoice in the OCRInvoices.xlsx in the OCR table."
+                                            },
+                                            "Add_a_row_into_a_table_1_AP_File_2": {
+                                              "runAfter": {
+                                                "Add_a_row_into_a_table_1_2": [
+                                                  "Succeeded"
+                                                ]
+                                              },
+                                              "metadata": {
+                                                "01TUYP2DU5FQRKATPSTFHL4YWXN4G2HVMS": "/OCRInvoices.xlsx",
+                                                "tableId": "{4A20892C-24B8-4456-B1AF-7A4A439F8958}",
+                                                "operationMetadataId": "834e7e5d-cf93-4760-8dec-1fc86e681b57",
+                                                "01TUYP2DQDTHLNNENHGRDJTQJ4WTDMIFNA": "/OCRInvoicesTest.xlsx",
+                                                "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ": "/OCRInvoices.xlsx",
+                                                "01TUYP2DTH7APREIUAYBAITCL6AVAK67KE": "/OCRInvoicesTest.xlsx",
+                                                "01TUYP2DSCLBTPXLG5T5HZRX5HZJCYVYEQ": "/AP Monthly Supplier Reconciliation.xlsx"
+                                              },
+                                              "type": "OpenApiConnection",
+                                              "inputs": {
+                                                "parameters": {
+                                                  "source": "sites/mcs38.sharepoint.com,50e6c0bf-a8e1-4a24-927b-a6b9cf95ed8c,088351ea-671b-454c-8a52-6f8d54ed9cce",
+                                                  "drive": "b!v8DmUOGoJEqSe6a5z5XtjOpRgwgbZ0xFilJvjVTtnM75lfopPN7-R65CokIy3rsA",
+                                                  "file": "01TUYP2DSCLBTPXLG5T5HZRX5HZJCYVYEQ",
+                                                  "table": "{4A20892C-24B8-4456-B1AF-7A4A439F8958}",
+                                                  "item/Processed": "N",
+                                                  "item/Invoice": "@string(variables('InvoiceNo'))",
+                                                  "item/Invoice Date": "@if(\n      equals(variables('InvoiceDate'), 'NO_DATE'),\n      '',\n      formatDateTime(string(variables('InvoiceDate')), 'dd/MM/yy')\n)",
+                                                  "item/CompanyCode": "@string(variables('CompanyCode'))",
+                                                  "item/InvoiceType": "@string(variables('DocumentType'))",
+                                                  "item/Vendor": "@variables('VendorId')",
+                                                  "item/Amount": "@concat('$',formatNumber(float(variables('InvoiceTotal')),'0.00'))",
+                                                  "item/Vendor Name": "@string(variables('VendorName'))",
+                                                  "item/ABN Invoice": "@variables('ABN')",
+                                                  "item/ABN Epicor": "@variables('ABN Output')",
+                                                  "item/File Name": "NOI_@{outputs('Compose_Az')}@{variables('InvoiceNo')}.PDF",
+                                                  "item/Email Date": "@variables('EmailDate')",
+                                                  "item/PO": "NOI",
+                                                  "item/TextInvoice": "@concat(string(variables('InvoiceNo')))"
+                                                },
+                                                "host": {
+                                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness",
+                                                  "connectionName": "shared_excelonlinebusiness",
+                                                  "operationId": "AddRowV2"
+                                                },
+                                                "authentication": "@parameters('$authentication')"
+                                              },
+                                              "description": "This step will add a row with the respective details for the invoice in the OCRInvoices.xlsx in the OCR table."
+                                            }
+                                          },
+                                          "else": {
+                                            "actions": {
+                                              "Add_a_row_into_a_table_1-NO_PO_FOUND": {
+                                                "runAfter": {
+                                                  "Create_file_Az_3_1": [
+                                                    "Succeeded"
+                                                  ]
+                                                },
+                                                "metadata": {
+                                                  "01TUYP2DU5FQRKATPSTFHL4YWXN4G2HVMS": "/OCRInvoices.xlsx",
+                                                  "tableId": "{9D4FED09-A825-489A-97EF-AF73445E67CC}",
+                                                  "operationMetadataId": "834e7e5d-cf93-4760-8dec-1fc86e681b57",
+                                                  "01TUYP2DQDTHLNNENHGRDJTQJ4WTDMIFNA": "/OCRInvoicesTest.xlsx",
+                                                  "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ": "/OCRInvoices.xlsx",
+                                                  "01TUYP2DTH7APREIUAYBAITCL6AVAK67KE": "/OCRInvoicesTest.xlsx"
+                                                },
+                                                "type": "OpenApiConnection",
+                                                "inputs": {
+                                                  "parameters": {
+                                                    "source": "sites/mcs38.sharepoint.com,50e6c0bf-a8e1-4a24-927b-a6b9cf95ed8c,088351ea-671b-454c-8a52-6f8d54ed9cce",
+                                                    "drive": "b!v8DmUOGoJEqSe6a5z5XtjOpRgwgbZ0xFilJvjVTtnM75lfopPN7-R65CokIy3rsA",
+                                                    "file": "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ",
+                                                    "table": "{9D4FED09-A825-489A-97EF-AF73445E67CC}",
+                                                    "item/Processed": "N",
+                                                    "item/Invoice": "@string(variables('InvoiceNo'))",
+                                                    "item/Invoice Date": "@if(\n      equals(variables('InvoiceDate'), 'NO_DATE'),\n      '',\n      formatDateTime(string(variables('InvoiceDate')), 'dd/MM/yy')\n)",
+                                                    "item/CompanyCode": "@string(variables('CompanyCode'))",
+                                                    "item/InvoiceType": "@string(variables('DocumentType'))",
+                                                    "item/Vendor": "@variables('VendorId')",
+                                                    "item/Amount": "@concat('$',formatNumber(float(variables('InvoiceTotal')),'0.00'))",
+                                                    "item/Vendor Name": "@string(variables('VendorName'))",
+                                                    "item/ABN Invoice": "@variables('ABN')",
+                                                    "item/ABN Epicor": "@variables('ABN Output')",
+                                                    "item/Email Date": "@variables('EmailDate')",
+                                                    "item/PO": "@string(variables('PO'))",
+                                                    "item/TextInvoice": "@concat(string(variables('InvoiceNo')))"
+                                                  },
+                                                  "host": {
+                                                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness",
+                                                    "connectionName": "shared_excelonlinebusiness",
+                                                    "operationId": "AddRowV2"
+                                                  },
+                                                  "authentication": "@parameters('$authentication')"
+                                                },
+                                                "description": "If the file is not and statement, it will generate a row with details where no purchase order has been found."
+                                              },
+                                              "Add_a_row_into_a_table_1-NO_PO_FOUND_AP_File": {
+                                                "runAfter": {
+                                                  "Add_a_row_into_a_table_1-NO_PO_FOUND": [
+                                                    "Succeeded"
+                                                  ]
+                                                },
+                                                "metadata": {
+                                                  "01TUYP2DU5FQRKATPSTFHL4YWXN4G2HVMS": "/OCRInvoices.xlsx",
+                                                  "tableId": "{4A20892C-24B8-4456-B1AF-7A4A439F8958}",
+                                                  "operationMetadataId": "834e7e5d-cf93-4760-8dec-1fc86e681b57",
+                                                  "01TUYP2DQDTHLNNENHGRDJTQJ4WTDMIFNA": "/OCRInvoicesTest.xlsx",
+                                                  "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ": "/OCRInvoices.xlsx",
+                                                  "01TUYP2DTH7APREIUAYBAITCL6AVAK67KE": "/OCRInvoicesTest.xlsx",
+                                                  "01TUYP2DSCLBTPXLG5T5HZRX5HZJCYVYEQ": "/AP Monthly Supplier Reconciliation.xlsx"
+                                                },
+                                                "type": "OpenApiConnection",
+                                                "inputs": {
+                                                  "parameters": {
+                                                    "source": "sites/mcs38.sharepoint.com,50e6c0bf-a8e1-4a24-927b-a6b9cf95ed8c,088351ea-671b-454c-8a52-6f8d54ed9cce",
+                                                    "drive": "b!v8DmUOGoJEqSe6a5z5XtjOpRgwgbZ0xFilJvjVTtnM75lfopPN7-R65CokIy3rsA",
+                                                    "file": "01TUYP2DSCLBTPXLG5T5HZRX5HZJCYVYEQ",
+                                                    "table": "{4A20892C-24B8-4456-B1AF-7A4A439F8958}",
+                                                    "item/Processed": "N",
+                                                    "item/Invoice": "@string(variables('InvoiceNo'))",
+                                                    "item/Invoice Date": "@if(\n      equals(variables('InvoiceDate'), 'NO_DATE'),\n      '',\n      formatDateTime(string(variables('InvoiceDate')), 'dd/MM/yy')\n)",
+                                                    "item/CompanyCode": "@string(variables('CompanyCode'))",
+                                                    "item/InvoiceType": "@string(variables('DocumentType'))",
+                                                    "item/Vendor": "@variables('VendorId')",
+                                                    "item/Amount": "@concat('$',formatNumber(float(variables('InvoiceTotal')),'0.00'))",
+                                                    "item/Vendor Name": "@string(variables('VendorName'))",
+                                                    "item/ABN Invoice": "@variables('ABN')",
+                                                    "item/ABN Epicor": "@variables('ABN Output')",
+                                                    "item/Email Date": "@variables('EmailDate')",
+                                                    "item/PO": "@string(variables('PO'))",
+                                                    "item/TextInvoice": "@concat(string(variables('InvoiceNo')))"
+                                                  },
+                                                  "host": {
+                                                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness",
+                                                    "connectionName": "shared_excelonlinebusiness",
+                                                    "operationId": "AddRowV2"
+                                                  },
+                                                  "authentication": "@parameters('$authentication')"
+                                                },
+                                                "description": "If the file is not and statement, it will generate a row with details where no purchase order has been found."
+                                              },
+                                              "Send_an_email_(V2)_NOPO_Mailbox": {
+                                                "runAfter": {
+                                                  "Add_a_row_into_a_table_1-NO_PO_FOUND_AP_File": [
+                                                    "Succeeded"
+                                                  ]
+                                                },
+                                                "metadata": {
+                                                  "operationMetadataId": "8ffdd920-7fe6-4223-9ef4-e43ac3fdb19a"
+                                                },
+                                                "type": "OpenApiConnection",
+                                                "inputs": {
+                                                  "parameters": {
+                                                    "emailMessage/To": "admin@contoso.com.au",
+                                                    "emailMessage/Subject": "PO missing and/or ABN not matching from @{outputs('Add_a_row_into_a_table_1-NO_PO_FOUND')?['body/Vendor Name']} with Invoice ID @{outputs('Add_a_row_into_a_table_1-NO_PO_FOUND')?['body/Invoice']}",
+                                                    "emailMessage/Body": "<p class=\"editor-paragraph\">Hello Team,</p><br><p class=\"editor-paragraph\">PO missing and/or ANB is not matching in the following Invoice ID @{outputs('Add_a_row_into_a_table_1-NO_PO_FOUND')?['body/Invoice']} for vendor @{outputs('Add_a_row_into_a_table_1-NO_PO_FOUND')?['body/Vendor Name']}. Please verify the Invoice File and send back to the vendor.</p><br><p class=\"editor-paragraph\">CHS_@{outputs('Compose_Az')}@{variables('InvoiceNo')}.PDF</p><br><p class=\"editor-paragraph\">Kind regards,</p><br><p class=\"editor-paragraph\">Invoice Automate</p><p class=\"editor-paragraph\">______________________________________________________________________________</p><br><p class=\"editor-paragraph\">@{triggerOutputs()?['body/body']}</p>",
+                                                    "emailMessage/Attachments": [
+                                                      {
+                                                        "Name": "@item()?['name']",
+                                                        "ContentBytes": "@item()?['contentBytes']"
+                                                      }
+                                                    ],
+                                                    "emailMessage/Importance": "Normal"
+                                                  },
+                                                  "host": {
+                                                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+                                                    "connectionName": "shared_office365",
+                                                    "operationId": "SendEmailV2"
+                                                  },
+                                                  "authentication": "@parameters('$authentication')"
+                                                },
+                                                "description": "An email will be sent to NOPO mail for Procurement to review the document."
+                                              },
+                                              "Create_file_Az_3_1": {
+                                                "metadata": {
+                                                  "operationMetadataId": "11a5e989-00cc-464d-9f8b-ffb54de03488"
+                                                },
+                                                "type": "OpenApiConnection",
+                                                "inputs": {
+                                                  "parameters": {
+                                                    "dataset": "https://mcs38.sharepoint.com/sites/Kinetic-ARMLive",
+                                                    "folderPath": "/WorkList/ALL",
+                                                    "name": "CHS_@{outputs('Compose_Az')}@{variables('InvoiceNo')}.PDF",
+                                                    "body": "@item()?['contentBytes']"
+                                                  },
+                                                  "host": {
+                                                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                                                    "connectionName": "shared_sharepointonline",
+                                                    "operationId": "CreateFile"
+                                                  },
+                                                  "authentication": "@parameters('$authentication')"
+                                                },
+                                                "description": "In case there is a Purchase order in the file, this step will create a file in the Worklist.",
+                                                "runtimeConfiguration": {
+                                                  "contentTransfer": {
+                                                    "transferMode": "Chunked"
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "expression": {
+                                            "and": [
+                                              {
+                                                "equals": [
+                                                  "@empty(outputs('Winner')?['body/Vendor_TaxPayerID'])",
+                                                  true
+                                                ]
+                                              }
+                                            ]
+                                          },
+                                          "metadata": {
+                                            "operationMetadataId": "956163b4-75d6-4ac7-b644-d89df30e32a9"
+                                          },
+                                          "type": "If"
+                                        }
+                                      },
+                                      "else": {
+                                        "actions": {
+                                          "Send_an_email_(V2)_NOPO_Mailbox_1": {
+                                            "runAfter": {
+                                              "Add_a_row_into_a_table_1-NOPO_NO_NOI_1": [
+                                                "Succeeded"
+                                              ]
+                                            },
+                                            "metadata": {
+                                              "operationMetadataId": "8ffdd920-7fe6-4223-9ef4-e43ac3fdb19a"
+                                            },
+                                            "type": "OpenApiConnection",
+                                            "inputs": {
+                                              "parameters": {
+                                                "emailMessage/To": "admin@contoso.com.au",
+                                                "emailMessage/Subject": "This invoice is not NOI or has PO @{variables('InvoiceNo')}",
+                                                "emailMessage/Body": "<p class=\"editor-paragraph\">Hello Team,</p><br><p class=\"editor-paragraph\">This invoice is not NOI or has PO. Please check with the vendor.</p><br><p class=\"editor-paragraph\">CHS_@{outputs('Compose_Az')}@{variables('InvoiceNo')}.PDF</p><br><p class=\"editor-paragraph\">Kind regards,</p><br><p class=\"editor-paragraph\">Invoice Automate</p><br><p class=\"editor-paragraph\">___________________________________________________________________________________</p><br><p class=\"editor-paragraph\">@{triggerOutputs()?['body/body']}</p>",
+                                                "emailMessage/Attachments": [
+                                                  {
+                                                    "Name": "@item()?['name']",
+                                                    "ContentBytes": "@item()?['contentBytes']"
+                                                  }
+                                                ],
+                                                "emailMessage/Importance": "Normal"
+                                              },
+                                              "host": {
+                                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+                                                "connectionName": "shared_office365",
+                                                "operationId": "SendEmailV2"
+                                              },
+                                              "authentication": "@parameters('$authentication')"
+                                            },
+                                            "description": "An email will be sent to NOPO mail for Procurement to review the document."
+                                          },
+                                          "Add_a_row_into_a_table_1-NOPO_NO_NOI": {
+                                            "runAfter": {
+                                              "Create_file_Az_3_2": [
+                                                "Succeeded"
+                                              ]
+                                            },
+                                            "metadata": {
+                                              "01TUYP2DU5FQRKATPSTFHL4YWXN4G2HVMS": "/OCRInvoices.xlsx",
+                                              "tableId": "{45C7B4B0-A2E9-4BFF-9DB0-54632DBE6FC7}",
+                                              "operationMetadataId": "834e7e5d-cf93-4760-8dec-1fc86e681b57",
+                                              "01TUYP2DQDTHLNNENHGRDJTQJ4WTDMIFNA": "/OCRInvoicesTest.xlsx",
+                                              "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ": "/OCRInvoices.xlsx",
+                                              "01TUYP2DTH7APREIUAYBAITCL6AVAK67KE": "/OCRInvoicesTest.xlsx"
+                                            },
+                                            "type": "OpenApiConnection",
+                                            "inputs": {
+                                              "parameters": {
+                                                "source": "sites/mcs38.sharepoint.com,50e6c0bf-a8e1-4a24-927b-a6b9cf95ed8c,088351ea-671b-454c-8a52-6f8d54ed9cce",
+                                                "drive": "b!v8DmUOGoJEqSe6a5z5XtjOpRgwgbZ0xFilJvjVTtnM75lfopPN7-R65CokIy3rsA",
+                                                "file": "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ",
+                                                "table": "{45C7B4B0-A2E9-4BFF-9DB0-54632DBE6FC7}",
+                                                "item/Processed": "N",
+                                                "item/Invoice": "@string(variables('InvoiceNo'))",
+                                                "item/PO": "@string(variables('PO'))",
+                                                "item/Invoice Date": "@if(\n      equals(variables('InvoiceDate'), 'NO_DATE'),\n      '',\n      formatDateTime(string(variables('InvoiceDate')), 'dd/MM/yy')\n)",
+                                                "item/CompanyCode": "@string(variables('CompanyCode'))",
+                                                "item/InvoiceType": "@string(variables('DocumentType'))",
+                                                "item/Vendor": "@variables('VendorId')",
+                                                "item/Amount": "@concat('$',formatNumber(float(variables('InvoiceTotal')),'0.00'))",
+                                                "item/Vendor Name": "@string(variables('VendorName'))",
+                                                "item/ABN Invoice": "@variables('ABN')",
+                                                "item/ABN Epicor": "@variables('ABN Output')",
+                                                "item/Email Date": "@variables('EmailDate')",
+                                                "item/TextInvoice": "@concat(string(variables('InvoiceNo')))"
+                                              },
+                                              "host": {
+                                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness",
+                                                "connectionName": "shared_excelonlinebusiness",
+                                                "operationId": "AddRowV2"
+                                              },
+                                              "authentication": "@parameters('$authentication')"
+                                            },
+                                            "description": ""
+                                          },
+                                          "Add_a_row_into_a_table_1-NOPO_NO_NOI_1": {
+                                            "runAfter": {
+                                              "Add_a_row_into_a_table_1-NOPO_NO_NOI": [
+                                                "Succeeded"
+                                              ]
+                                            },
+                                            "metadata": {
+                                              "01TUYP2DU5FQRKATPSTFHL4YWXN4G2HVMS": "/OCRInvoices.xlsx",
+                                              "tableId": "{5CCDC0C5-35C2-4FF1-BBB9-115968CA037A}",
+                                              "operationMetadataId": "834e7e5d-cf93-4760-8dec-1fc86e681b57",
+                                              "01TUYP2DQDTHLNNENHGRDJTQJ4WTDMIFNA": "/OCRInvoicesTest.xlsx",
+                                              "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ": "/OCRInvoices.xlsx",
+                                              "01TUYP2DTH7APREIUAYBAITCL6AVAK67KE": "/OCRInvoicesTest.xlsx",
+                                              "01TUYP2DSCLBTPXLG5T5HZRX5HZJCYVYEQ": "/AP Monthly Supplier Reconciliation.xlsx"
+                                            },
+                                            "type": "OpenApiConnection",
+                                            "inputs": {
+                                              "parameters": {
+                                                "source": "sites/mcs38.sharepoint.com,50e6c0bf-a8e1-4a24-927b-a6b9cf95ed8c,088351ea-671b-454c-8a52-6f8d54ed9cce",
+                                                "drive": "b!v8DmUOGoJEqSe6a5z5XtjOpRgwgbZ0xFilJvjVTtnM75lfopPN7-R65CokIy3rsA",
+                                                "file": "01TUYP2DSCLBTPXLG5T5HZRX5HZJCYVYEQ",
+                                                "table": "{5CCDC0C5-35C2-4FF1-BBB9-115968CA037A}",
+                                                "item/Processed": "N",
+                                                "item/Invoice": "@string(variables('InvoiceNo'))",
+                                                "item/Invoice Date": "@if(\n      equals(variables('InvoiceDate'), 'NO_DATE'),\n      '',\n      formatDateTime(string(variables('InvoiceDate')), 'dd/MM/yy')\n)",
+                                                "item/CompanyCode": "@string(variables('CompanyCode'))",
+                                                "item/InvoiceType": "@string(variables('DocumentType'))",
+                                                "item/Vendor": "@variables('VendorId')",
+                                                "item/Amount": "@concat('$',formatNumber(float(variables('InvoiceTotal')),'0.00'))",
+                                                "item/Vendor Name": "@string(variables('VendorName'))",
+                                                "item/ABN Invoice": "@variables('ABN')",
+                                                "item/ABN Epicor": "@variables('ABN Output')",
+                                                "item/Email Date": "@variables('EmailDate')",
+                                                "item/PO": "@string(variables('PO'))",
+                                                "item/TextInvoice": "@concat(string(variables('InvoiceNo')))"
+                                              },
+                                              "host": {
+                                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness",
+                                                "connectionName": "shared_excelonlinebusiness",
+                                                "operationId": "AddRowV2"
+                                              },
+                                              "authentication": "@parameters('$authentication')"
+                                            }
+                                          },
+                                          "Create_file_Az_3_2": {
+                                            "metadata": {
+                                              "operationMetadataId": "11a5e989-00cc-464d-9f8b-ffb54de03488"
+                                            },
+                                            "type": "OpenApiConnection",
+                                            "inputs": {
+                                              "parameters": {
+                                                "dataset": "https://mcs38.sharepoint.com/sites/Kinetic-ARMLive",
+                                                "folderPath": "/WorkList/ALL",
+                                                "name": "CHS_@{outputs('Compose_Az')}@{variables('InvoiceNo')}.PDF",
+                                                "body": "@item()?['contentBytes']"
+                                              },
+                                              "host": {
+                                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                                                "connectionName": "shared_sharepointonline",
+                                                "operationId": "CreateFile"
+                                              },
+                                              "authentication": "@parameters('$authentication')"
+                                            },
+                                            "description": "In case there is a Purchase order in the file, this step will create a file in the Worklist.",
+                                            "runtimeConfiguration": {
+                                              "contentTransfer": {
+                                                "transferMode": "Chunked"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "expression": {
+                                        "and": [
+                                          {
+                                            "equals": [
+                                              "@outputs('Winner')?['Vendor_Comment']",
+                                              "NOI"
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      "metadata": {
+                                        "operationMetadataId": "e7408d51-9ebe-4fc8-bda1-8affe9c0f5bf"
+                                      },
+                                      "type": "If"
+                                    }
+                                  },
+                                  "else": {
+                                    "actions": {
+                                      "Condition_ABN": {
+                                        "actions": {
+                                          "Create_file_Az": {
+                                            "metadata": {
+                                              "operationMetadataId": "11a5e989-00cc-464d-9f8b-ffb54de03488"
+                                            },
+                                            "type": "OpenApiConnection",
+                                            "inputs": {
+                                              "parameters": {
+                                                "dataset": "https://mcs38.sharepoint.com/sites/Kinetic-ARMLive",
+                                                "folderPath": "/WorkList/ALL",
+                                                "name": "@{outputs('Compose_Az')}@{variables('InvoiceNo')}.PDF",
+                                                "body": "@item()?['contentBytes']"
+                                              },
+                                              "host": {
+                                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                                                "connectionName": "shared_sharepointonline",
+                                                "operationId": "CreateFile"
+                                              },
+                                              "authentication": "@parameters('$authentication')"
+                                            },
+                                            "description": "In case there is a Purchase order in the file, this step will create a file in the Worklist.",
+                                            "runtimeConfiguration": {
+                                              "contentTransfer": {
+                                                "transferMode": "Chunked"
+                                              }
+                                            }
+                                          },
+                                          "Add_a_row_into_a_table_1": {
+                                            "runAfter": {
+                                              "Create_file_Az": ["Succeeded"]
+                                            },
+                                            "metadata": {
+                                              "01TUYP2DU5FQRKATPSTFHL4YWXN4G2HVMS": "/OCRInvoices.xlsx",
+                                              "tableId": "{9D4FED09-A825-489A-97EF-AF73445E67CC}",
+                                              "operationMetadataId": "834e7e5d-cf93-4760-8dec-1fc86e681b57",
+                                              "01TUYP2DQDTHLNNENHGRDJTQJ4WTDMIFNA": "/OCRInvoicesTest.xlsx",
+                                              "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ": "/OCRInvoices.xlsx",
+                                              "01TUYP2DTH7APREIUAYBAITCL6AVAK67KE": "/OCRInvoicesTest.xlsx"
+                                            },
+                                            "type": "OpenApiConnection",
+                                            "inputs": {
+                                              "parameters": {
+                                                "source": "sites/mcs38.sharepoint.com,50e6c0bf-a8e1-4a24-927b-a6b9cf95ed8c,088351ea-671b-454c-8a52-6f8d54ed9cce",
+                                                "drive": "b!v8DmUOGoJEqSe6a5z5XtjOpRgwgbZ0xFilJvjVTtnM75lfopPN7-R65CokIy3rsA",
+                                                "file": "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ",
+                                                "table": "{9D4FED09-A825-489A-97EF-AF73445E67CC}",
+                                                "item/Processed": "N",
+                                                "item/Invoice": "@string(variables('InvoiceNo'))",
+                                                "item/Invoice Date": "@if(\n      equals(variables('InvoiceDate'), 'NO_DATE'),\n      '',\n      formatDateTime(string(variables('InvoiceDate')), 'dd/MM/yy')\n)",
+                                                "item/CompanyCode": "@string(variables('CompanyCode'))",
+                                                "item/InvoiceType": "@string(variables('DocumentType'))",
+                                                "item/Vendor": "@variables('VendorId')",
+                                                "item/Amount": "@concat('$',formatNumber(float(variables('InvoiceTotal')),'0.00'))",
+                                                "item/Vendor Name": "@string(variables('VendorName'))",
+                                                "item/ABN Invoice": "@variables('ABN')",
+                                                "item/ABN Epicor": "@variables('ABN Output')",
+                                                "item/File Name": "@{outputs('Compose_Az')}@{variables('InvoiceNo')}.PDF",
+                                                "item/Email Date": "@variables('EmailDate')",
+                                                "item/PO": "@string(variables('PO'))",
+                                                "item/TextInvoice": "@concat(string(variables('InvoiceNo')))"
+                                              },
+                                              "host": {
+                                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness",
+                                                "connectionName": "shared_excelonlinebusiness",
+                                                "operationId": "AddRowV2"
+                                              },
+                                              "authentication": "@parameters('$authentication')"
+                                            },
+                                            "description": "This step will add a row with the respective details for the invoice in the OCRInvoices.xlsx in the OCR table."
+                                          },
+                                          "Add_a_row_into_a_table_1_AP_File": {
+                                            "runAfter": {
+                                              "Add_a_row_into_a_table_1": [
+                                                "Succeeded"
+                                              ]
+                                            },
+                                            "metadata": {
+                                              "01TUYP2DU5FQRKATPSTFHL4YWXN4G2HVMS": "/OCRInvoices.xlsx",
+                                              "tableId": "{4A20892C-24B8-4456-B1AF-7A4A439F8958}",
+                                              "operationMetadataId": "834e7e5d-cf93-4760-8dec-1fc86e681b57",
+                                              "01TUYP2DQDTHLNNENHGRDJTQJ4WTDMIFNA": "/OCRInvoicesTest.xlsx",
+                                              "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ": "/OCRInvoices.xlsx",
+                                              "01TUYP2DTH7APREIUAYBAITCL6AVAK67KE": "/OCRInvoicesTest.xlsx",
+                                              "01TUYP2DSCLBTPXLG5T5HZRX5HZJCYVYEQ": "/AP Monthly Supplier Reconciliation.xlsx"
+                                            },
+                                            "type": "OpenApiConnection",
+                                            "inputs": {
+                                              "parameters": {
+                                                "source": "sites/mcs38.sharepoint.com,50e6c0bf-a8e1-4a24-927b-a6b9cf95ed8c,088351ea-671b-454c-8a52-6f8d54ed9cce",
+                                                "drive": "b!v8DmUOGoJEqSe6a5z5XtjOpRgwgbZ0xFilJvjVTtnM75lfopPN7-R65CokIy3rsA",
+                                                "file": "01TUYP2DSCLBTPXLG5T5HZRX5HZJCYVYEQ",
+                                                "table": "{4A20892C-24B8-4456-B1AF-7A4A439F8958}",
+                                                "item/Processed": "N",
+                                                "item/Invoice": "@string(variables('InvoiceNo'))",
+                                                "item/Invoice Date": "@if(\n      equals(variables('InvoiceDate'), 'NO_DATE'),\n      '',\n      formatDateTime(string(variables('InvoiceDate')), 'dd/MM/yy')\n)",
+                                                "item/CompanyCode": "@string(variables('CompanyCode'))",
+                                                "item/InvoiceType": "@string(variables('DocumentType'))",
+                                                "item/Vendor": "@variables('VendorId')",
+                                                "item/Amount": "@concat('$',formatNumber(float(variables('InvoiceTotal')),'0.00'))",
+                                                "item/Vendor Name": "@string(variables('VendorName'))",
+                                                "item/ABN Invoice": "@variables('ABN')",
+                                                "item/ABN Epicor": "@variables('ABN Output')",
+                                                "item/File Name": "@{outputs('Compose_Az')}@{variables('InvoiceNo')}.PDF",
+                                                "item/Email Date": "@variables('EmailDate')",
+                                                "item/PO": "@string(variables('PO'))",
+                                                "item/TextInvoice": "@concat(string(variables('InvoiceNo')))"
+                                              },
+                                              "host": {
+                                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness",
+                                                "connectionName": "shared_excelonlinebusiness",
+                                                "operationId": "AddRowV2"
+                                              },
+                                              "authentication": "@parameters('$authentication')"
+                                            },
+                                            "description": "This step will add a row with the respective details for the invoice in the OCRInvoices.xlsx in the OCR table."
+                                          }
+                                        },
+                                        "else": {
+                                          "actions": {
+                                            "Add_a_row_into_a_table_1-NO_ABN_MATCHING_1": {
+                                              "runAfter": {
+                                                "Create_file_Az_3_1_1": [
+                                                  "Succeeded"
+                                                ]
+                                              },
+                                              "metadata": {
+                                                "01TUYP2DU5FQRKATPSTFHL4YWXN4G2HVMS": "/OCRInvoices.xlsx",
+                                                "tableId": "{9D4FED09-A825-489A-97EF-AF73445E67CC}",
+                                                "operationMetadataId": "834e7e5d-cf93-4760-8dec-1fc86e681b57",
+                                                "01TUYP2DQDTHLNNENHGRDJTQJ4WTDMIFNA": "/OCRInvoicesTest.xlsx",
+                                                "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ": "/OCRInvoices.xlsx",
+                                                "01TUYP2DTH7APREIUAYBAITCL6AVAK67KE": "/OCRInvoicesTest.xlsx"
+                                              },
+                                              "type": "OpenApiConnection",
+                                              "inputs": {
+                                                "parameters": {
+                                                  "source": "sites/mcs38.sharepoint.com,50e6c0bf-a8e1-4a24-927b-a6b9cf95ed8c,088351ea-671b-454c-8a52-6f8d54ed9cce",
+                                                  "drive": "b!v8DmUOGoJEqSe6a5z5XtjOpRgwgbZ0xFilJvjVTtnM75lfopPN7-R65CokIy3rsA",
+                                                  "file": "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ",
+                                                  "table": "{9D4FED09-A825-489A-97EF-AF73445E67CC}",
+                                                  "item/Processed": "N",
+                                                  "item/Invoice": "@string(variables('InvoiceNo'))",
+                                                  "item/Invoice Date": "@if(\n      equals(variables('InvoiceDate'), 'NO_DATE'),\n      '',\n      formatDateTime(string(variables('InvoiceDate')), 'dd/MM/yy')\n)",
+                                                  "item/CompanyCode": "@string(variables('CompanyCode'))",
+                                                  "item/InvoiceType": "@string(variables('DocumentType'))",
+                                                  "item/Vendor": "@variables('VendorId')",
+                                                  "item/Amount": "@concat('$',formatNumber(float(variables('InvoiceTotal')),'0.00'))",
+                                                  "item/Vendor Name": "@string(variables('VendorName'))",
+                                                  "item/ABN Invoice": "@variables('ABN')",
+                                                  "item/ABN Epicor": "@variables('ABN Output')",
+                                                  "item/Email Date": "@variables('EmailDate')",
+                                                  "item/PO": "@string(variables('PO'))",
+                                                  "item/TextInvoice": "@concat(string(variables('InvoiceNo')))"
+                                                },
+                                                "host": {
+                                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness",
+                                                  "connectionName": "shared_excelonlinebusiness",
+                                                  "operationId": "AddRowV2"
+                                                },
+                                                "authentication": "@parameters('$authentication')"
+                                              },
+                                              "description": "If the file is not and statement, it will generate a row with details where no purchase order has been found."
+                                            },
+                                            "Add_a_row_into_a_table_1-NO_ABN_MATCHING_AP_File_1": {
+                                              "runAfter": {
+                                                "Add_a_row_into_a_table_1-NO_ABN_MATCHING_1": [
+                                                  "Succeeded"
+                                                ]
+                                              },
+                                              "metadata": {
+                                                "01TUYP2DU5FQRKATPSTFHL4YWXN4G2HVMS": "/OCRInvoices.xlsx",
+                                                "tableId": "{4A20892C-24B8-4456-B1AF-7A4A439F8958}",
+                                                "operationMetadataId": "834e7e5d-cf93-4760-8dec-1fc86e681b57",
+                                                "01TUYP2DQDTHLNNENHGRDJTQJ4WTDMIFNA": "/OCRInvoicesTest.xlsx",
+                                                "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ": "/OCRInvoices.xlsx",
+                                                "01TUYP2DTH7APREIUAYBAITCL6AVAK67KE": "/OCRInvoicesTest.xlsx",
+                                                "01TUYP2DSCLBTPXLG5T5HZRX5HZJCYVYEQ": "/AP Monthly Supplier Reconciliation.xlsx"
+                                              },
+                                              "type": "OpenApiConnection",
+                                              "inputs": {
+                                                "parameters": {
+                                                  "source": "sites/mcs38.sharepoint.com,50e6c0bf-a8e1-4a24-927b-a6b9cf95ed8c,088351ea-671b-454c-8a52-6f8d54ed9cce",
+                                                  "drive": "b!v8DmUOGoJEqSe6a5z5XtjOpRgwgbZ0xFilJvjVTtnM75lfopPN7-R65CokIy3rsA",
+                                                  "file": "01TUYP2DSCLBTPXLG5T5HZRX5HZJCYVYEQ",
+                                                  "table": "{4A20892C-24B8-4456-B1AF-7A4A439F8958}",
+                                                  "item/Processed": "N",
+                                                  "item/Invoice": "@string(variables('InvoiceNo'))",
+                                                  "item/Invoice Date": "@if(\n      equals(variables('InvoiceDate'), 'NO_DATE'),\n      '',\n      formatDateTime(string(variables('InvoiceDate')), 'dd/MM/yy')\n)",
+                                                  "item/CompanyCode": "@string(variables('CompanyCode'))",
+                                                  "item/InvoiceType": "@string(variables('DocumentType'))",
+                                                  "item/Vendor": "@variables('VendorId')",
+                                                  "item/Amount": "@concat('$',formatNumber(float(variables('InvoiceTotal')),'0.00'))",
+                                                  "item/Vendor Name": "@string(variables('VendorName'))",
+                                                  "item/ABN Invoice": "@variables('ABN')",
+                                                  "item/ABN Epicor": "@variables('ABN Output')",
+                                                  "item/Email Date": "@variables('EmailDate')",
+                                                  "item/PO": "@string(variables('PO'))",
+                                                  "item/TextInvoice": "@concat(string(variables('InvoiceNo')))"
+                                                },
+                                                "host": {
+                                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness",
+                                                  "connectionName": "shared_excelonlinebusiness",
+                                                  "operationId": "AddRowV2"
+                                                },
+                                                "authentication": "@parameters('$authentication')"
+                                              },
+                                              "description": "If the file is not and statement, it will generate a row with details where no purchase order has been found."
+                                            },
+                                            "Send_an_email_(V2)": {
+                                              "runAfter": {
+                                                "Add_a_row_into_a_table_1-NO_ABN_MATCHING_AP_File_1": [
+                                                  "Succeeded"
+                                                ]
+                                              },
+                                              "metadata": {
+                                                "operationMetadataId": "2f833c4d-3580-4f71-975b-917a13918b4c"
+                                              },
+                                              "type": "OpenApiConnection",
+                                              "inputs": {
+                                                "parameters": {
+                                                  "emailMessage/To": "admin@contoso.com.au",
+                                                  "emailMessage/Subject": "ABN not matching from @{outputs('Add_a_row_into_a_table_1-NO_ABN_MATCHING_AP_File_1')?['body/Vendor Name']} with Invoice ID @{outputs('Add_a_row_into_a_table_1-NO_ABN_MATCHING_AP_File_1')?['body/Invoice']}",
+                                                  "emailMessage/Body": "<p class=\"editor-paragraph\">The ABN value does not match for Invoice ID @{outputs('Add_a_row_into_a_table_1-NO_ABN_MATCHING_AP_File_1')?['body/Invoice']}. Please verify the invoice file, process it manually, and advise Procurement Team.</p><p class=\"editor-paragraph\">Kind regards,</p><br><p class=\"editor-paragraph\">CHS_@{outputs('Compose_Az')}@{variables('InvoiceNo')}.PDF</p><br><p class=\"editor-paragraph\">Invoice Automate</p><br><p class=\"editor-paragraph\">______________________________________________________________________________<br><br>@{triggerOutputs()?['body/body']}</p>",
+                                                  "emailMessage/Attachments": [
+                                                    {
+                                                      "Name": "@items('Process_Each_Attachment')?['name']",
+                                                      "ContentBytes": "[\n  {\n    \"Name\": @{item()?['name']},\n    \"ContentBytes\": @{item()?['contentBytes']}\n  }\n]"
+                                                    }
+                                                  ],
+                                                  "emailMessage/Importance": "High"
+                                                },
+                                                "host": {
+                                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+                                                  "connectionName": "shared_office365",
+                                                  "operationId": "SendEmailV2"
+                                                },
+                                                "authentication": "@parameters('$authentication')"
+                                              }
+                                            },
+                                            "Create_file_Az_3_1_1": {
+                                              "metadata": {
+                                                "operationMetadataId": "11a5e989-00cc-464d-9f8b-ffb54de03488"
+                                              },
+                                              "type": "OpenApiConnection",
+                                              "inputs": {
+                                                "parameters": {
+                                                  "dataset": "https://mcs38.sharepoint.com/sites/Kinetic-ARMLive",
+                                                  "folderPath": "/WorkList/ALL",
+                                                  "name": "CHS_@{outputs('Compose_Az')}@{variables('InvoiceNo')}.PDF",
+                                                  "body": "@item()?['contentBytes']"
+                                                },
+                                                "host": {
+                                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                                                  "connectionName": "shared_sharepointonline",
+                                                  "operationId": "CreateFile"
+                                                },
+                                                "authentication": "@parameters('$authentication')"
+                                              },
+                                              "description": "In case there is a Purchase order in the file, this step will create a file in the Worklist.",
+                                              "runtimeConfiguration": {
+                                                "contentTransfer": {
+                                                  "transferMode": "Chunked"
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "expression": {
+                                          "and": [
+                                            {
+                                              "equals": [
+                                                "@empty(outputs('Winner')?['body/Vendor_TaxPayerID'])",
+                                                true
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        "metadata": {
+                                          "operationMetadataId": "19c250df-d186-4296-a1c7-ec9453cf9cee"
+                                        },
+                                        "type": "If"
+                                      }
+                                    }
+                                  },
+                                  "expression": {
+                                    "and": [
+                                      {
+                                        "equals": [
+                                          "@variables('PO')",
+                                          "NO_PO_FOUND"
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  "metadata": {
+                                    "operationMetadataId": "88980d1d-eec6-4f76-a439-bae13476f848"
+                                  },
+                                  "type": "If",
+                                  "description": "If the Entity is correct in the document, then this step will check the PO number in the file."
+                                }
+                              },
+                              "else": {
+                                "actions": {
+                                  "Create_file_Az_1": {
+                                    "metadata": {
+                                      "operationMetadataId": "11a5e989-00cc-464d-9f8b-ffb54de03488"
+                                    },
+                                    "type": "OpenApiConnection",
+                                    "inputs": {
+                                      "parameters": {
+                                        "dataset": "https://mcs38.sharepoint.com/sites/Kinetic-ARMLive",
+                                        "folderPath": "/WorkList/ALL",
+                                        "name": "CHS_@{outputs('Compose_Az')}@{variables('InvoiceNo')}.PDF",
+                                        "body": "@item()?['contentBytes']"
+                                      },
+                                      "host": {
+                                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                                        "connectionName": "shared_sharepointonline",
+                                        "operationId": "CreateFile"
+                                      },
+                                      "authentication": "@parameters('$authentication')"
+                                    },
+                                    "description": "In case there is a Purchase order in the file, this step will create a file in the Worklist.",
+                                    "runtimeConfiguration": {
+                                      "contentTransfer": {
+                                        "transferMode": "Chunked"
+                                      }
+                                    }
+                                  },
+                                  "Send_an_email_(V2)_Entities_Check": {
+                                    "runAfter": {
+                                      "Create_file_Az_1": ["Succeeded"]
+                                    },
+                                    "metadata": {
+                                      "operationMetadataId": "196cc56a-9ac8-4343-bc83-72d16be7ac15"
+                                    },
+                                    "type": "OpenApiConnection",
+                                    "inputs": {
+                                      "parameters": {
+                                        "emailMessage/To": "AccountsPayable@contoso.com.au",
+                                        "emailMessage/Subject": "Contoso, Action Required: Incorrect Legal Entity on Invoice @{variables('InvoiceNo')}",
+                                        "emailMessage/Body": "<p class=\"editor-paragraph\">Hello AP Team,<br><br>Our system has identified that invoice @{variables('InvoiceNo')} is using references for incorrect legal entity. Please review the intended recipient of the invoice action manually in the invoice capture system.<br><br>If you're unsure which entity is correct, please contact Procurement Team procurement@contoso.com.au for clarification.</p><br><p class=\"editor-paragraph\">CHS_@{outputs('Compose_Az')}@{variables('InvoiceNo')}.PDF<br><br>Kind regards,<br><br>Invoice Automate</p>",
+                                        "emailMessage/Bcc": "admin@contoso.com.au",
+                                        "emailMessage/Attachments": [
+                                          {
+                                            "Name": "@item()?['name']",
+                                            "ContentBytes": "@item()?['contentBytes']"
+                                          }
+                                        ],
+                                        "emailMessage/Importance": "High"
+                                      },
+                                      "host": {
+                                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+                                        "connectionName": "shared_office365",
+                                        "operationId": "SendEmailV2"
+                                      },
+                                      "authentication": "@parameters('$authentication')"
+                                    },
+                                    "description": "This step will send an email to the AP Team with the invoice, requesting them to check and action the invoice. NOPO email is include as BCC for Procurement team to follow in case they need."
+                                  }
+                                }
+                              },
+                              "expression": {
+                                "or": [
+                                  {
+                                    "contains": [
+                                      "@variables('Customer')",
+                                      "CONTOSO COMMUNITY SERVICES"
+                                    ]
+                                  },
+                                  {
+                                    "contains": [
+                                      "@variables('Customer')",
+                                      "CONTOSO HUMAN SERVICES"
+                                    ]
+                                  },
+                                  {
+                                    "contains": [
+                                      "@variables('Customer')",
+                                      "CONTOSO LTD"
+                                    ]
+                                  },
+                                  {
+                                    "contains": [
+                                      "@variables('Customer')",
+                                      "CONTOSO COMMUNITY SERVICES LIMITED"
+                                    ]
+                                  },
+                                  {
+                                    "contains": [
+                                      "@variables('Customer')",
+                                      "CONTOSO HUMAN SERVICES LIMITED"
+                                    ]
+                                  },
+                                  {
+                                    "contains": [
+                                      "@variables('Customer')",
+                                      "CONTOSO LIMITED"
+                                    ]
+                                  },
+                                  {
+                                    "equals": [
+                                      "@variables('Customer')",
+                                      "Contoso Community Services"
+                                    ]
+                                  },
+                                  {
+                                    "equals": [
+                                      "@variables('Customer')",
+                                      "Contoso Human Services"
+                                    ]
+                                  },
+                                  {
+                                    "equals": [
+                                      "@variables('Customer')",
+                                      "Contoso LTD"
+                                    ]
+                                  },
+                                  {
+                                    "equals": [
+                                      "@variables('Customer')",
+                                      "Contoso Community Services Limited"
+                                    ]
+                                  },
+                                  {
+                                    "equals": [
+                                      "@variables('Customer')",
+                                      "Contoso Human Services Limited"
+                                    ]
+                                  },
+                                  {
+                                    "equals": [
+                                      "@variables('Customer')",
+                                      "Contoso Limited"
+                                    ]
+                                  },
+                                  {
+                                    "equals": [
+                                      "@variables('Customer')",
+                                      "Contoso Human Services Ltd"
+                                    ]
+                                  },
+                                  {
+                                    "equals": [
+                                      "@variables('Customer')",
+                                      "Contoso Community Services Ltd"
+                                    ]
+                                  },
+                                  {
+                                    "equals": [
+                                      "@variables('Customer')",
+                                      "Contoso Ltd"
+                                    ]
+                                  },
+                                  {
+                                    "equals": [
+                                      "@outputs('Winner')?['Vendor_Company']",
+                                      "CCS"
+                                    ]
+                                  },
+                                  {
+                                    "equals": [
+                                      "@outputs('Winner')?['Vendor_Company']",
+                                      "CHS"
+                                    ]
+                                  },
+                                  {
+                                    "equals": [
+                                      "@outputs('Winner')?['Vendor_Company']",
+                                      "CCL"
+                                    ]
+                                  },
+                                  {
+                                    "equals": [
+                                      "@variables('Customer')",
+                                      "Contoso Ltd"
+                                    ]
+                                  },
+                                  {
+                                    "equals": [
+                                      "@variables('Customer')",
+                                      "Contoso Ltd"
+                                    ]
+                                  },
+                                  {
+                                    "equals": [
+                                      "@variables('Customer')",
+                                      "CONTOSO COMMUNITY SERVICE LTD"
+                                    ]
+                                  },
+                                  {
+                                    "equals": [
+                                      "@variables('Customer')",
+                                      "Contoso Community Services Ltd"
+                                    ]
+                                  },
+                                  {
+                                    "equals": [
+                                      "@variables('Customer')",
+                                      "Contoso Human Service Limited"
+                                    ]
+                                  },
+                                  {
+                                    "equals": [
+                                      "@variables('Customer')",
+                                      "CONTOSO COMMUNITY SERVICE LIMITED"
+                                    ]
+                                  }
+                                ]
+                              },
+                              "metadata": {
+                                "operationMetadataId": "5373b246-c115-4494-8fed-47edc1b46adc"
+                              },
+                              "type": "If",
+                              "description": "If the file is not a credit note, Customer Name is compared with the different variations for the company entities from Contoso, this needs to match or contain CONTOSO COMMUNITY SERVICES or CONTOSO HUMAN SERVICES or CONTOSO LIMITED."
+                            }
+                          }
+                        },
+                        "Other": {
+                          "case": "Other",
+                          "actions": {
+                            "Add_a_row_into_a_table_1_1": {
+                              "runAfter": { "Create_file_Az_2": ["Succeeded"] },
+                              "metadata": {
+                                "01TUYP2DU5FQRKATPSTFHL4YWXN4G2HVMS": "/OCRInvoices.xlsx",
+                                "tableId": "{9D4FED09-A825-489A-97EF-AF73445E67CC}",
+                                "operationMetadataId": "834e7e5d-cf93-4760-8dec-1fc86e681b57",
+                                "01TUYP2DQDTHLNNENHGRDJTQJ4WTDMIFNA": "/OCRInvoicesTest.xlsx",
+                                "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ": "/OCRInvoices.xlsx",
+                                "01TUYP2DTH7APREIUAYBAITCL6AVAK67KE": "/OCRInvoicesTest.xlsx"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "parameters": {
+                                  "source": "sites/mcs38.sharepoint.com,50e6c0bf-a8e1-4a24-927b-a6b9cf95ed8c,088351ea-671b-454c-8a52-6f8d54ed9cce",
+                                  "drive": "b!v8DmUOGoJEqSe6a5z5XtjOpRgwgbZ0xFilJvjVTtnM75lfopPN7-R65CokIy3rsA",
+                                  "file": "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ",
+                                  "table": "{9D4FED09-A825-489A-97EF-AF73445E67CC}",
+                                  "item/Processed": "N",
+                                  "item/Invoice": "@concat(string(variables('InvoiceNo')),'.PDF')",
+                                  "item/Invoice Date": "@if(\n      equals(variables('InvoiceDate'), 'NO_DATE'),\n      '',\n      formatDateTime(string(variables('InvoiceDate')), 'dd/MM/yy')\n)",
+                                  "item/CompanyCode": "@string(variables('CompanyCode'))",
+                                  "item/InvoiceType": "@string(variables('DocumentType'))",
+                                  "item/Vendor": "@variables('VendorId')",
+                                  "item/Amount": "@concat('$',formatNumber(float(variables('InvoiceTotal')),'0.00'))",
+                                  "item/Vendor Name": "@string(variables('VendorName'))",
+                                  "item/File Name": "@{outputs('Compose_Az')}@{variables('InvoiceNo')}.PDF",
+                                  "item/Email Date": "@variables('EmailDate')",
+                                  "item/PO": "@string(variables('PO'))",
+                                  "item/TextInvoice": "@concat(string(variables('InvoiceNo')))"
+                                },
+                                "host": {
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness",
+                                  "connectionName": "shared_excelonlinebusiness",
+                                  "operationId": "AddRowV2"
+                                },
+                                "authentication": "@parameters('$authentication')"
+                              },
+                              "description": "This step will add a row with the respective details for the invoice in the OCRInvoices.xlsx in the OCR table."
+                            },
+                            "Add_a_row_into_a_table_1_AP_File_1": {
+                              "runAfter": {
+                                "Add_a_row_into_a_table_1_1": ["Succeeded"]
+                              },
+                              "metadata": {
+                                "01TUYP2DU5FQRKATPSTFHL4YWXN4G2HVMS": "/OCRInvoices.xlsx",
+                                "tableId": "{4A20892C-24B8-4456-B1AF-7A4A439F8958}",
+                                "operationMetadataId": "834e7e5d-cf93-4760-8dec-1fc86e681b57",
+                                "01TUYP2DQDTHLNNENHGRDJTQJ4WTDMIFNA": "/OCRInvoicesTest.xlsx",
+                                "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ": "/OCRInvoices.xlsx",
+                                "01TUYP2DTH7APREIUAYBAITCL6AVAK67KE": "/OCRInvoicesTest.xlsx",
+                                "01TUYP2DSCLBTPXLG5T5HZRX5HZJCYVYEQ": "/AP Monthly Supplier Reconciliation.xlsx"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "parameters": {
+                                  "source": "sites/mcs38.sharepoint.com,50e6c0bf-a8e1-4a24-927b-a6b9cf95ed8c,088351ea-671b-454c-8a52-6f8d54ed9cce",
+                                  "drive": "b!v8DmUOGoJEqSe6a5z5XtjOpRgwgbZ0xFilJvjVTtnM75lfopPN7-R65CokIy3rsA",
+                                  "file": "01TUYP2DSCLBTPXLG5T5HZRX5HZJCYVYEQ",
+                                  "table": "{4A20892C-24B8-4456-B1AF-7A4A439F8958}",
+                                  "item/Processed": "N",
+                                  "item/Invoice": "@concat(string(variables('InvoiceNo')),'.PDF')",
+                                  "item/Invoice Date": "@if(\n      equals(variables('InvoiceDate'), 'NO_DATE'),\n      '',\n      formatDateTime(string(variables('InvoiceDate')), 'dd/MM/yy')\n)",
+                                  "item/CompanyCode": "@string(variables('CompanyCode'))",
+                                  "item/InvoiceType": "@string(variables('DocumentType'))",
+                                  "item/Vendor": "@variables('VendorId')",
+                                  "item/Amount": "@concat('$',formatNumber(float(variables('InvoiceTotal')),'0.00'))",
+                                  "item/Vendor Name": "@string(variables('VendorName'))",
+                                  "item/File Name": "@{outputs('Compose_Az')}@{variables('InvoiceNo')}.PDF",
+                                  "item/Email Date": "@variables('EmailDate')",
+                                  "item/PO": "@string(variables('PO'))",
+                                  "item/TextInvoice": "@concat(string(variables('InvoiceNo')))"
+                                },
+                                "host": {
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness",
+                                  "connectionName": "shared_excelonlinebusiness",
+                                  "operationId": "AddRowV2"
+                                },
+                                "authentication": "@parameters('$authentication')"
+                              },
+                              "description": "This step will add a row with the respective details for the invoice in the OCRInvoices.xlsx in the OCR table."
+                            },
+                            "Create_file_Az_2": {
+                              "metadata": {
+                                "operationMetadataId": "11a5e989-00cc-464d-9f8b-ffb54de03488"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "parameters": {
+                                  "dataset": "https://mcs38.sharepoint.com/sites/Kinetic-ARMLive",
+                                  "folderPath": "/WorkList/ALL",
+                                  "name": "CHS_@{outputs('Compose_Az')}@{variables('InvoiceNo')}.PDF",
+                                  "body": "@item()?['contentBytes']"
+                                },
+                                "host": {
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                                  "connectionName": "shared_sharepointonline",
+                                  "operationId": "CreateFile"
+                                },
+                                "authentication": "@parameters('$authentication')"
+                              },
+                              "description": "In case there is a Purchase order in the file, this step will create a file in the Worklist.",
+                              "runtimeConfiguration": {
+                                "contentTransfer": { "transferMode": "Chunked" }
+                              }
+                            },
+                            "Send_an_email_(V2)_1": {
+                              "runAfter": {
+                                "Add_a_row_into_a_table_1_AP_File_1": [
+                                  "Succeeded"
+                                ]
+                              },
+                              "metadata": {
+                                "operationMetadataId": "eaf19023-6d63-4612-bf0a-20dfa68e7c4c"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "parameters": {
+                                  "emailMessage/To": "admin@contoso.com.au",
+                                  "emailMessage/Subject": "Manual Processing Required – OCR Could Not Complete",
+                                  "emailMessage/Body": "<p class=\"editor-paragraph\">Hello Team,</p><br><p class=\"editor-paragraph\">Please review this document attached and process it manually, as the OCR automation was unable to handle it.</p><br><p class=\"editor-paragraph\">CHS_@{outputs('Compose_Az')}@{variables('InvoiceNo')}.PDF</p><br><p class=\"editor-paragraph\">Kind regards,</p><br><p class=\"editor-paragraph\">Invoice Automate</p>",
+                                  "emailMessage/Attachments": [
+                                    {
+                                      "Name": "@item()?['name']",
+                                      "ContentBytes": "@item()?['contentBytes']"
+                                    }
+                                  ],
+                                  "emailMessage/Importance": "Normal"
+                                },
+                                "host": {
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+                                  "connectionName": "shared_office365",
+                                  "operationId": "SendEmailV2"
+                                },
+                                "authentication": "@parameters('$authentication')"
+                              }
+                            }
+                          }
+                        },
+                        "Tax_Adjustment_Note": {
+                          "case": "TaxAdjustmentNote",
+                          "actions": {
+                            "Add_a_row_into_a_table_Credit_Note_1": {
+                              "metadata": {
+                                "01TUYP2DU5FQRKATPSTFHL4YWXN4G2HVMS": "/OCRInvoices.xlsx",
+                                "tableId": "{CB46EFA3-4C17-42CE-B3D3-DDD5BC686218}",
+                                "operationMetadataId": "834e7e5d-cf93-4760-8dec-1fc86e681b57",
+                                "01TUYP2DQDTHLNNENHGRDJTQJ4WTDMIFNA": "/OCRInvoicesTest.xlsx",
+                                "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ": "/OCRInvoices.xlsx",
+                                "01TUYP2DTH7APREIUAYBAITCL6AVAK67KE": "/OCRInvoicesTest.xlsx"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "parameters": {
+                                  "source": "sites/mcs38.sharepoint.com,50e6c0bf-a8e1-4a24-927b-a6b9cf95ed8c,088351ea-671b-454c-8a52-6f8d54ed9cce",
+                                  "drive": "b!v8DmUOGoJEqSe6a5z5XtjOpRgwgbZ0xFilJvjVTtnM75lfopPN7-R65CokIy3rsA",
+                                  "file": "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ",
+                                  "table": "{CB46EFA3-4C17-42CE-B3D3-DDD5BC686218}",
+                                  "item/Processed": "N",
+                                  "item/Invoice": "@concat(string(variables('InvoiceNo')),'.PDF')",
+                                  "item/PO": "@string(variables('PO'))",
+                                  "item/Invoice Date": "@if(\n      equals(variables('InvoiceDate'), 'NO_DATE'),\n      '',\n      formatDateTime(string(variables('InvoiceDate')), 'dd/MM/yy')\n)",
+                                  "item/CompanyCode": "@string(variables('CompanyCode'))",
+                                  "item/InvoiceType": "@string(variables('DocumentType'))",
+                                  "item/Vendor": "@variables('VendorId')",
+                                  "item/Amount": "@concat('$',formatNumber(float(variables('InvoiceTotal')),'0.00'))",
+                                  "item/Vendor Name": "@string(variables('VendorName'))",
+                                  "item/Email Date": "@variables('EmailDate')",
+                                  "item/File Name": "@{outputs('Compose_Az')}@{variables('InvoiceNo')}.PDF",
+                                  "item/TextInvoice": "@concat(string(variables('InvoiceNo')))"
+                                },
+                                "host": {
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness",
+                                  "connectionName": "shared_excelonlinebusiness",
+                                  "operationId": "AddRowV2"
+                                },
+                                "authentication": "@parameters('$authentication')"
+                              },
+                              "description": "If document is a Credit Note, it will add a row in OCRInvoices.xlsx in COR CN table."
+                            },
+                            "Create_file_Az_Credit_Note_1": {
+                              "runAfter": {
+                                "Add_a_row_into_a_table_Credit_Note_1": [
+                                  "Succeeded"
+                                ]
+                              },
+                              "metadata": {
+                                "operationMetadataId": "11a5e989-00cc-464d-9f8b-ffb54de03488"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "parameters": {
+                                  "dataset": "https://mcs38.sharepoint.com/sites/Kinetic-ARMLive",
+                                  "folderPath": "/WorkList/ALL",
+                                  "name": "CreditNote__@{concat(variables('VendorName'),'___',variables('InvoiceNo'),'___',variables('PO'))}.PDF",
+                                  "body": "@item()?['contentBytes']"
+                                },
+                                "host": {
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                                  "connectionName": "shared_sharepointonline",
+                                  "operationId": "CreateFile"
+                                },
+                                "authentication": "@parameters('$authentication')"
+                              },
+                              "description": "Creating a file in the Worklist as Credit Note.",
+                              "runtimeConfiguration": {
+                                "contentTransfer": { "transferMode": "Chunked" }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "default": { "actions": {} },
+                      "expression": "@variables('DocumentType')",
+                      "metadata": {
+                        "operationMetadataId": "3c0c4f6f-dfee-4d3a-88ea-96945a47f979"
+                      },
+                      "type": "Switch"
+                    }
+                  },
+                  "runAfter": { "Compose_Az": ["Succeeded"] },
+                  "metadata": {
+                    "operationMetadataId": "7c667aa4-4593-4b84-b2e8-1e8223109fe0"
+                  },
+                  "type": "Scope",
+                  "description": "This step covers the majority of the automation process and includes error handling to manage any potential failures."
+                },
+                "Notification_Failing": {
+                  "actions": {
+                    "Condition_Failing": {
+                      "actions": {
+                        "Create_file_Az_in_the_Worklist_for_AP_Team": {
+                          "metadata": {
+                            "operationMetadataId": "11a5e989-00cc-464d-9f8b-ffb54de03488"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "parameters": {
+                              "dataset": "https://mcs38.sharepoint.com/sites/Kinetic-ARMLive",
+                              "folderPath": "/WorkList/ALL",
+                              "name": "CHS_@{outputs('Compose_Az')}@{variables('InvoiceNo')}.PDF",
+                              "body": "@item()?['contentBytes']"
+                            },
+                            "host": {
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                              "connectionName": "shared_sharepointonline",
+                              "operationId": "CreateFile"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          },
+                          "description": "In case the AI or Automation fails, a file will be created in the Worklist for the AP team to process manually.",
+                          "runtimeConfiguration": {
+                            "contentTransfer": { "transferMode": "Chunked" }
+                          }
+                        },
+                        "Send_an_email_(V2)_Failing_Notification": {
+                          "runAfter": {
+                            "Add_a_row_into_a_table_-Manual_Handling": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "883a1396-263a-4fcb-9f5c-b03da551df59"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "parameters": {
+                              "emailMessage/To": "accountspayable@contoso.com.au",
+                              "emailMessage/Subject": "Invoice/CN Issue for @{string(variables('VendorName'))} – Invoice No. @{string(variables('InvoiceNo'))} PO: @{string(variables('InvoiceNo'))}",
+                              "emailMessage/Body": "<p class=\"editor-paragraph\">Hello AP Team,</p><br><p class=\"editor-paragraph\">Please review the status of this invoice or credit note for @{string(variables('VendorName'))}. The invoice number @{string(variables('InvoiceNo'))} with name @{outputs('Add_a_row_into_a_table_Credit_Note')?['body/FileName']}has failed due to the AI Model could not handle the invoice in the OCR Automation.</p><br><p class=\"editor-paragraph\">File name in Worklist: CHS_@{outputs('Compose_Az')}@{variables('InvoiceNo')}.PDF<br><br>Kindly process and take appropriate action.</p><br><p class=\"editor-paragraph\">Invoice Automate</p>",
+                              "emailMessage/Importance": "High"
+                            },
+                            "host": {
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+                              "connectionName": "shared_office365",
+                              "operationId": "SendEmailV2"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          },
+                          "description": "If the file is a tax invoice, credit note, and a pdf file. An email will be sent to IT Help Desk to check on this issue."
+                        },
+                        "Add_a_row_into_a_table_-Manual_Handling": {
+                          "runAfter": {
+                            "Create_file_Az_in_the_Worklist_for_AP_Team": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "01TUYP2DU5FQRKATPSTFHL4YWXN4G2HVMS": "/OCRInvoices.xlsx",
+                            "tableId": "{9BFE33AC-0016-4800-A46B-3BECE7200E9C}",
+                            "operationMetadataId": "834e7e5d-cf93-4760-8dec-1fc86e681b57",
+                            "01TUYP2DQDTHLNNENHGRDJTQJ4WTDMIFNA": "/OCRInvoicesTest.xlsx",
+                            "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ": "/OCRInvoices.xlsx",
+                            "01TUYP2DTH7APREIUAYBAITCL6AVAK67KE": "/OCRInvoicesTest.xlsx"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "parameters": {
+                              "source": "sites/mcs38.sharepoint.com,50e6c0bf-a8e1-4a24-927b-a6b9cf95ed8c,088351ea-671b-454c-8a52-6f8d54ed9cce",
+                              "drive": "b!v8DmUOGoJEqSe6a5z5XtjOpRgwgbZ0xFilJvjVTtnM75lfopPN7-R65CokIy3rsA",
+                              "file": "01TUYP2DVWQ5HGCWHXSFFYZQTYP3KMJIOZ",
+                              "table": "{9BFE33AC-0016-4800-A46B-3BECE7200E9C}",
+                              "item/Processed": "N",
+                              "item/Invoice": "@string(variables('InvoiceNo'))",
+                              "item/Invoice Date": "@if(\n      equals(variables('InvoiceDate'), 'NO_DATE'),\n      '',\n      formatDateTime(string(variables('InvoiceDate')), 'dd/MM/yy')\n)",
+                              "item/CompanyCode": "@string(variables('CompanyCode'))",
+                              "item/InvoiceType": "@string(variables('DocumentType'))",
+                              "item/Vendor": "@variables('VendorId')",
+                              "item/Amount": "@concat('$',formatNumber(float(variables('InvoiceTotal')),'0.00'))",
+                              "item/Vendor Name": "@string(variables('VendorName'))",
+                              "item/ABN Invoice": "@variables('ABN')",
+                              "item/ABN Epicor": "@variables('ABN Output')",
+                              "item/Email Date": "@variables('EmailDate')",
+                              "item/PO": "@string(variables('PO'))",
+                              "item/TextInvoice": "@concat(string(variables('InvoiceNo')))"
+                            },
+                            "host": {
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness",
+                              "connectionName": "shared_excelonlinebusiness",
+                              "operationId": "AddRowV2"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        }
+                      },
+                      "else": { "actions": {} },
+                      "expression": {
+                        "or": [
+                          {
+                            "equals": [
+                              "@string(variables('DocumentType'))",
+                              "TaxInvoice"
+                            ]
+                          },
+                          {
+                            "equals": [
+                              "@string(variables('DocumentType'))",
+                              "CreditNote"
+                            ]
+                          },
+                          {
+                            "and": [
+                              {
+                                "equals": [
+                                  "@item()?['contentType']",
+                                  "application/pdf"
+                                ]
+                              },
+                              {
+                                "equals": [
+                                  "@item()?['contentType']",
+                                  "application/octet-stream"
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "fd88fee3-ebbb-457a-9d53-bbfead041328"
+                      },
+                      "type": "If",
+                      "description": "If the Notification step is triggered, a condition will check that the document type is Tax Invoice, Credit Note, and PDF File."
+                    }
+                  },
+                  "runAfter": { "Scope_to_handle_errors": ["Failed"] },
+                  "metadata": {
+                    "operationMetadataId": "54078360-9457-49e1-9b8b-aa079fb4246f"
+                  },
+                  "type": "Scope",
+                  "description": "This step will trigger when the \"Scope to handle errors\" step has failed."
+                },
+                "Set_ABN": {
+                  "runAfter": {
+                    "Parse_OCR_Success_JSON_Response": ["Succeeded"]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "cc2734cc-d273-4dc2-b95f-832e048bc801"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "ABN",
+                    "value": "@trim(\r\n    replace(\r\n        replace(\r\n            coalesce(body('Parse_OCR_Success_JSON_Response')?['VendorTaxId'], ''),\r\n            'ABN:',\r\n            ''\r\n        ),\r\n        ')',\r\n        ''\r\n    )\r\n)"
+                  },
+                  "description": "Set ABN from Vendor Tax ID"
+                },
+                "Set_Company_Code": {
+                  "runAfter": { "If_ABN_has_11_digits": ["Succeeded"] },
+                  "metadata": {
+                    "operationMetadataId": "0b326bbd-472b-40a0-a5b5-7bedac9485db"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "CompanyCode",
+                    "value": "@trim(coalesce(body('Parse_OCR_Success_JSON_Response')?['CustomerNameClassify'], ''))"
+                  },
+                  "description": "Set Company Code or Customer Classification for Contoso (MCS, MHS, MCL) from the JSON"
+                },
+                "If_CompanyCode_is_not_empty": {
+                  "actions": {
+                    "If_ABN_is_not_empty": {
+                      "actions": {
+                        "Filter_by_ABN": {
+                          "runAfter": { "Init_FilterParts": ["Succeeded"] },
+                          "metadata": {
+                            "operationMetadataId": "0efdd2b0-74c1-4de7-b9bb-0ad2cf4dc39d"
+                          },
+                          "type": "AppendToArrayVariable",
+                          "inputs": {
+                            "name": "FilterParts",
+                            "value": "@concat('Vendor_TaxPayerID eq ''', variables('ABN'), '''')"
+                          }
+                        },
+                        "FilterByCompanyCode": {
+                          "runAfter": { "Filter_by_ABN": ["Succeeded"] },
+                          "metadata": {
+                            "operationMetadataId": "5c26c19f-8081-4224-a912-64da5d4696c4"
+                          },
+                          "type": "AppendToArrayVariable",
+                          "inputs": {
+                            "name": "FilterParts",
+                            "value": "@concat('Vendor_Company eq ''', variables('CompanyCode'), '''')"
+                          }
+                        },
+                        "Filter_by_Vendor_Inactive": {
+                          "runAfter": { "FilterByCompanyCode": ["Succeeded"] },
+                          "metadata": {
+                            "operationMetadataId": "62488774-e507-4bd4-9fb0-744eb231c704"
+                          },
+                          "type": "AppendToArrayVariable",
+                          "inputs": {
+                            "name": "FilterParts",
+                            "value": "Vendor_Inactive eq false"
+                          }
+                        },
+                        "Filter_by_Vendor_Approved": {
+                          "runAfter": {
+                            "Filter_by_Vendor_Inactive": ["Succeeded"]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "ab888a05-799a-41df-8da4-247580d5a18a"
+                          },
+                          "type": "AppendToArrayVariable",
+                          "inputs": {
+                            "name": "FilterParts",
+                            "value": "Vendor_Approved eq true"
+                          }
+                        },
+                        "FinalFilter": {
+                          "runAfter": {
+                            "Filter_by_Vendor_Approved": ["Succeeded"]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "2ac9e66c-5d2b-4b4f-8f31-2973003d4e6e"
+                          },
+                          "type": "Compose",
+                          "inputs": "@join(variables('FilterParts'), ' and ')"
+                        },
+                        "HTTP": {
+                          "runAfter": { "FinalFilter": ["Succeeded"] },
+                          "metadata": {
+                            "operationMetadataId": "0d5ebe3c-605b-4826-bc26-2bf46b842ce2"
+                          },
+                          "type": "Http",
+                          "inputs": {
+                            "uri": "@concat(\r\n  'https://auscentraldtapp03.epicorsaas.com/SaaS4031/api/v2/odata/MCS/BaqSvc/VendorList_OCR/Data',\r\n  '?$select=Vendor_Company,Vendor_Name,Vendor_VendorID,Vendor_VendorNum,Vendor_EMailAddress,Vendor_Comment,Vendor_TaxPayerID,Vendor_Approved,Vendor_Inactive',\r\n  '&$filter=',\r\n  uriComponent(outputs('FinalFilter'))\r\n)",
+                            "method": "GET",
+                            "headers": {
+                              "Content-Type": "application/json",
+                              "x-api-key": "lsrAkD70ilM2W5yd2FzkNNiav687cdeT9Qh1d3TG22947"
+                            },
+                            "authentication": {
+                              "type": "Basic",
+                              "username": "arm_automate",
+                              "password": "G5si7e85GKR78PceG40p"
+                            },
+                            "retryPolicy": {
+                              "type": "exponential",
+                              "count": 4,
+                              "interval": "PT10S"
+                            }
+                          }
+                        },
+                        "ParseVendors": {
+                          "runAfter": { "HTTP": ["Succeeded"] },
+                          "metadata": {
+                            "operationMetadataId": "87d730ca-dcd9-4ec5-80c5-150c53dfaa61"
+                          },
+                          "type": "ParseJson",
+                          "inputs": {
+                            "content": "@body('HTTP')",
+                            "schema": {
+                              "type": "object",
+                              "properties": {
+                                "type": { "type": "string" },
+                                "properties": {
+                                  "type": "object",
+                                  "properties": {
+                                    "@@odata.context": {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": { "type": "string" }
+                                      }
+                                    },
+                                    "value": {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": { "type": "string" },
+                                        "items": {
+                                          "type": "object",
+                                          "properties": {
+                                            "type": { "type": "string" },
+                                            "properties": {
+                                              "type": "object",
+                                              "properties": {
+                                                "Vendor_Inactive": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "type": { "type": "string" }
+                                                  }
+                                                },
+                                                "Vendor_Company": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "type": { "type": "string" }
+                                                  }
+                                                },
+                                                "Vendor_VendorID": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "type": { "type": "string" }
+                                                  }
+                                                },
+                                                "Vendor_Name": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "type": { "type": "string" }
+                                                  }
+                                                },
+                                                "Vendor_VendorNum": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "type": { "type": "string" }
+                                                  }
+                                                },
+                                                "Vendor_EMailAddress": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "type": { "type": "string" }
+                                                  }
+                                                },
+                                                "Vendor_Comment": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "type": { "type": "string" }
+                                                  }
+                                                },
+                                                "Vendor_TaxPayerID": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "type": { "type": "string" }
+                                                  }
+                                                },
+                                                "Vendor_Approved": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "type": { "type": "string" }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "required": {
+                                              "type": "array",
+                                              "items": { "type": "string" }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "required": {
+                                  "type": "array",
+                                  "items": { "type": "string" }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Winner": {
+                          "runAfter": { "ByCompany": ["Succeeded"] },
+                          "metadata": {
+                            "operationMetadataId": "303a8246-8ba4-484b-a1e1-0584a1f6e160"
+                          },
+                          "type": "Compose",
+                          "inputs": "@first(\r\n  if(\r\n    and(\r\n      not(empty(variables('CompanyCode'))),\r\n      greater(length(body('ByCompany')), 0)\r\n    ),\r\n    body('ByCompany'),\r\n    body('ParseVendors')?['value']\r\n  )\r\n)\r\n"
+                        },
+                        "ByCompany": {
+                          "runAfter": { "ParseVendors": ["Succeeded"] },
+                          "metadata": {
+                            "operationMetadataId": "c39aba7f-0594-44f7-8407-e1a72d7380f2"
+                          },
+                          "type": "Query",
+                          "inputs": {
+                            "from": "@body('ParseVendors')?['value']",
+                            "where": "@equals(item()?['Vendor_Company'], variables('CompanyCode'))\n"
+                          }
+                        },
+                        "Init_FilterParts": {
+                          "metadata": {
+                            "operationMetadataId": "c1cfbcc5-d0cf-42c4-8b27-454894dac4fd"
+                          },
+                          "type": "SetVariable",
+                          "inputs": { "name": "FilterParts", "value": [] }
+                        },
+                        "Check_if_ABN_from_API_is_empty": {
+                          "actions": {
+                            "Filter_by_ABN_1": {
+                              "runAfter": {
+                                "Init_FilterParts_1": ["Succeeded"]
+                              },
+                              "metadata": {
+                                "operationMetadataId": "4908cddc-254d-45a5-90a2-428ca7f32f7f"
+                              },
+                              "type": "AppendToArrayVariable",
+                              "inputs": {
+                                "name": "FilterParts",
+                                "value": "@concat('Vendor_TaxPayerID eq ''', outputs('ABN-DigitsOnly'), '''')"
+                              }
+                            },
+                            "FilterByCompanyCode_1": {
+                              "runAfter": { "Filter_by_ABN_1": ["Succeeded"] },
+                              "metadata": {
+                                "operationMetadataId": "26f52011-ee43-4e53-ac7a-8c74305325e3"
+                              },
+                              "type": "AppendToArrayVariable",
+                              "inputs": {
+                                "name": "FilterParts",
+                                "value": "@concat('Vendor_Company eq ''', variables('CompanyCode'), '''')"
+                              }
+                            },
+                            "Filter_by_Vendor_Inactive_1": {
+                              "runAfter": {
+                                "FilterByCompanyCode_1": ["Succeeded"]
+                              },
+                              "metadata": {
+                                "operationMetadataId": "ce655829-cc45-4a32-b09d-a2b3e3d37e15"
+                              },
+                              "type": "AppendToArrayVariable",
+                              "inputs": {
+                                "name": "FilterParts",
+                                "value": "Vendor_Inactive eq false"
+                              }
+                            },
+                            "Filter_by_Vendor_Approved_1": {
+                              "runAfter": {
+                                "Filter_by_Vendor_Inactive_1": ["Succeeded"]
+                              },
+                              "metadata": {
+                                "operationMetadataId": "940b4a3f-fff7-4127-b3c3-77b74a2eee2a"
+                              },
+                              "type": "AppendToArrayVariable",
+                              "inputs": {
+                                "name": "FilterParts",
+                                "value": "Vendor_Approved eq true"
+                              }
+                            },
+                            "FinalFilter1": {
+                              "runAfter": {
+                                "Filter_by_Vendor_Approved_1": ["Succeeded"]
+                              },
+                              "metadata": {
+                                "operationMetadataId": "8545c65a-144f-496f-ab32-9b9920e04665"
+                              },
+                              "type": "Compose",
+                              "inputs": "@join(variables('FilterParts'), ' and ')"
+                            },
+                            "HTTP_1": {
+                              "runAfter": { "FinalFilter1": ["Succeeded"] },
+                              "metadata": {
+                                "operationMetadataId": "33a3fc52-27fa-474e-9e67-08f8af9ae39d"
+                              },
+                              "type": "Http",
+                              "inputs": {
+                                "uri": "@concat(\r\n  'https://auscentraldtapp03.epicorsaas.com/SaaS4031/api/v2/odata/MCS/BaqSvc/VendorList_OCR/Data',\r\n  '?$select=Vendor_Company,Vendor_Name,Vendor_VendorID,Vendor_VendorNum,Vendor_EMailAddress,Vendor_Comment,Vendor_TaxPayerID,Vendor_Approved,Vendor_Inactive',\r\n  '&$filter=',\r\n  uriComponent(outputs('FinalFilter1'))\r\n)",
+                                "method": "GET",
+                                "headers": {
+                                  "Content-Type": "application/json",
+                                  "x-api-key": "lsrAkD70ilM2W5yd2FzkNNiav687cdeT9Qh1d3TG22947"
+                                },
+                                "authentication": {
+                                  "type": "Basic",
+                                  "username": "arm_automate",
+                                  "password": "G5si7e85GKR78PceG40p"
+                                },
+                                "retryPolicy": {
+                                  "type": "exponential",
+                                  "count": 4,
+                                  "interval": "PT10S"
+                                }
+                              }
+                            },
+                            "ParseVendors1": {
+                              "runAfter": { "HTTP_1": ["Succeeded"] },
+                              "metadata": {
+                                "operationMetadataId": "8ce2cf56-0795-486b-8871-64f879b4d59f"
+                              },
+                              "type": "ParseJson",
+                              "inputs": {
+                                "content": "@body('HTTP_1')",
+                                "schema": {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": { "type": "string" },
+                                    "properties": {
+                                      "type": "object",
+                                      "properties": {
+                                        "@@odata.context": {
+                                          "type": "object",
+                                          "properties": {
+                                            "type": { "type": "string" }
+                                          }
+                                        },
+                                        "value": {
+                                          "type": "object",
+                                          "properties": {
+                                            "type": { "type": "string" },
+                                            "items": {
+                                              "type": "object",
+                                              "properties": {
+                                                "type": { "type": "string" },
+                                                "properties": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "Vendor_Inactive": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "type": {
+                                                          "type": "string"
+                                                        }
+                                                      }
+                                                    },
+                                                    "Vendor_Company": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "type": {
+                                                          "type": "string"
+                                                        }
+                                                      }
+                                                    },
+                                                    "Vendor_VendorID": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "type": {
+                                                          "type": "string"
+                                                        }
+                                                      }
+                                                    },
+                                                    "Vendor_Name": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "type": {
+                                                          "type": "string"
+                                                        }
+                                                      }
+                                                    },
+                                                    "Vendor_VendorNum": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "type": {
+                                                          "type": "string"
+                                                        }
+                                                      }
+                                                    },
+                                                    "Vendor_EMailAddress": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "type": {
+                                                          "type": "string"
+                                                        }
+                                                      }
+                                                    },
+                                                    "Vendor_Comment": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "type": {
+                                                          "type": "string"
+                                                        }
+                                                      }
+                                                    },
+                                                    "Vendor_TaxPayerID": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "type": {
+                                                          "type": "string"
+                                                        }
+                                                      }
+                                                    },
+                                                    "Vendor_Approved": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "type": {
+                                                          "type": "string"
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "required": {
+                                                  "type": "array",
+                                                  "items": { "type": "string" }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "required": {
+                                      "type": "array",
+                                      "items": { "type": "string" }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "ByCompany1": {
+                              "runAfter": { "ParseVendors1": ["Succeeded"] },
+                              "metadata": {
+                                "operationMetadataId": "8a11c1f4-4ffd-4b51-94fc-a0cf69b01e3b"
+                              },
+                              "type": "Query",
+                              "inputs": {
+                                "from": "@body('ParseVendors1')?['value']",
+                                "where": "@equals(item()?['Vendor_Company'], variables('CompanyCode'))\n"
+                              }
+                            },
+                            "Winner1": {
+                              "runAfter": { "ByCompany1": ["Succeeded"] },
+                              "metadata": {
+                                "operationMetadataId": "477080b0-f74e-4fd4-b83f-92a26fb6a3f2"
+                              },
+                              "type": "Compose",
+                              "inputs": "@first(\r\n  if(\r\n    and(\r\n      not(empty(variables('CompanyCode'))),\r\n      greater(length(body('ByCompany1')), 0)\r\n    ),\r\n    body('ByCompany1'),\r\n    body('ParseVendors1')?['value']\r\n  )\r\n)\r\n"
+                            },
+                            "Set_ABN_Output_1": {
+                              "runAfter": { "Winner1": ["Succeeded"] },
+                              "metadata": {
+                                "operationMetadataId": "3a7c3cf7-5189-405c-92ec-6c364ce06d1b"
+                              },
+                              "type": "SetVariable",
+                              "inputs": {
+                                "name": "ABN Output",
+                                "value": "@outputs('Winner1')?['Vendor_TaxPayerID']"
+                              }
+                            },
+                            "Init_FilterParts_1": {
+                              "metadata": {
+                                "operationMetadataId": "c3effa00-83f1-41df-bad1-3c37471f1ae1"
+                              },
+                              "type": "SetVariable",
+                              "inputs": { "name": "FilterParts", "value": [] }
+                            },
+                            "Set_VendorID_1": {
+                              "runAfter": { "Set_ABN_Output_1": ["Succeeded"] },
+                              "metadata": {
+                                "operationMetadataId": "910e9768-6d90-4a1a-969e-8cc491d015fc"
+                              },
+                              "type": "SetVariable",
+                              "inputs": {
+                                "name": "VendorId",
+                                "value": "@outputs('Winner1')?['Vendor_VendorID']"
+                              }
+                            }
+                          },
+                          "runAfter": { "Set_VendorID": ["Succeeded"] },
+                          "else": { "actions": {} },
+                          "expression": {
+                            "and": [
+                              {
+                                "equals": [
+                                  "@empty(outputs('Winner')?['Vendor_TaxPayerID'])",
+                                  true
+                                ]
+                              }
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "c6d022b4-017d-49ae-a85a-27fe11780ffa"
+                          },
+                          "type": "If"
+                        },
+                        "Set_ABN_Output": {
+                          "runAfter": { "Winner": ["Succeeded"] },
+                          "metadata": {
+                            "operationMetadataId": "b2910288-5398-4dff-b8fd-8af051dbc559"
+                          },
+                          "type": "SetVariable",
+                          "inputs": {
+                            "name": "ABN Output",
+                            "value": "@outputs('Winner')?['Vendor_TaxPayerID']"
+                          }
+                        },
+                        "Set_VendorID": {
+                          "runAfter": { "Set_ABN_Output": ["Succeeded"] },
+                          "metadata": {
+                            "operationMetadataId": "0a7a43dc-4d2a-4ae3-87b4-a780307a221e"
+                          },
+                          "type": "SetVariable",
+                          "inputs": {
+                            "name": "VendorId",
+                            "value": "@outputs('Winner')?['Vendor_VendorID']"
+                          }
+                        }
+                      },
+                      "else": { "actions": {} },
+                      "expression": {
+                        "and": [
+                          { "greater": ["@length(trim(variables('ABN')))", 0] },
+                          {
+                            "not": {
+                              "equals": ["@toLower(variables('ABN'))", "na"]
+                            }
+                          }
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "ac1fdd5e-693e-46c6-9cd7-bdc3b9368286"
+                      },
+                      "type": "If"
+                    }
+                  },
+                  "runAfter": { "Set_Vendor_Name": ["Succeeded"] },
+                  "else": { "actions": {} },
+                  "expression": {
+                    "and": [
+                      {
+                        "greater": [
+                          "@length(trim(variables('CompanyCode')))",
+                          0
+                        ]
+                      }
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "0de7c21b-1334-4d5e-975a-736668acfb92"
+                  },
+                  "type": "If"
+                },
+                "ABN-DigitsOnly": {
+                  "runAfter": { "ABN-Tidy": ["Succeeded"] },
+                  "metadata": {
+                    "operationMetadataId": "65625804-faaf-45a7-91f5-3968541800fc"
+                  },
+                  "type": "Compose",
+                  "inputs": "@replace(\r\n  replace(\r\n    replace(\r\n      replace(\r\n        replace(\r\n          replace(outputs('ABN-Tidy'), 'ABN ', ''), \r\n          ' ', ''\r\n        ),\r\n        '-', ''\r\n      ),\r\n      '.', ''\r\n    ),\r\n    ',', ''\r\n  ),\r\n  decodeUriComponent('%C2%A0'), ''\r\n)"
+                },
+                "ABN-Tidy": {
+                  "runAfter": { "Set_ABN": ["Succeeded"] },
+                  "metadata": {
+                    "operationMetadataId": "188dbe64-1441-4dec-89da-2fb3c36eb0a9"
+                  },
+                  "type": "Compose",
+                  "inputs": "@trim(variables('ABN'))"
+                },
+                "If_ABN_has_11_digits": {
+                  "actions": {
+                    "ABN-Spaced": {
+                      "metadata": {
+                        "operationMetadataId": "4bfb8a58-91e7-440a-983f-8e6a0e843b81"
+                      },
+                      "type": "Compose",
+                      "inputs": "@concat(\r\n  substring(outputs('ABN-DigitsOnly'),0,2),' ',\r\n  substring(outputs('ABN-DigitsOnly'),2,3),' ',\r\n  substring(outputs('ABN-DigitsOnly'),5,3),' ',\r\n  substring(outputs('ABN-DigitsOnly'),8,3)\r\n)"
+                    },
+                    "Set_ABN-Updated": {
+                      "runAfter": { "ABN-Spaced": ["Succeeded"] },
+                      "metadata": {
+                        "operationMetadataId": "89c76216-12fd-499c-bb80-363368e47ba6"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "ABN",
+                        "value": "@outputs('ABN-Spaced')"
+                      }
+                    }
+                  },
+                  "runAfter": { "ABN-DigitsOnly": ["Succeeded"] },
+                  "else": {
+                    "actions": {
+                      "Set_ABN-Updated-Tidy": {
+                        "metadata": {
+                          "operationMetadataId": "a1125e06-b8e8-4e90-a964-c52c38605d39"
+                        },
+                        "type": "SetVariable",
+                        "inputs": {
+                          "name": "ABN",
+                          "value": "@outputs('ABN-Tidy')"
+                        }
+                      }
+                    }
+                  },
+                  "expression": {
+                    "and": [
+                      { "equals": ["@length(outputs('ABN-DigitsOnly'))", 11] }
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "50d57f3f-46c3-434a-8cc9-711d928914de"
+                  },
+                  "type": "If"
+                },
+                "Set_EmailDate": {
+                  "runAfter": { "Set_Purchase_Order_Az": ["Succeeded"] },
+                  "metadata": {
+                    "operationMetadataId": "40bfa4f1-14cd-4e23-ad0a-d36e0c5ee022"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "EmailDate",
+                    "value": "@convertTimeZone(triggerOutputs()?['body/receivedDateTime'], 'UTC', 'W. Australia Standard Time')"
+                  },
+                  "description": ""
+                }
+              },
+              "else": { "actions": {} },
+              "expression": {
+                "or": [
+                  {
+                    "contains": ["@item()?['contentType']", "application/pdf"]
+                  },
+                  {
+                    "contains": [
+                      "@item()?['contentType']",
+                      "application/octet-stream"
+                    ]
+                  }
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "71aed7b9-23c3-4d50-9c46-3b7aa997bf99"
+              },
+              "type": "If",
+              "description": "Verifying the attachment if the file is in PDF format. If TRUE, it will call the AI Model to extract details."
+            }
+          },
+          "runAfter": { "Filter_PDF_attachments": ["Succeeded"] },
+          "metadata": {
+            "operationMetadataId": "642ea5e6-799c-4d7b-b22d-393362818370"
+          },
+          "type": "Foreach",
+          "description": "Generating a Loop or Cycle to check each attachment that is PDF in the email.",
+          "runtimeConfiguration": { "concurrency": { "repetitions": 1 } }
+        },
+        "Move_email_(V2)_to_Invoice_Capture": {
+          "runAfter": { "Process_Each_Attachment": ["Succeeded"] },
+          "metadata": {
+            "Id::AAMkADEyOTE3OTIwLWIwZWUtNGYzNi05ZDE5LWI2YmM1NTJmZWQyMQAuAAAAAABbNY8hDF7sT4OqtSyPrL3gAQCnQfTnhoyLTbN3pz1oVd0SAABLRqHmAAA=": "ARM Processed",
+            "operationMetadataId": "7ba95ecf-f868-4a82-88b1-e3a13e6e550a",
+            "Id::AAMkADcwMWE5ODBiLWQ0YmMtNDE4Mi1hZGYxLWYzMWU1MzYzNDc5NwAuAAAAAAD-JYBFfci6TZQu5Nrxf-0-AQAmMWjMrw22QqAvvp8Z5DF7AAAOF1X6AAA=": "ARM Processed"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "messageId": "@triggerOutputs()?['body/id']",
+              "folderPath": "Id::AAMkADcwMWE5ODBiLWQ0YmMtNDE4Mi1hZGYxLWYzMWU1MzYzNDc5NwAuAAAAAAD-JYBFfci6TZQu5Nrxf-0-AQAmMWjMrw22QqAvvp8Z5DF7AAAOF1X6AAA=",
+              "mailboxAddress": "invoicecapture@contoso.com.au"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+              "connectionName": "shared_office365",
+              "operationId": "MoveV2"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "description": "When the cycle or look finishing processing each attachment in the email, this step will move the mail to ARM Processed folder in the Invoice Capture mailbox, and the flow will end."
+        },
+        "ABN": {
+          "runAfter": { "FilterParts": ["Succeeded"] },
+          "metadata": {
+            "operationMetadataId": "ee2d3b5f-f6d6-42f2-ac58-68aec780c459"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [{ "name": "ABN", "type": "string", "value": "NA" }]
+          },
+          "description": "Definition of Variable"
+        },
+        "DisplayName": {
+          "runAfter": { "PO": ["Succeeded"] },
+          "metadata": {
+            "operationMetadataId": "68a53817-3ec3-4f76-982c-32b87b380f14"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              { "name": "DisplayName", "type": "string", "value": "NA" }
+            ]
+          },
+          "description": "Definition of Variable"
+        },
+        "FilterParts": {
+          "runAfter": { "VendorName": ["Succeeded"] },
+          "metadata": {
+            "operationMetadataId": "139e1e22-92fa-4467-bcd7-6f58b9f150c7"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              { "name": "FilterParts", "type": "array", "value": [] }
+            ]
+          },
+          "description": "Definition of Variable"
+        },
+        "ABN_Output": {
+          "runAfter": { "ABN": ["Succeeded"] },
+          "metadata": {
+            "operationMetadataId": "a7654715-40a9-4502-ad43-3be243cf4561"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              { "name": "ABN Output", "type": "string", "value": "NA" }
+            ]
+          },
+          "description": "Definition of Variable"
+        },
+        "EmailDate": {
+          "runAfter": { "InvoiceDate": ["Succeeded"] },
+          "metadata": {
+            "operationMetadataId": "9a096ea3-7afc-4efd-bfe3-1053ea2166d9"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              { "name": "EmailDate", "type": "string", "value": "NA" }
+            ]
+          },
+          "description": "Definition of Variable"
+        }
+      },
+      "outputs": {}
+    },
+    "connectionReferences": {
+      "shared_office365": {
+        "connectionName": "shared-office365-562a0eb3-8c47-424a-a93d-2e430e231600",
+        "source": "Embedded",
+        "id": "/providers/Microsoft.PowerApps/apis/shared_office365",
+        "tier": "NotSpecified",
+        "apiName": "office365",
+        "isProcessSimpleApiReferenceConversionAlreadyDone": false
+      },
+      "shared_excelonlinebusiness": {
+        "connectionName": "2e467cd6bff44938ad1b6d5cb5cbca68",
+        "source": "Embedded",
+        "id": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness",
+        "tier": "NotSpecified",
+        "apiName": "excelonlinebusiness",
+        "isProcessSimpleApiReferenceConversionAlreadyDone": false
+      },
+      "shared_sharepointonline": {
+        "connectionName": "shared-sharepointonl-f3ddf104-7600-4e54-af1d-7154baeafda9",
+        "source": "Embedded",
+        "id": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+        "tier": "NotSpecified",
+        "apiName": "sharepointonline",
+        "isProcessSimpleApiReferenceConversionAlreadyDone": false
+      }
+    },
+    "flowFailureAlertSubscribed": false,
+    "isManaged": false
+  }
+}
