@@ -1,4 +1,4 @@
-# Start Here — Contoso Invoice OCR Backend
+# Start Here — InvoicePipe Extraction Service
 
 ## What this repo is
 A containerised FastAPI microservice that accepts PDF invoices and calls **Azure Content Understanding** to extract fields, returning either:

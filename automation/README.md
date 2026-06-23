@@ -7,7 +7,7 @@ This directory contains reference artifacts for automating invoice ingestion usi
 The included `power_automate_definition.json` is an exported Power Automate flow definition from a production environment. This flow is designed to:
 1. Monitor a designated shared mailbox for incoming emails with invoice attachments.
 2. Extract the PDF attachments.
-3. Send the attachments to the OCR pipeline (`services/ocr-pipeline`) for processing.
+3. Send the attachments to the extraction service (`services/ocr-pipeline`) for processing.
 4. Route the extracted data and results to downstream systems.
 
 ## Important Note: Reference Architecture
@@ -23,11 +23,11 @@ To protect sensitive information, all tenant-specific and user-specific identifi
 ## Directory Structure
 
 - `power_automate_definition.json`: The core flow definition.
-- `docs/`: Contains mock Power Automate call documentation, which helps illustrate the expected inputs and outputs when the flow interacts with the OCR pipeline.
+- `docs/`: Contains mock Power Automate call documentation, which helps illustrate the expected inputs and outputs when the flow interacts with the extraction pipeline.
 
 ## How to Use
 
 1. Review the flow definition and the mock call documentation in the `docs/` folder to understand the expected data structures.
 2. Import the JSON definition into your Power Automate environment.
 3. Reconfigure the connections (e.g., Office 365 Outlook, HTTP connectors) to use your organization's credentials.
-4. Update the endpoint URLs in the HTTP actions to point to your deployed instance of the OCR pipeline.
+4. Update the endpoint URLs in the HTTP actions to point to your deployed instance of the extraction pipeline.

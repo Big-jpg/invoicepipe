@@ -1,6 +1,6 @@
 # ==============================================================================
-# Contoso Invoice Automation - Azure Environment Inspector
-# Read-only script for Cloud Shell / SSH to inspect OCR env state.
+# InvoicePipe Extraction Service - Azure Environment Inspector
+# Read-only script for Cloud Shell / SSH to inspect extraction service env state.
 # - Uses Azure CLI only (no Docker, no jq).
 # - Intended for rfarrell@ / arm_automate@ accounts.
 # - Safe to run repeatedly; does NOT modify resources.
@@ -186,7 +186,7 @@ fi
 
 echo
 echo "============================================="
-echo "🔎 Contoso OCR Environment Inspection"
+echo "🔎 InvoicePipe Extraction Service Environment Inspection"
 echo "============================================="
 echo "Environment:       $ENVIRONMENT"
 echo "Resource Group:    $OCR_RG"

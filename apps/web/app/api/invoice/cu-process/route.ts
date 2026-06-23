@@ -6,7 +6,7 @@ import { normalizeCUFields } from "@/lib/normalize-cu-fields";
 /**
  * POST /api/invoice/cu-process
  * Processes an uploaded invoice using Azure Content Understanding
- * Matches production implementation from Azure DI build
+ * Matches production implementation from Azure Content Understanding build
  */
 export async function POST(req: NextRequest) {
     const startTime = Date.now();

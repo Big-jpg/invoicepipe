@@ -1,13 +1,13 @@
-# Azure Document Intelligence Integration Guide
+# Azure Content Understanding Integration Guide
 
 **Updated**: December 8, 2025  
-**Based on**: Production Azure DI Content Understanding Build
+**Based on**: Production Azure Content Understanding Build
 
 ---
 
 ## Overview
 
-InvoicePipe now uses the **production-tested Azure Document Intelligence (Content Understanding)** implementation, matching the exact patterns and best practices from the production Azure DI build.
+InvoicePipe now uses the **production-tested Azure Content Understanding (formerly Document Intelligence)** implementation, matching the exact patterns and best practices from the production Content Understanding build.
 
 ---
 
@@ -53,7 +53,7 @@ export function extractFieldValue(field: CUField | undefined): string | number |
 
 ### 4. **Extended Invoice Schema**
 
-Added additional fields matching the Azure DI OutputSchema:
+Added additional fields matching the Content Understanding OutputSchema:
 
 - `vendorAddress`
 - `customerAddress`
@@ -82,7 +82,7 @@ AZURE_CU_ANALYZER_ID=custom-invoice-analyzer-id
 AZURE_CU_KEY=your-subscription-key
 ```
 
-### Azure DI Build Format (Alternative)
+### Content Understanding Build Format (Alternative)
 
 ```env
 CONTENT_UNDERSTANDING_ENDPOINT=https://your-resource.cognitiveservices.azure.com/
@@ -97,7 +97,7 @@ ANALYZER_ID=custom-invoice-analyzer-id
 
 ## API Version
 
-The production Azure DI build uses:
+The production Content Understanding build uses:
 
 ```
 API_VERSION=2025-05-01-preview
@@ -121,9 +121,9 @@ Replace this with your actual custom analyzer ID from Azure AI Studio.
 
 ## Field Mapping
 
-### Azure DI OutputSchema → InvoicePipe Database
+### Content Understanding OutputSchema → InvoicePipe Database
 
-| Azure DI Field | InvoicePipe Field | Type | Notes |
+| CU Field | InvoicePipe Field | Type | Notes |
 |----------------|-------------------|------|-------|
 | `InvoiceId` | `invoice_number` | string | Required |
 | `VendorName` | `vendor` | string | Required |
@@ -158,7 +158,7 @@ Content-Type: multipart/form-data
 
 Returns a `slug` (UUID) for the uploaded file.
 
-### 2. Process with Azure DI
+### 2. Process with Content Understanding
 
 ```
 POST /api/invoice/cu-process
@@ -372,7 +372,7 @@ Then update the INSERT query in `cu-process/route.ts` to include these fields.
 
 ## References
 
-- [Azure Document Intelligence Documentation](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/)
+- [Azure Content Understanding Documentation](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/)
 - [Content Understanding API Reference](https://learn.microsoft.com/en-us/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30))
 - [Custom Model Training](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/how-to-guides/build-a-custom-model)
 
@@ -385,4 +385,4 @@ For issues specific to InvoicePipe integration, check:
 - Raw API responses
 - Database insert queries
 
-For Azure DI issues, refer to Azure support or documentation.
+For Azure Content Understanding issues, refer to Azure support or documentation.

@@ -13,7 +13,7 @@ param(
 
 Write-Host ""
 Write-Host "================================================================================"
-Write-Host "🚀 Contoso Invoice OCR - Environment Test Suite"
+Write-Host "🚀 InvoicePipe Extraction Service - Environment Test Suite"
 Write-Host "================================================================================"
 Write-Host "🌍 Target Environment: $Environment"
 Write-Host "📅 Test Date: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"

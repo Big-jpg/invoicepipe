@@ -1,4 +1,4 @@
-# Contoso Invoice Extraction Schema Mapping
+# InvoicePipe Extraction Schema Mapping
 
 Version: Stable (June 2025)
 

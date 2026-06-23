@@ -230,7 +230,7 @@ export default function LandingPage() {
                             {
                                 number: "2",
                                 title: "We extract the fields",
-                                description: "Azure Document Intelligence plus our normalization layer detect vendor, totals, GST, PO, dates, and more.",
+                                description: "Azure Content Understanding plus our normalization layer detect vendor, totals, GST, PO, dates, and more.",
                                 color: "fuchsia"
                             },
                             {

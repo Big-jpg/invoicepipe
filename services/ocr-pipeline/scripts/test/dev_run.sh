@@ -17,7 +17,7 @@ PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 VENV_DIR="$PROJECT_ROOT/venv"
 
 echo "============================================================================"
-echo "🚀 Contoso Invoice OCR - Local DEV Environment"
+echo "🚀 InvoicePipe Extraction Service - Local DEV Environment"
 echo "============================================================================"
 echo ""
 
